@@ -1,0 +1,309 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { MenuIcon, CloseIcon } from '@/lib/icons';
+
+export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    if (pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const navItems = [
+    { href: '/', label: 'בית' },
+    { href: '/gallery', label: 'גלריה' },
+    { href: '/products', label: 'מוצרים' },
+    { href: '/about', label: 'אודות' },
+    { href: '/contact', label: 'צור קשר' },
+  ];
+
+  return (
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-crystal-dark/95 backdrop-blur-md shadow-lg'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="section-padding">
+        <div className="container-max">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* Logo */}
+            <Link href="/">
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center space-x-3 space-x-reverse cursor-pointer group"
+              >
+                <motion.div 
+                  className="relative w-12 h-12 lg:w-14 lg:h-14"
+                  whileHover={{ rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-crystal-blue via-crystal-silver to-white rounded-xl shadow-lg group-hover:shadow-crystal-blue/25 transition-all duration-300"></div>
+                  <div className="absolute inset-0.5 bg-crystal-dark rounded-xl flex items-center justify-center">
+                    <svg 
+                      className="w-6 h-6 lg:w-8 lg:h-8 text-crystal-blue group-hover:text-white transition-colors duration-300" 
+                      fill="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM12 4.5L19 8.5V16.5L12 19.5L5 16.5V8.5L12 4.5ZM12 8L8 10V14L12 16L16 14V10L12 8Z"/>
+                    </svg>
+                  </div>
+                </motion.div>
+                <div className="hidden sm:block">
+                  <motion.h1 
+                    className="text-xl lg:text-2xl font-bold text-crystal-white group-hover:text-crystal-blue transition-colors duration-300"
+                    initial={{ opacity: 0.8 }}
+                    whileHover={{ opacity: 1 }}
+                  >
+                    Crystal View
+                  </motion.h1>
+                  <p className="text-xs lg:text-sm text-crystal-silver group-hover:text-crystal-blue/70 transition-colors duration-300 font-medium">
+                    זכוכית ואלומיניום יוקרתיים
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-8 space-x-reverse">
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Link href={item.href}>
+                    <motion.div
+                      className="relative group px-4 py-2"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {/* Active indicator */}
+                      {pathname === item.href && (
+                        <motion.div
+                          layoutId="activeTab"
+                          className="absolute inset-0 bg-gradient-to-r from-crystal-blue/20 to-crystal-silver/20 rounded-lg border border-crystal-blue/30"
+                          initial={false}
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        />
+                      )}
+                      
+                      {/* Hover indicator */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-crystal-blue/10 to-crystal-silver/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        initial={false}
+                      />
+                      
+                      {/* Text */}
+                      <span className={`relative z-10 text-sm font-medium transition-all duration-300 ${
+                        pathname === item.href 
+                          ? 'text-crystal-blue font-bold' 
+                          : 'text-crystal-white group-hover:text-crystal-blue'
+                      }`}>
+                        {item.label}
+                      </span>
+                      
+                      {/* Underline effect */}
+                      <motion.div
+                        className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-crystal-blue to-crystal-silver group-hover:w-full group-hover:left-0 transition-all duration-300"
+                        initial={false}
+                      />
+                    </motion.div>
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+
+            {/* CTA Button Desktop */}
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 10px 25px rgba(59, 130, 246, 0.4)"
+                }}
+                whileTap={{ scale: 0.98 }}
+                className="hidden lg:block relative overflow-hidden bg-gradient-to-r from-crystal-blue to-crystal-silver text-crystal-dark px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 group"
+              >
+                {/* Animated background */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.6 }}
+                />
+                
+                {/* Button text */}
+                <span className="relative z-10 flex items-center gap-2">
+                  <svg className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                  </svg>
+                  קבל הצעת מחיר
+                </span>
+              </motion.button>
+            </Link>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              className="lg:hidden relative w-10 h-10 flex flex-col justify-center items-center rounded-lg bg-crystal-dark/30 backdrop-blur-sm border border-crystal-blue/20 hover:bg-crystal-blue/20 transition-all duration-300 group"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div
+                animate={isMobileMenuOpen ? "open" : "closed"}
+                className="w-5 h-5 text-crystal-white group-hover:text-crystal-blue transition-colors duration-300"
+              >
+                {isMobileMenuOpen ? (
+                  <motion.div
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: 180 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <CloseIcon />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <MenuIcon />
+                  </motion.div>
+                )}
+              </motion.div>
+            </motion.button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{
+          opacity: isMobileMenuOpen ? 1 : 0,
+          height: isMobileMenuOpen ? 'auto' : 0,
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="lg:hidden bg-gradient-to-b from-crystal-dark/98 via-crystal-dark/95 to-crystal-dark/90 backdrop-blur-md overflow-hidden border-t border-crystal-blue/20"
+      >
+        <div className="section-padding py-6">
+          <nav className="flex flex-col space-y-2">
+            {navItems.map((item, index) => (
+              <motion.div
+                key={item.href}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ 
+                  opacity: isMobileMenuOpen ? 1 : 0,
+                  x: isMobileMenuOpen ? 0 : -20
+                }}
+                transition={{ delay: index * 0.1, duration: 0.3 }}
+              >
+                <Link href={item.href}>
+                  <motion.div
+                    whileTap={{ scale: 0.95, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`relative group flex items-center justify-between p-4 rounded-xl border transition-all duration-300 ${
+                      pathname === item.href 
+                        ? 'bg-gradient-to-r from-crystal-blue/20 to-crystal-silver/20 border-crystal-blue/50 text-crystal-blue' 
+                        : 'border-crystal-blue/10 text-crystal-white hover:border-crystal-blue/30 hover:bg-crystal-blue/5'
+                    }`}
+                  >
+                    <span className="font-medium text-lg">{item.label}</span>
+                    
+                    {/* Arrow indicator */}
+                    <motion.svg
+                      className={`w-5 h-5 transition-colors duration-300 ${
+                        pathname === item.href ? 'text-crystal-blue' : 'text-crystal-silver group-hover:text-crystal-blue'
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      whileHover={{ x: 3 }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </motion.svg>
+                    
+                    {/* Active indicator dot */}
+                    {pathname === item.href && (
+                      <motion.div
+                        layoutId="mobileDot"
+                        className="absolute left-2 top-1/2 w-2 h-2 bg-crystal-blue rounded-full"
+                        initial={false}
+                        style={{ y: "-50%" }}
+                      />
+                    )}
+                  </motion.div>
+                </Link>
+              </motion.div>
+            ))}
+            
+            {/* CTA Button Mobile */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ 
+                opacity: isMobileMenuOpen ? 1 : 0,
+                y: isMobileMenuOpen ? 0 : 20
+              }}
+              transition={{ delay: navItems.length * 0.1, duration: 0.3 }}
+              className="pt-4"
+            >
+              <Link href="/contact">
+                <motion.button
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="relative overflow-hidden bg-gradient-to-r from-crystal-blue to-crystal-silver text-crystal-dark px-8 py-4 rounded-xl font-bold text-center w-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+                >
+                  {/* Animated background */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "100%" }}
+                    transition={{ duration: 0.6 }}
+                  />
+                  
+                  <span className="relative z-10 flex items-center justify-center gap-2 text-lg">
+                    <svg className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                    </svg>
+                    קבל הצעת מחיר
+                  </span>
+                </motion.button>
+              </Link>
+            </motion.div>
+          </nav>
+        </div>
+      </motion.div>
+    </motion.header>
+  );
+}
