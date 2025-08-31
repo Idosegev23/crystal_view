@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { fadeInUp } from '@/lib/animations';
 
 export default function Footer() {
@@ -33,14 +34,14 @@ export default function Footer() {
           >
             {/* Company Info */}
             <div className="lg:col-span-2">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-crystal-blue to-crystal-silver rounded-lg flex items-center justify-center">
-                  <span className="text-crystal-dark font-bold text-xl">CV</span>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-crystal-white">Crystal View</h3>
-                  <p className="text-crystal-silver text-sm">זכוכית ואלומיניום יוקרתיים</p>
-                </div>
+              <div className="mb-6">
+                <Image
+                  src="/logowtext.png"
+                  alt="Crystal View - זכוכית ואלומיניום יוקרתי"
+                  width={180}
+                  height={54}
+                  className="h-12 w-auto brightness-110"
+                />
               </div>
               
               <p className="text-crystal-silver leading-relaxed mb-6 max-w-md">

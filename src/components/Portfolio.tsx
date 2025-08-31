@@ -102,7 +102,7 @@ export default function Portfolio() {
                     <div className="aspect-w-16 aspect-h-12 relative">
                       <Image
                         src={project.images[0]}
-                        alt={project.title}
+                        alt={`${project.title} - ${project.category} ב${project.location} | פרויקט זכוכית ואלומיניום Crystal View`}
                         width={400}
                         height={300}
                         className="object-cover w-full h-64 group-hover:scale-110 transition-transform duration-700"
@@ -189,7 +189,7 @@ export default function Portfolio() {
                   <div key={index} className="relative aspect-w-16 aspect-h-12">
                     <Image
                       src={image}
-                      alt={`${selectedProject.title} - תמונה ${index + 1}`}
+                      alt={`${selectedProject.title} - ${selectedProject.category} ב${selectedProject.location} תמונה ${index + 1} | Crystal View זכוכית ואלומיניום`}
                       width={400}
                       height={300}
                       className="object-cover w-full h-64 rounded-lg"

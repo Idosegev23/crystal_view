@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { MenuIcon, CloseIcon } from '@/lib/icons';
 
 export default function Header() {
@@ -60,35 +61,30 @@ export default function Header() {
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center space-x-3 space-x-reverse cursor-pointer group"
+                className="flex items-center cursor-pointer group"
               >
-                <motion.div 
-                  className="relative w-12 h-12 lg:w-14 lg:h-14"
-                  whileHover={{ rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-crystal-blue via-crystal-silver to-white rounded-xl shadow-lg group-hover:shadow-crystal-blue/25 transition-all duration-300"></div>
-                  <div className="absolute inset-0.5 bg-crystal-dark rounded-xl flex items-center justify-center">
-                    <svg 
-                      className="w-6 h-6 lg:w-8 lg:h-8 text-crystal-blue group-hover:text-white transition-colors duration-300" 
-                      fill="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM12 4.5L19 8.5V16.5L12 19.5L5 16.5V8.5L12 4.5ZM12 8L8 10V14L12 16L16 14V10L12 8Z"/>
-                    </svg>
-                  </div>
-                </motion.div>
+                {/* Desktop Logo - עם טקסט */}
                 <div className="hidden sm:block">
-                  <motion.h1 
-                    className="text-xl lg:text-2xl font-bold text-crystal-white group-hover:text-crystal-blue transition-colors duration-300"
-                    initial={{ opacity: 0.8 }}
-                    whileHover={{ opacity: 1 }}
-                  >
-                    Crystal View
-                  </motion.h1>
-                  <p className="text-xs lg:text-sm text-crystal-silver group-hover:text-crystal-blue/70 transition-colors duration-300 font-medium">
-                    זכוכית ואלומיניום יוקרתיים
-                  </p>
+                  <Image
+                    src="/logowtext.png"
+                    alt="Crystal View - זכוכית ואלומיניום יוקרתי"
+                    width={200}
+                    height={60}
+                    className="h-12 lg:h-14 w-auto group-hover:brightness-110 transition-all duration-300"
+                    priority
+                  />
+                </div>
+                
+                {/* Mobile Logo - בלי טקסט */}
+                <div className="block sm:hidden">
+                  <Image
+                    src="/logontext.png"
+                    alt="Crystal View"
+                    width={48}
+                    height={48}
+                    className="h-10 w-10 group-hover:brightness-110 transition-all duration-300"
+                    priority
+                  />
                 </div>
               </motion.div>
             </Link>

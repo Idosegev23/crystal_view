@@ -9,7 +9,7 @@ import WhatsApp from '@/components/shared/WhatsApp';
 import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations';
 import { services } from '@/lib/services';
 import { projects } from '@/lib/projects';
-import { WindowIcon, FacadeIcon, RailingIcon, ShowerIcon, PergolaIcon, GalleryIcon, ProductIcon, AboutIcon, ContactIcon } from '@/lib/icons';
+import { WindowIcon, FacadeIcon, RailingIcon, ShowerIcon, PergolaIcon } from '@/lib/icons';
 import Image from 'next/image';
 
 export default function Home() {
@@ -18,97 +18,150 @@ export default function Home() {
       <Header />
       <Hero />
       
-      {/* Quick Overview */}
+      {/* Process Steps */}
       <section className="py-20 lg:py-32 bg-gradient-to-br from-crystal-dark via-gray-900 to-crystal-dark">
         <div className="section-padding">
           <div className="container-max">
             
-            {/* Main Pages Navigation */}
+            {/* Section Header */}
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, amount: 0.3 }}
+              className="text-center mb-16 lg:mb-20"
+            >
+              <motion.h2
+                variants={fadeInUp}
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-crystal-white mb-6 leading-tight"
+              >
+                תהליך עבודה מקצועי לזכוכית ואלומיניום
+              </motion.h2>
+              <motion.p
+                variants={fadeInUp}
+                transition={{ delay: 0.2 }}
+                className="text-base sm:text-lg md:text-xl text-crystal-silver max-w-2xl lg:max-w-3xl mx-auto leading-relaxed"
+              >
+                התקנת חלונות אלומיניום, דלתות זכוכית ופרגולות מודרניות בתהליך פשוט ושקוף
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>
+                מייעוץ ותכנון ועד התקנה מקצועית עם אחריות מלאה
+              </motion.p>
+            </motion.div>
+
+            {/* Process Steps */}
             <motion.div
               initial="initial"
               whileInView="animate"
               viewport={{ once: true, amount: 0.3 }}
               variants={staggerContainer}
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
+              className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-20"
             >
               {[
                 {
-                  title: "גלריה",
-                  description: "הפרויקטים שמגדירים אותנו",
-                  href: "/gallery",
-                  icon: GalleryIcon,
-                  image: projects[0].images[0]
+                  step: "01",
+                  title: "ייעוץ והתכנון מקצועי",
+                  description: "פגישה ראשונה לבירור צרכים, מדידות מדויקות לחלונות ודלתות והצעת מחיר שקופה לפרויקט הזכוכית והאלומיניום שלכם",
+                  icon: (
+                    <svg className="w-8 h-8 text-crystal-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  )
                 },
                 {
-                  title: "מחשבון",
-                  description: "קבלו הערכת מחיר לפי המידות שלכם",
-                  href: "/calculator",
-                  icon: WindowIcon, // you can pick another icon if you prefer
-                  image: "https://images.unsplash.com/photo-1597007721077-b3c6ffb6d1d5?w=400"
+                  step: "02", 
+                  title: "ייצור וחיתוך אלומיניום איכותי",
+                  description: "עיבוד פרופילי אלומיניום וזכוכית בטיחותית במפעל שלנו עם ציוד CNC מתקדם ובקרת איכות קפדנית לכל חלון ודלת",
+                  icon: (
+                    <svg className="w-8 h-8 text-crystal-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  )
                 },
                 {
-                  title: "מוצרים",
-                  description: "ההתמחויות שלנו",
-                  href: "/products", 
-                  icon: ProductIcon,
-                  image: services[0].image
-                },
-                {
-                  title: "אודות",
-                  description: "החזון שלנו ברור – שקיפות מושלמת",
-                  href: "/about",
-                  icon: AboutIcon,
-                  image: "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=400"
-                },
-                {
-                  title: "יצירת קשר",
-                  description: "בואו נתחיל את הפרויקט שלכם",
-                  href: "/contact",
-                  icon: ContactIcon,
-                  image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400"
+                  step: "03",
+                  title: "התקנה מקצועית ומסירה",
+                  description: "התקנת חלונות אלומיניום ודלתות זכוכית ע״י צוות מקצועי מיומן, בדיקות סופיות ומסירה עם אחריות מלאה ושירות לאחר מכירה",
+                  icon: (
+                    <svg className="w-8 h-8 text-crystal-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  )
                 }
-              ].map((page, index) => {
-                const IconComponent = page.icon;
-                
-                return (
-                  <Link key={index} href={page.href}>
-                    <motion.div
-                      variants={staggerItem}
-                      whileHover={{ y: -10, scale: 1.02 }}
-                      className="group relative overflow-hidden rounded-2xl shadow-2xl bg-crystal-dark cursor-pointer"
-                    >
-                      {/* Background Image */}
-                      <div className="relative h-64 overflow-hidden">
-                        <Image
-                          src={page.image}
-                          alt={page.title}
-                          width={300}
-                          height={256}
-                          className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700"
-                        />
-                        
-                        {/* Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-crystal-dark via-crystal-dark/70 to-crystal-dark/20"></div>
-                        
-                        {/* Icon */}
-                        <div className="absolute top-6 right-6 w-12 h-12 bg-crystal-blue/90 backdrop-blur-sm rounded-xl flex items-center justify-center text-crystal-dark">
-                          <IconComponent />
-                        </div>
-                      </div>
+              ].map((process, index) => (
+                <motion.div
+                  key={index}
+                  variants={staggerItem}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="relative group"
+                >
+                  {/* Step Number */}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
+                    className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-crystal-blue to-crystal-silver rounded-full flex items-center justify-center text-crystal-dark font-bold text-lg z-10"
+                  >
+                    {process.step}
+                  </motion.div>
 
-                      {/* Content */}
-                      <div className="p-6">
-                        <h3 className="text-2xl font-bold text-crystal-white mb-3">
-                          {page.title}
-                        </h3>
-                        <p className="text-crystal-silver text-sm">
-                          {page.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </Link>
-                );
-              })}
+                  {/* Card */}
+                  <div className="bg-gradient-to-br from-crystal-dark/50 to-gray-900/50 p-8 rounded-2xl glass-effect backdrop-blur-md border border-crystal-silver/20 group-hover:border-crystal-blue/40 transition-all duration-300 h-full">
+                    <div className="mb-6 p-4 bg-crystal-blue/10 rounded-xl w-fit">
+                      {process.icon}
+                    </div>
+                    
+                    <h3 className="text-xl sm:text-2xl font-bold text-crystal-white mb-4 group-hover:text-crystal-blue transition-colors duration-300">
+                      {process.title}
+                    </h3>
+                    
+                    <p className="text-crystal-silver text-sm sm:text-base leading-relaxed">
+                      {process.description}
+                    </p>
+                  </div>
+
+                  {/* Connecting Line */}
+                  {index < 2 && (
+                    <div className="hidden md:block absolute top-1/2 -left-6 w-12 h-0.5 bg-gradient-to-r from-crystal-blue to-crystal-silver opacity-60 transform -translate-y-1/2 z-0"></div>
+                  )}
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* CTA Section */}
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+              className="text-center bg-gradient-to-r from-crystal-dark/50 to-gray-900/50 p-8 lg:p-12 rounded-2xl glass-effect backdrop-blur-md mb-20"
+            >
+              <h3 className="text-2xl lg:text-3xl font-bold text-crystal-white mb-4">
+                מוכנים להתחיל?
+              </h3>
+              <p className="text-crystal-silver mb-8 max-w-2xl mx-auto">
+                השאירו פרטים ונחזור אליכם עם הצעת מחיר מותאמת אישית
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link href="/calculator">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-gradient-to-r from-crystal-blue to-crystal-silver text-crystal-dark px-8 py-3 rounded-lg font-bold hover:shadow-2xl transition-all duration-300"
+                  >
+                    חשבו מחיר עכשיו
+                  </motion.button>
+                </Link>
+                <Link href="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-crystal-dark/50 border border-crystal-silver/30 text-crystal-white px-8 py-3 rounded-lg font-bold hover:border-crystal-blue transition-all duration-300"
+                  >
+                    יצירת קשר
+                  </motion.button>
+                </Link>
+              </div>
             </motion.div>
 
             {/* Featured Projects Preview */}
