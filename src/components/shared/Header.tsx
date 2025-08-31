@@ -36,6 +36,7 @@ export default function Header() {
   const navItems = [
     { href: '/', label: 'בית' },
     { href: '/gallery', label: 'גלריה' },
+    { href: '/calculator', label: 'מחשבון' },
     { href: '/products', label: 'מוצרים' },
     { href: '/about', label: 'אודות' },
     { href: '/contact', label: 'צור קשר' },

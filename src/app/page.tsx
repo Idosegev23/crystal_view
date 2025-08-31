@@ -40,6 +40,13 @@ export default function Home() {
                   image: projects[0].images[0]
                 },
                 {
+                  title: "מחשבון",
+                  description: "קבלו הערכת מחיר לפי המידות שלכם",
+                  href: "/calculator",
+                  icon: WindowIcon, // you can pick another icon if you prefer
+                  image: "https://images.unsplash.com/photo-1597007721077-b3c6ffb6d1d5?w=400"
+                },
+                {
                   title: "מוצרים",
                   description: "ההתמחויות שלנו",
                   href: "/products", 
