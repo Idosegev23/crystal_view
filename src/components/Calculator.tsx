@@ -222,7 +222,7 @@ export default function Calculator() {
               className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8"
             >
               <motion.div variants={staggerItem}>
-                <label className="block mb-3 font-medium text-crystal-silver">רוחב (ס"מ)</label>
+                <label className="block mb-3 font-medium text-crystal-silver">רוחב (ס&quot;מ)</label>
                 <input
                   type="number"
                   value={width}
@@ -234,7 +234,7 @@ export default function Calculator() {
                 />
               </motion.div>
               <motion.div variants={staggerItem}>
-                <label className="block mb-3 font-medium text-crystal-silver">גובה (ס"מ)</label>
+                <label className="block mb-3 font-medium text-crystal-silver">גובה (ס&quot;מ)</label>
                 <input
                   type="number"
                   value={height}
@@ -271,7 +271,7 @@ export default function Calculator() {
                   
                   <div className="space-y-4">
                     <p className="text-xl text-crystal-silver">בחירה: <span className="font-bold text-crystal-white">{selectedOption}</span></p>
-                    <p className="text-2xl text-crystal-silver">שטח: <span className="font-extrabold text-crystal-white">{area} מ"ר</span></p>
+                    <p className="text-2xl text-crystal-silver">שטח: <span className="font-extrabold text-crystal-white">{area} מ&quot;ר</span></p>
                     <motion.p 
                       initial={{ scale: 0.8 }}
                       animate={{ scale: 1 }}
