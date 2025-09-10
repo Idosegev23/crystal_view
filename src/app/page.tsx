@@ -36,17 +36,28 @@ export default function Home() {
                 variants={fadeInUp}
                 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-6 leading-tight"
               >
-                תהליך עבודה מקצועי לזכוכית ואלומיניום
+                תהליך עבודה מקצועי ושקוף
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 transition={{ delay: 0.2 }}
-                className="text-base sm:text-lg md:text-xl text-gray-800-light max-w-2xl lg:max-w-3xl mx-auto leading-relaxed"
+                className="text-base sm:text-lg md:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-4"
               >
-                התקנת חלונות אלומיניום, דלתות זכוכית ופרגולות מודרניות בתהליך פשוט ושקוף
-                <br className="hidden sm:block" />
-                <span className="sm:hidden"> </span>
-                מייעוץ ותכנון ועד התקנה מקצועית עם אחריות מלאה
+                אנחנו מתמחים בעבודות אלומיניום–מסגירת מרפסת ועד פרגולות מודרניות בהתאמה אישית.
+              </motion.p>
+              <motion.p
+                variants={fadeInUp}
+                transition={{ delay: 0.3 }}
+                className="text-base sm:text-lg md:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-4"
+              >
+                התהליך כולו מתבצע בצורה פשוטה, ברורה ושקופה: החל מייעוץ ותכנון ראשוני, דרך ייצור קפדני, ועד התקנה מקצועית בשטח.
+              </motion.p>
+              <motion.p
+                variants={fadeInUp}
+                transition={{ delay: 0.4 }}
+                className="text-base sm:text-lg md:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed"
+              >
+                כל פרויקט מלווה באחריות מלאה ושירות אישי, כדי להבטיח לכם שקט וביטחון לאורך זמן.
               </motion.p>
             </motion.div>
 
@@ -61,8 +72,8 @@ export default function Home() {
               {[
                 {
                   step: "01",
-                  title: "ייעוץ והתכנון מקצועי",
-                  description: "פגישה ראשונה לבירור צרכים, מדידות מדויקות לחלונות ודלתות והצעת מחיר שקופה לפרויקט הזכוכית והאלומיניום שלכם",
+                  title: "השקיפות מתחילה כאן",
+                  description: "בפגישה הראשונית נקדיש זמן להכיר אתכם, להבין לעומק את הצרכים והחזון שלכם, ולבצע מדידות מדויקות בשטח. בסיום התהליך תקבלו הצעת מחיר ברורה ושקופה לפרויקט עם ליווי אישי וצמוד מהרגע הראשון.",
                   icon: (
                     <svg className="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -71,8 +82,8 @@ export default function Home() {
                 },
                 {
                   step: "02", 
-                  title: "ייצור וחיתוך אלומיניום איכותי",
-                  description: "עיבוד פרופילי אלומיניום וזכוכית בטיחותית במפעל שלנו עם ציוד CNC מתקדם ובקרת איכות קפדנית לכל חלון ודלת",
+                  title: "ייצור מדויק – איכות ללא פשרות",
+                  description: "לאחר תכנון מדוקדק, הפרויקט עובר לידי הצוות המקצועי שלנו בבית המלאכה. אנו מבצעים ייצור וחיתוך אלומיניום איכותי, תוך שימוש בציוד מתקדם ותהליכי עיבוד בטיחותיים. כל פרופיל עובר בקרת איכות קפדנית, כדי להבטיח שכל חלון, פרגולה ומרפסת יעמדו בסטנדרטים הגבוהים ביותר.",
                   icon: (
                     <svg className="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -82,8 +93,8 @@ export default function Home() {
                 },
                 {
                   step: "03",
-                  title: "התקנה מקצועית ומסירה",
-                  description: "התקנת חלונות אלומיניום ודלתות זכוכית ע״י צוות מקצועי מיומן, בדיקות סופיות ומסירה עם אחריות מלאה ושירות לאחר מכירה",
+                  title: "התקנה מקצועית – אחריות עד הסוף",
+                  description: "צוות המתקינים המיומן שלנו מבצע את ההתקנה בשטח בדיוק ובמסירות. כל פרויקט מסתיים בבדיקות סופיות קפדניות, ומלווה באחריות מלאה ושירות אישי גם לאחר המסירה – כי מבחינתנו, שביעות הרצון שלכם היא חלק בלתי נפרד מהעבודה.",
                   icon: (
                     <svg className="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />

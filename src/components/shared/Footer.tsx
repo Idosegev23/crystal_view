@@ -85,7 +85,7 @@ export default function Footer() {
                   { id: 'hero', label: 'בית' },
                   { id: 'about', label: 'אודות' },
                   { id: 'portfolio', label: 'פרויקטים' },
-                  { id: 'services', label: 'שירותים' },
+                  { id: 'testimonials', label: 'המלצות' },
                   { id: 'contact', label: 'צור קשר' },
                 ].map((item) => (
                   <motion.button
