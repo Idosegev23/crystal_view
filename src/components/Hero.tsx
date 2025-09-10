@@ -83,29 +83,39 @@ export default function Hero() {
               Crystal View
             </motion.h1>
 
-            {/* Hebrew Tagline with background */}
+            {/* Hebrew Tagline with liquid glass */}
             <motion.div
               variants={fadeInUp}
               transition={{ delay: 0.2 }}
               className="mb-6 sm:mb-8"
             >
-              <div className="inline-block backdrop-blur-md rounded-2xl px-6 py-3 border border-white/30 bg-white/10">
-                <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-crystal-accent">
-                  עיצוב. ביצוע. שלמות.
-                </p>
+              <div className="inline-block liquidGlass-wrapper rounded-2xl">
+                <div className="liquidGlass-effect"></div>
+                <div className="liquidGlass-tint"></div>
+                <div className="liquidGlass-shine"></div>
+                <div className="liquidGlass-content px-6 py-3">
+                  <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-gray-800">
+                    עיצוב. ביצוע. שלמות.
+                  </p>
+                </div>
               </div>
             </motion.div>
 
-            {/* Subheadline with background */}
+            {/* Subheadline with liquid glass */}
             <motion.div
               variants={fadeInUp}
               transition={{ delay: 0.4 }}
               className="mb-8 sm:mb-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-0"
             >
-              <div className="backdrop-blur-lg rounded-2xl p-6 lg:p-8 border border-white/30 bg-white/5">
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white leading-relaxed">
-                  עבודות אלומיניום בסטנדרטים הגבוהים ביותר. לווי אישי בכל עבודות האלומיניום בוילות ובבתים פרטיים, עם שירות אישי המותאם לכל צורך ודיוק ללא פשרות! מספקים פתרונות איכותיים לפרגולות, סגירת מרפסות, רשתות נגד יתושים וסורגים שקופים.
-                </p>
+              <div className="liquidGlass-wrapper rounded-2xl">
+                <div className="liquidGlass-effect"></div>
+                <div className="liquidGlass-tint"></div>
+                <div className="liquidGlass-shine"></div>
+                <div className="liquidGlass-content p-6 lg:p-8">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-800 leading-relaxed">
+                    עבודות אלומיניום בסטנדרטים הגבוהים ביותר. לווי אישי בכל עבודות האלומיניום בוילות ובבתים פרטיים, עם שירות אישי המותאם לכל צורך ודיוק ללא פשרות! מספקים פתרונות איכותיים לפרגולות, סגירת מרפסות, רשתות נגד יתושים וסורגים שקופים.
+                  </p>
+                </div>
               </div>
             </motion.div>
 
