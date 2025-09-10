@@ -49,13 +49,13 @@ export default function Header() {
       animate={{ y: 0 }}
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'glass-nav'
+          ? ''
           : 'bg-transparent'
       }`}
     >
       <div className="section-padding">
         <div className="container-max">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+          <div className={`flex items-center justify-between h-16 lg:h-20 ${isScrolled ? 'glass-nav px-6' : ''}`}>
             {/* Logo */}
             <Link href="/">
               <motion.div
@@ -123,8 +123,8 @@ export default function Header() {
                       {/* Text */}
                       <span className={`relative z-10 text-sm font-medium transition-all duration-300 ${
                         pathname === item.href 
-                          ? 'text-crystal-accent font-bold' 
-                          : 'text-crystal-text group-hover:text-crystal-accent'
+                          ? 'text-blue-600 font-bold' 
+                          : 'text-gray-800 group-hover:text-blue-600'
                       }`}>
                         {item.label}
                       </span>
@@ -148,7 +148,7 @@ export default function Header() {
                   y: -2
                 }}
                 whileTap={{ scale: 0.98 }}
-                className="hidden lg:block glass-button text-crystal-text px-8 py-3 font-bold transition-all duration-300 group"
+                className="hidden lg:block glass-button text-gray-800 px-8 py-3 font-bold transition-all duration-300 group"
               >
                 {/* Animated background */}
                 <motion.div
