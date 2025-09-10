@@ -78,42 +78,36 @@ export default function Hero() {
             {/* Main Headline */}
             <motion.h1
               variants={fadeInUp}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-4 sm:mb-6 leading-tight px-4 sm:px-0"
-              style={{
-                textShadow: '3px 3px 6px rgba(0,0,0,0.8), -1px -1px 0px rgba(0,0,0,0.5), 1px -1px 0px rgba(0,0,0,0.5), -1px 1px 0px rgba(0,0,0,0.5), 1px 1px 0px rgba(0,0,0,0.5)',
-                WebkitTextStroke: '1px rgba(0,0,0,0.3)'
-              }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-4 sm:mb-6 text-shadow-luxury leading-tight px-4 sm:px-0"
             >
               Crystal View
             </motion.h1>
 
             {/* Hebrew Tagline */}
-            <motion.p
-              variants={fadeInUp}
-              transition={{ delay: 0.2 }}
-              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-crystal-accent mb-3 sm:mb-4 px-4 sm:px-0"
-              style={{
-                textShadow: '2px 2px 4px rgba(0,0,0,0.8), -1px -1px 0px rgba(0,0,0,0.4), 1px -1px 0px rgba(0,0,0,0.4), -1px 1px 0px rgba(0,0,0,0.4), 1px 1px 0px rgba(0,0,0,0.4)',
-                WebkitTextStroke: '0.5px rgba(0,0,0,0.2)'
-              }}
-            >
-              עיצוב. ביצוע. שלמות.
-            </motion.p>
+              <motion.p
+                variants={fadeInUp}
+                transition={{ delay: 0.2 }}
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-crystal-accent mb-3 sm:mb-4 px-4 sm:px-0"
+                style={{
+                  textShadow: '3px 3px 8px rgba(0,0,0,0.9), 0px 0px 10px rgba(0,0,0,0.5)',
+                  WebkitTextStroke: '1px rgba(0,0,0,0.8)'
+                }}
+              >
+                עיצוב. ביצוע. שלמות.
+              </motion.p>
 
             {/* Subheadline */}
-            <motion.div
+            <motion.p
               variants={fadeInUp}
               transition={{ delay: 0.4 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-12 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4 sm:px-6 lg:px-0"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-8 sm:mb-12 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4 sm:px-6 lg:px-0"
+              style={{
+                WebkitTextStroke: '0.5px rgba(0,0,0,0.6)',
+                textShadow: '1px 1px 3px rgba(0,0,0,0.7)'
+              }}
             >
-              <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                <p className="text-white" style={{
-                  textShadow: '1px 1px 2px rgba(0,0,0,0.8)'
-                }}>
-                  עבודות אלומיניום בסטנדרטים הגבוהים ביותר. לווי אישי בכל עבודות האלומיניום בוילות ובבתים פרטיים, עם שירות אישי המותאם לכל צורך ודיוק ללא פשרות! מספקים פתרונות איכותיים לפרגולות, סגירת מרפסות, רשתות נגד יתושים וסורגים שקופים.
-                </p>
-              </div>
-            </motion.div>
+              עבודות אלומיניום בסטנדרטים הגבוהים ביותר. לווי אישי בכל עבודות האלומיניום בוילות ובבתים פרטיים, עם שירות אישי המותאם לכל צורך ודיוק ללא פשרות! מספקים פתרונות איכותיים לפרגולות, סגירת מרפסות, רשתות נגד יתושים וסורגים שקופים.
+            </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
