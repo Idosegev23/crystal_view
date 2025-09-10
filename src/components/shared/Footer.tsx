@@ -6,7 +6,7 @@ import { fadeInUp } from '@/lib/animations';
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-crystal-dark to-gray-900 text-crystal-white relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-blue-50/30 via-white/20 to-blue-100/30 backdrop-blur-sm text-gray-800 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.3),transparent_50%)] pointer-events-none"></div>
       
@@ -34,7 +34,7 @@ export default function Footer() {
                     className="h-8 w-auto"
                   />
                 </div>
-                <p className="text-crystal-silver text-sm leading-relaxed">
+                <p className="text-gray-600 text-sm leading-relaxed">
                   פתרונות אלומיניום איכותיים עם שירות אישי
                 </p>
               </motion.div>
@@ -48,8 +48,8 @@ export default function Footer() {
                 transition={{ delay: 0.1 }}
                 className="text-center md:text-right"
               >
-                <h4 className="text-lg font-bold text-crystal-white mb-3">השירותים שלנו</h4>
-                <div className="text-crystal-silver text-sm space-y-1">
+                <h4 className="text-lg font-bold text-gray-800 mb-3">השירותים שלנו</h4>
+                <div className="text-gray-600 text-sm space-y-1">
                   <div>פרגולות • סגירת מרפסות</div>
                   <div>רשתות יתושים • סורגים שקופים</div>
                 </div>
@@ -64,8 +64,8 @@ export default function Footer() {
                 transition={{ delay: 0.2 }}
                 className="text-center md:text-right lg:col-span-1 md:col-span-2 lg:col-span-1"
               >
-                <h4 className="text-lg font-bold text-crystal-white mb-3">צרו קשר</h4>
-                <div className="space-y-2 text-crystal-silver text-sm">
+                <h4 className="text-lg font-bold text-gray-800 mb-3">צרו קשר</h4>
+                <div className="space-y-2 text-gray-600 text-sm">
                   <div>053-3366101</div>
                   <div>crystalview202@gmail.com</div>
                   <div>המחוגה 2, אשקלון</div>
@@ -82,25 +82,20 @@ export default function Footer() {
               variants={fadeInUp}
               className="border-t border-crystal-silver/20 pt-6"
             >
-              <h4 className="text-lg font-bold text-crystal-white mb-3 text-center">מיקום המפעל</h4>
-              <div className="w-full h-48 md:h-56 rounded-xl overflow-hidden shadow-lg relative group">
-                <Image
-                  src="https://maps.googleapis.com/maps/api/staticmap?center=31.667890,34.571234&zoom=16&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:CV%7C31.667890,34.571234&style=feature:poi%7Celement:labels%7Cvisibility:on&style=feature:road%7Celement:labels%7Cvisibility:on&key=AIzaSyBqDZurJ3lGnCpIYyQRp_V8aJFXgYGN-uY"
-                  alt="מיקום Crystal View - המחוגה 2, איזור תעשייה צפוני אשקלון"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                />
-                {/* Click overlay */}
+              <h4 className="text-lg font-bold text-gray-800 mb-3 text-center">מיקום המפעל</h4>
+              <div className="glass-card p-6 text-center">
+                <div className="text-4xl mb-4">📍</div>
+                <div className="space-y-2 text-gray-600">
+                  <div className="font-medium">המחוגה 2</div>
+                  <div>איזור תעשייה צפוני אשקלון</div>
+                </div>
                 <a
                   href="https://maps.google.com/?q=המחוגה+2+איזור+תעשייה+צפוני+אשקלון"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 flex items-center justify-center group"
+                  className="inline-block mt-4 glass-button text-gray-800 px-4 py-2 text-sm font-medium hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-gray-800 font-medium text-sm">פתח ב-Google Maps</span>
-                  </div>
+                  פתח ב-Google Maps
                 </a>
               </div>
             </motion.div>
@@ -113,7 +108,7 @@ export default function Footer() {
               variants={fadeInUp}
               className="border-t border-crystal-silver/20 pt-6 mt-6 text-center"
             >
-              <p className="text-crystal-silver text-xs">
+              <p className="text-gray-600 text-xs">
                 © 2024 Crystal View • כל הזכויות שמורות
               </p>
             </motion.div>
