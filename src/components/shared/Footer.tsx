@@ -83,30 +83,32 @@ export default function Footer() {
               className="border-t border-crystal-silver/20 pt-6"
             >
               <h4 className="text-lg font-bold text-gray-800 mb-3 text-center">מיקום המפעל</h4>
-              <div className="w-full h-48 md:h-56 rounded-xl overflow-hidden shadow-lg relative group">
-                <Image
-                  src="https://staticmap.openstreetmap.de/staticmap.php?center=31.667890,34.571234&zoom=16&size=600x300&maptype=mapnik&markers=31.667890,34.571234,blue-pin"
-                  alt="מיקום Crystal View - המחוגה 2, איזור תעשייה צפוני אשקלון"
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                  unoptimized
-                />
-                {/* Click overlay */}
-                <a
-                  href="https://www.openstreetmap.org/?mlat=31.667890&mlon=34.571234&zoom=16"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 flex items-center justify-center group"
-                >
-                  <div className="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-gray-800 font-medium text-sm">פתח ב-OpenStreetMap</span>
-                  </div>
-                </a>
+              <div className="glass-card p-6 text-center">
+                <div className="text-4xl mb-4">🏭</div>
+                <div className="space-y-2 text-gray-600 mb-6">
+                  <div className="font-medium text-lg">המחוגה 2</div>
+                  <div>איזור תעשייה צפוני אשקלון</div>
+                  <div className="text-sm text-gray-500">78100, ישראל</div>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <a
+                    href="https://www.openstreetmap.org/?mlat=31.667890&mlon=34.571234&zoom=16"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass-button text-gray-800 px-4 py-2 text-sm font-medium hover:shadow-lg transition-all duration-300"
+                  >
+                    🗺️ OpenStreetMap
+                  </a>
+                  <a
+                    href="https://maps.google.com/?q=המחוגה+2+איזור+תעשייה+צפוני+אשקלון"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass-button text-gray-800 px-4 py-2 text-sm font-medium hover:shadow-lg transition-all duration-300"
+                  >
+                    📍 Google Maps
+                  </a>
+                </div>
               </div>
-              <p className="text-gray-600 text-sm mt-3 text-center">
-                המחוגה 2, איזור תעשייה צפוני אשקלון
-              </p>
             </motion.div>
 
             {/* Bottom Bar - Simplified */}

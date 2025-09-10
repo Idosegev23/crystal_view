@@ -177,7 +177,7 @@ export default function Header() {
             >
               <motion.div
                 animate={isMobileMenuOpen ? "open" : "closed"}
-                className="w-5 h-5 text-crystal-white group-hover:text-crystal-blue transition-colors duration-300"
+                className="w-5 h-5 text-gray-800 group-hover:text-blue-600 transition-colors duration-300"
               >
                 {isMobileMenuOpen ? (
                   <motion.div
@@ -230,8 +230,8 @@ export default function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`relative group flex items-center justify-between p-4 rounded-xl border transition-all duration-300 ${
                       pathname === item.href 
-                        ? 'bg-gradient-to-r from-crystal-blue/20 to-crystal-silver/20 border-crystal-blue/50 text-crystal-blue' 
-                        : 'border-crystal-blue/10 text-crystal-white hover:border-crystal-blue/30 hover:bg-crystal-blue/5'
+                        ? 'bg-gradient-to-r from-blue-100/50 to-blue-50/50 border-blue-300/50 text-blue-600' 
+                        : 'border-gray-200/30 text-gray-800 hover:border-blue-300/50 hover:bg-blue-50/20'
                     }`}
                   >
                     <span className="font-medium text-lg">{item.label}</span>
@@ -239,7 +239,7 @@ export default function Header() {
                     {/* Arrow indicator */}
                     <motion.svg
                       className={`w-5 h-5 transition-colors duration-300 ${
-                        pathname === item.href ? 'text-crystal-blue' : 'text-crystal-silver group-hover:text-crystal-blue'
+                        pathname === item.href ? 'text-blue-600' : 'text-gray-600 group-hover:text-blue-600'
                       }`}
                       fill="none"
                       stroke="currentColor"
@@ -253,7 +253,7 @@ export default function Header() {
                     {pathname === item.href && (
                       <motion.div
                         layoutId="mobileDot"
-                        className="absolute left-2 top-1/2 w-2 h-2 bg-crystal-blue rounded-full"
+                        className="absolute left-2 top-1/2 w-2 h-2 bg-blue-600 rounded-full"
                         initial={false}
                         style={{ y: "-50%" }}
                       />
@@ -277,7 +277,7 @@ export default function Header() {
                 <motion.button
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="relative overflow-hidden bg-gradient-to-r from-crystal-blue to-crystal-silver text-crystal-dark px-8 py-4 rounded-xl font-bold text-center w-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  className="relative overflow-hidden glass-button text-gray-800 px-8 py-4 rounded-xl font-bold text-center w-full shadow-lg hover:shadow-xl transition-all duration-300 group"
                 >
                   {/* Animated background */}
                   <motion.div
