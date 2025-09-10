@@ -18,9 +18,11 @@ export default function Home() {
       <Header />
       <Hero />
       
-      {/* Process Steps */}
-      <section className="py-20 lg:py-32">
-        <div className="section-padding">
+      {/* Process Steps - Glass Morphism Background */}
+      <section className="py-20 lg:py-32 relative">
+        {/* Glass Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white/20 to-blue-100/30 backdrop-blur-sm"></div>
+        <div className="section-padding relative z-10">
           <div className="container-max">
             
             {/* Section Header */}
@@ -105,24 +107,19 @@ export default function Home() {
                     {process.step}
                   </motion.div>
 
-                  {/* Card */}
-                  <div className="liquidGlass-wrapper h-full">
-                    <div className="liquidGlass-effect"></div>
-                    <div className="liquidGlass-tint"></div>
-                    <div className="liquidGlass-shine"></div>
-                    <div className="liquidGlass-content p-8">
-                    <div className="mb-6 p-4 bg-crystal-blue/10 rounded-xl w-fit">
+                  {/* Glass Card */}
+                  <div className="glass-card h-full p-8 hover:shadow-2xl transition-all duration-500">
+                    <div className="mb-6 p-4 bg-white/20 rounded-xl w-fit backdrop-blur-sm border border-white/30">
                       {process.icon}
-                      </div>
+                    </div>
 
-                      <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 group-hover:text-crystal-accent transition-colors duration-300">
-                        {process.title}
-                        </h3>
-                      
-                      <p className="text-gray-800-light text-sm sm:text-base leading-relaxed">
-                        {process.description}
-                        </p>
-                      </div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                      {process.title}
+                    </h3>
+                    
+                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                      {process.description}
+                    </p>
                   </div>
 
                   {/* Connecting Line */}
@@ -141,15 +138,15 @@ export default function Home() {
               variants={fadeInUp}
               className="text-center mb-20"
             >
-              <div className="liquidGlass-wrapper">
-                <div className="liquidGlass-effect"></div>
-                <div className="liquidGlass-tint"></div>
-                <div className="liquidGlass-shine"></div>
-                <div className="liquidGlass-content p-8 lg:p-12">
+              <div className="glass-card p-8 lg:p-12 relative overflow-hidden">
+                {/* Animated glass effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-transparent to-blue-500/10 animate-pulse"></div>
+                
+                <div className="relative z-10">
                   <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
                     מוכנים להתחיל?
                   </h3>
-                  <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+                  <p className="text-gray-700 mb-8 max-w-2xl mx-auto">
                     השאירו פרטים ונחזור אליכם עם הצעת מחיר מותאמת אישית לאחר מדידות במקום
                   </p>
                   <div className="flex justify-center">
@@ -157,7 +154,7 @@ export default function Home() {
                       <motion.button
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="glass-button text-gray-800 px-8 py-3 font-bold"
+                        className="glass-button text-gray-800 px-8 py-4 font-bold text-lg"
                       >
                         יצירת קשר
                       </motion.button>
@@ -174,19 +171,21 @@ export default function Home() {
               viewport={{ once: true, amount: 0.3 }}
               className="text-center mb-16"
             >
-              <motion.h2
-                variants={fadeInUp}
-                className="text-4xl lg:text-5xl font-bold text-crystal-white mb-6"
-              >
-                פרויקטים נבחרים
-              </motion.h2>
-              <motion.p
-                variants={fadeInUp}
-                transition={{ delay: 0.2 }}
-                className="text-xl text-crystal-silver max-w-3xl mx-auto leading-relaxed"
-              >
-                כל פרויקט הוא הזדמנות להראות מהי שלמות
-              </motion.p>
+              <div className="glass-card p-8 mb-12">
+                <motion.h2
+                  variants={fadeInUp}
+                  className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6"
+                >
+                  פרויקטים נבחרים
+                </motion.h2>
+                <motion.p
+                  variants={fadeInUp}
+                  transition={{ delay: 0.2 }}
+                  className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
+                >
+                  כל פרויקט הוא הזדמנות להראות מהי שלמות
+                </motion.p>
+              </div>
             </motion.div>
 
             <motion.div
@@ -200,26 +199,28 @@ export default function Home() {
                 <motion.div
                   key={project.id}
                   variants={staggerItem}
-                  whileHover={{ y: -5 }}
+                  whileHover={{ y: -10, scale: 1.02 }}
                   className="group cursor-pointer"
                 >
-                  <div className="relative overflow-hidden rounded-2xl shadow-xl">
-                    <Image
-                      src={project.images[0]}
-                      alt={project.title}
-                      width={400}
-                      height={300}
-                      className="object-cover w-full h-64 group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-crystal-dark/80 to-transparent">
-                      <div className="absolute bottom-4 right-4 left-4">
-                        <h4 className="text-crystal-white font-bold text-lg mb-1">
-                          {project.title}
-                        </h4>
-                        <p className="text-blue-600 text-sm">
-                          {project.location}
-                        </p>
-                      </div>
+                  <div className="glass-card overflow-hidden p-4 hover:shadow-2xl transition-all duration-500">
+                    <div className="relative overflow-hidden rounded-xl mb-4">
+                      <Image
+                        src={project.images[0]}
+                        alt={project.title}
+                        width={400}
+                        height={300}
+                        className="object-cover w-full h-48 group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    </div>
+                    
+                    <div className="glass-card-dark p-4">
+                      <h4 className="text-white font-bold text-lg mb-2">
+                        {project.title}
+                      </h4>
+                      <p className="text-blue-300 text-sm">
+                        {project.location}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
@@ -229,9 +230,9 @@ export default function Home() {
             <div className="text-center">
               <Link href="/gallery">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-crystal-blue to-crystal-silver text-crystal-dark px-8 py-3 rounded-lg font-bold hover:shadow-lg transition-all duration-300"
+                  className="glass-button text-gray-800 px-12 py-4 font-bold text-lg hover:shadow-2xl transition-all duration-300"
                 >
                   צפו בכל הפרויקטים
                 </motion.button>
