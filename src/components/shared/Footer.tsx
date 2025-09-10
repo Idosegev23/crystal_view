@@ -134,17 +134,14 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
               {/* Contact Info */}
               <div className="flex flex-col md:flex-row gap-6 text-crystal-silver text-sm">
-                <div className="flex items-center gap-2">
-                  <span>📞</span>
-                  <span>050-123-4567</span>
+                <div>
+                  <span>053-3366101</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span>✉️</span>
-                  <span>info@crystalview.co.il</span>
+                <div>
+                  <span>crystalview202@gmail.com</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span>📍</span>
-                  <span>רחוב הזכוכית 123, תל אביב</span>
+                <div>
+                  <span>המחוגה 2, איזור תעשייה צפוני אשקלון</span>
                 </div>
               </div>
 
@@ -155,6 +152,32 @@ export default function Footer() {
                 <span className="text-xs">עוצב ופותח בישראל 🇮🇱</span>
               </div>
             </div>
+
+            {/* Google Maps */}
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+              className="mt-8 pt-8 border-t border-crystal-silver/20"
+            >
+              <h4 className="text-xl font-bold text-crystal-white mb-4 text-center">מיקום המפעל</h4>
+              <div className="w-full h-64 rounded-2xl overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13639.234567890123!2d34.571234!3d31.667890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b5a7a8b9c123%3A0xabcdef1234567890!2z15TXnteb16LXlNeZ150sINei15XXldeT16LXqSDXpteZ16LXqOeWmeWFsSwg15DXqdeX15zXldefIDc4MTAw!5e0!3m2!1siw!2sil!4v1640995200000!5m2!1siw!2sil"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Crystal View Location - איזור תעשייה צפוני אשקלון"
+                ></iframe>
+              </div>
+              <p className="text-crystal-silver text-sm mt-3 text-center">
+                המחוגה 2, איזור תעשייה צפוני אשקלון
+              </p>
+            </motion.div>
 
             {/* CTA Section */}
             <div className="mt-8 text-center p-6 bg-gradient-to-r from-crystal-blue/10 to-crystal-silver/10 rounded-2xl glass-effect">

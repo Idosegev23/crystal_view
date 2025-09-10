@@ -149,19 +149,10 @@ export default function Home() {
                   <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
                     מוכנים להתחיל?
                   </h3>
-                  <p className="text-gray-800-light mb-8 max-w-2xl mx-auto">
-                    השאירו פרטים ונחזור אליכם עם הצעת מחיר מותאמת אישית
+                  <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+                    השאירו פרטים ונחזור אליכם עם הצעת מחיר מותאמת אישית לאחר מדידות במקום
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <Link href="/calculator">
-                      <motion.button
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="glass-button text-gray-800 px-8 py-3 font-bold"
-                      >
-                        חשבו מחיר עכשיו
-                      </motion.button>
-                    </Link>
+                  <div className="flex justify-center">
                     <Link href="/contact">
                       <motion.button
                         whileHover={{ scale: 1.05, y: -2 }}
