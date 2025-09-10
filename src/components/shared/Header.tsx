@@ -44,6 +44,8 @@ export default function Header() {
 
   return (
     <motion.header
+      id="navigation"
+      role="banner"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
@@ -89,7 +91,11 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8 space-x-reverse">
+            <nav 
+              className="hidden lg:flex items-center space-x-8 space-x-reverse" 
+              role="navigation" 
+              aria-label="תפריט ניווט ראשי"
+            >
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.href}

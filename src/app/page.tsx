@@ -14,12 +14,17 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
       <Header />
-      <Hero />
+      <main id="main-content" className="min-h-screen" role="main">
+        <Hero />
       
       {/* Process Steps - Glass Morphism Background */}
-      <section className="py-20 lg:py-32 relative">
+      <section 
+        className="py-20 lg:py-32 relative" 
+        aria-labelledby="process-heading"
+        role="region"
+      >
         {/* Glass Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white/20 to-blue-100/30 backdrop-blur-sm"></div>
         <div className="section-padding relative z-10">
@@ -33,6 +38,7 @@ export default function Home() {
               className="text-center mb-16 lg:mb-20"
             >
               <motion.h2
+                id="process-heading"
                 variants={fadeInUp}
                 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-6 leading-tight"
               >
@@ -217,7 +223,7 @@ export default function Home() {
                     <div className="relative overflow-hidden rounded-xl mb-4">
                       <Image
                         src={project.images[0]}
-                        alt={project.title}
+                        alt={`פרויקט ${project.title} - עבודות אלומיניום וזכוכית באיכות גבוהה`}
                         width={400}
                         height={300}
                         className="object-cover w-full h-48 group-hover:scale-105 transition-transform duration-500"
@@ -252,9 +258,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
       <WhatsApp />
-    </main>
+    </>
   );
 }

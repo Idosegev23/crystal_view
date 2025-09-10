@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Heebo } from 'next/font/google'
 import './globals.css'
 import StructuredData from '@/components/StructuredData'
+import AccessibilityWidget from '@/components/shared/AccessibilityWidget'
 
 const heebo = Heebo({
   subsets: ['latin', 'hebrew'],
@@ -154,7 +155,17 @@ export default function RootLayout({
             </filter>
           </defs>
         </svg>
+        
+        {/* Skip Links for Accessibility */}
+        <a href="#main-content" className="skip-link">
+          דלג לתוכן הראשי
+        </a>
+        <a href="#navigation" className="skip-link">
+          דלג לתפריט הניווט
+        </a>
+
         {children}
+        <AccessibilityWidget />
       </body>
     </html>
   )

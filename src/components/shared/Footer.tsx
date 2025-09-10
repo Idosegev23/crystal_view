@@ -6,7 +6,11 @@ import { fadeInUp } from '@/lib/animations';
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-blue-50/30 via-white/20 to-blue-100/30 backdrop-blur-sm text-gray-800 relative overflow-hidden">
+    <footer 
+      className="bg-gradient-to-br from-blue-50/30 via-white/20 to-blue-100/30 backdrop-blur-sm text-gray-800 relative overflow-hidden"
+      role="contentinfo"
+      aria-label="מידע על החברה וקישורים"
+    >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.3),transparent_50%)] pointer-events-none"></div>
       
