@@ -37,8 +37,8 @@ export default function Hero() {
             style={{ zIndex: 0 }}
             priority
           />
-          {/* Dark Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" style={{ zIndex: 1 }}></div>
+          {/* Light Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40" style={{ zIndex: 1 }}></div>
         </motion.div>
       </div>
 
