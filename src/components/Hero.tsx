@@ -37,8 +37,8 @@ export default function Hero() {
             style={{ zIndex: 0 }}
             priority
           />
-          {/* Glass Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-crystal-bg/20 via-crystal-bg/40 to-crystal-bg/60" style={{ zIndex: 1 }}></div>
+          {/* Dark Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" style={{ zIndex: 1 }}></div>
         </motion.div>
       </div>
 
@@ -79,7 +79,7 @@ export default function Hero() {
             {/* Main Headline */}
             <motion.h1
               variants={fadeInUp}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-crystal-text mb-4 sm:mb-6 text-shadow-luxury leading-tight px-4 sm:px-0"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-4 sm:mb-6 text-shadow-luxury leading-tight px-4 sm:px-0"
             >
               Crystal View
             </motion.h1>
@@ -88,7 +88,7 @@ export default function Hero() {
             <motion.p
               variants={fadeInUp}
               transition={{ delay: 0.2 }}
-              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-crystal-blue mb-3 sm:mb-4 text-shadow-luxury px-4 sm:px-0"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-crystal-accent mb-3 sm:mb-4 text-shadow-luxury px-4 sm:px-0"
             >
               עיצוב. ביצוע. שלמות.
             </motion.p>
@@ -97,7 +97,7 @@ export default function Hero() {
             <motion.p
               variants={fadeInUp}
               transition={{ delay: 0.4 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-crystal-silver mb-8 sm:mb-12 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4 sm:px-6 lg:px-0"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 sm:mb-12 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4 sm:px-6 lg:px-0"
             >
               חזיתות זכוכית ואלומיניום ברמה הגבוהה ביותר, עם שילוב מדויק של אדריכלות חדשנית וסטנדרטים בלתי מתפשרים.
             </motion.p>
@@ -112,7 +112,7 @@ export default function Hero() {
                 whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgba(109, 191, 242, 0.5)" }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => window.location.href = '/gallery'}
-                className="w-full sm:w-auto glass-button text-crystal-text px-6 sm:px-8 py-3 sm:py-4 font-bold text-base sm:text-lg min-w-[200px]"
+                className="w-full sm:w-auto glass-button text-white px-6 sm:px-8 py-3 sm:py-4 font-bold text-base sm:text-lg min-w-[200px]"
               >
                 צפה בפרויקטים
               </motion.button>
@@ -121,7 +121,7 @@ export default function Hero() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleWhatsAppClick}
-                className="w-full sm:w-auto glass-button text-crystal-text px-6 sm:px-8 py-3 sm:py-4 font-bold text-base sm:text-lg min-w-[200px]"
+                className="w-full sm:w-auto glass-button text-white px-6 sm:px-8 py-3 sm:py-4 font-bold text-base sm:text-lg min-w-[200px]"
               >
                 דברו איתנו ב-WhatsApp
               </motion.button>
