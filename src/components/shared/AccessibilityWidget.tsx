@@ -74,35 +74,49 @@ export default function AccessibilityWidget() {
   // יישום ההגדרות על הדף
   useEffect(() => {
     const root = document.documentElement;
+    const body = document.body;
     
     // גודל טקסט
     root.style.fontSize = `${settings.fontSize}%`;
     
     // ניגודיות גבוהה
     if (settings.highContrast) {
+      body.classList.add('accessibility-high-contrast');
       root.classList.add('accessibility-high-contrast');
     } else {
+      body.classList.remove('accessibility-high-contrast');
       root.classList.remove('accessibility-high-contrast');
     }
     
     // מצב כהה
     if (settings.darkMode) {
+      body.classList.add('accessibility-dark-mode');
       root.classList.add('accessibility-dark-mode');
     } else {
+      body.classList.remove('accessibility-dark-mode');
       root.classList.remove('accessibility-dark-mode');
     }
     
     // הפחתת תנועות
     if (settings.reducedMotion) {
+      body.classList.add('accessibility-reduced-motion');
       root.classList.add('accessibility-reduced-motion');
+      // הפעלת prefers-reduced-motion CSS
+      root.style.setProperty('--animation-duration', '0.01ms');
+      root.style.setProperty('--transition-duration', '0.01ms');
     } else {
+      body.classList.remove('accessibility-reduced-motion');
       root.classList.remove('accessibility-reduced-motion');
+      root.style.removeProperty('--animation-duration');
+      root.style.removeProperty('--transition-duration');
     }
     
     // אינדיקטורי פוקוס מוגברים
     if (settings.focusIndicators) {
+      body.classList.add('accessibility-enhanced-focus');
       root.classList.add('accessibility-enhanced-focus');
     } else {
+      body.classList.remove('accessibility-enhanced-focus');
       root.classList.remove('accessibility-enhanced-focus');
     }
 
@@ -146,7 +160,7 @@ export default function AccessibilityWidget() {
           setIsOpen(!isOpen);
           announceToScreenReader(isOpen ? 'תפריט נגישות נסגר' : 'תפריט נגישות נפתח');
         }}
-        className="fixed bottom-4 right-4 z-[60] glass-button p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+        className="accessibility-floating-button"
         aria-label="פתח תפריט נגישות"
         aria-expanded={isOpen}
         aria-controls="accessibility-menu"
@@ -154,18 +168,12 @@ export default function AccessibilityWidget() {
         whileTap={{ scale: 0.9 }}
       >
         <svg 
-          className="w-6 h-6 text-blue-600" 
-          fill="none" 
+          className="w-7 h-7" 
+          fill="currentColor" 
           viewBox="0 0 24 24" 
-          stroke="currentColor"
           aria-hidden="true"
         >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" 
-          />
+          <path d="M12 2a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5zm0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3zm0 8c2.67 0 8 1.34 8 4v2H4v-2c0-2.66 5.33-4 8-4zm0 1.9c-2.97 0-6.1 1.46-6.1 2.1v.1h12.2V16c0-.64-3.13-2.1-6.1-2.1z"/>
         </svg>
       </motion.button>
 
