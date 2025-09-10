@@ -83,41 +83,23 @@ export default function Hero() {
               Crystal View
             </motion.h1>
 
-            {/* Hebrew Tagline with liquid glass */}
-            <motion.div
+            {/* Hebrew Tagline */}
+            <motion.p
               variants={fadeInUp}
               transition={{ delay: 0.2 }}
-              className="mb-6 sm:mb-8"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-black mb-6 sm:mb-8 px-4 sm:px-0"
             >
-              <div className="inline-block liquidGlass-wrapper rounded-2xl">
-                <div className="liquidGlass-effect"></div>
-                <div className="liquidGlass-tint"></div>
-                <div className="liquidGlass-shine"></div>
-                <div className="liquidGlass-content px-6 py-3">
-                  <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-gray-800">
-                    עיצוב. ביצוע. שלמות.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+              עיצוב. ביצוע. שלמות.
+            </motion.p>
 
-            {/* Subheadline with liquid glass */}
-            <motion.div
+            {/* Subheadline */}
+            <motion.p
               variants={fadeInUp}
               transition={{ delay: 0.4 }}
-              className="mb-8 sm:mb-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-0"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-black mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-4 sm:px-6 lg:px-0 font-medium"
             >
-              <div className="liquidGlass-wrapper rounded-2xl">
-                <div className="liquidGlass-effect"></div>
-                <div className="liquidGlass-tint"></div>
-                <div className="liquidGlass-shine"></div>
-                <div className="liquidGlass-content p-6 lg:p-8">
-                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-800 leading-relaxed">
-                    עבודות אלומיניום בסטנדרטים הגבוהים ביותר. לווי אישי בכל עבודות האלומיניום בוילות ובבתים פרטיים, עם שירות אישי המותאם לכל צורך ודיוק ללא פשרות! מספקים פתרונות איכותיים לפרגולות, סגירת מרפסות, רשתות נגד יתושים וסורגים שקופים.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+              עבודות אלומיניום בסטנדרטים הגבוהים ביותר. לווי אישי בכל עבודות האלומיניום בוילות ובבתים פרטיים, עם שירות אישי המותאם לכל צורך ודיוק ללא פשרות! מספקים פתרונות איכותיים לפרגולות, סגירת מרפסות, רשתות נגד יתושים וסורגים שקופים.
+            </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
