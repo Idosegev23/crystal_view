@@ -37,7 +37,10 @@ export default function Hero() {
             style={{ zIndex: 0 }}
             priority
           />
-          {/* Light Gradient Overlay */}
+          {/* Dark Gradient Overlay for Text Contrast */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
+          <div className="absolute inset-0 bg-radial-gradient from-black/40 via-transparent to-transparent" />
         </motion.div>
       </div>
 
@@ -70,6 +73,10 @@ export default function Hero() {
       {/* Main Content */}
       <div className="relative z-20 section-padding w-full">
         <div className="container-max text-center">
+          {/* Glass morphism backdrop for text */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="glass-card w-full max-w-5xl h-fit py-12 px-8 opacity-30" />
+          </div>
           <motion.div
             initial="initial"
             animate="animate"
@@ -87,7 +94,7 @@ export default function Hero() {
             <motion.p
               variants={fadeInUp}
               transition={{ delay: 0.2 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-black mb-6 sm:mb-8 px-4 sm:px-0"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-white mb-6 sm:mb-8 px-4 sm:px-0 text-shadow-luxury"
             >
               עיצוב. ביצוע. שלמות.
             </motion.p>
@@ -96,7 +103,7 @@ export default function Hero() {
             <motion.p
               variants={fadeInUp}
               transition={{ delay: 0.4 }}
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-black mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-4 sm:px-6 lg:px-0 font-medium"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-4 sm:px-6 lg:px-0 font-medium text-shadow-luxury"
             >
               עבודות אלומיניום בסטנדרטים הגבוהים ביותר. לווי אישי בכל עבודות האלומיניום בוילות ובבתים פרטיים, עם שירות אישי המותאם לכל צורך ודיוק ללא פשרות! מספקים פתרונות איכותיים לפרגולות, סגירת מרפסות, רשתות נגד יתושים וסורגים שקופים.
             </motion.p>
