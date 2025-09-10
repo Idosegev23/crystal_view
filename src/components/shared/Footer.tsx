@@ -105,11 +105,10 @@ export default function Footer() {
               <h4 className="text-xl font-bold text-crystal-white mb-6">השירותים שלנו</h4>
               <nav className="space-y-3">
                 {[
-                  'חזיתות זכוכית',
-                  'חלונות ודלתות',
-                  'מעקות ומאחזי יד',
-                  'מקלחונים יוקרתיים',
-                  'פרגולות מודרניות',
+                  'פרגולות',
+                  'סגירת מרפסות',
+                  'רשתות נגד יתושים',
+                  'סורגים שקופים',
                 ].map((service, index) => (
                   <motion.div
                     key={index}
