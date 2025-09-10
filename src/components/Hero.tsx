@@ -98,7 +98,7 @@ export default function Hero() {
               transition={{ delay: 0.4 }}
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 sm:mb-12 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4 sm:px-6 lg:px-0"
             >
-              חזיתות זכוכית ואלומיניום ברמה הגבוהה ביותר, עם שילוב מדויק של אדריכלות חדשנית וסטנדרטים בלתי מתפשרים.
+              עבודות אלומיניום בסטנדרטים הגבוהים ביותר. לווי אישי בכל עבודות האלומיניום בוילות ובבתים פרטיים, עם שירות אישי המותאם לכל צורך ודיוק ללא פשרות! מספקים פתרונות איכותיים לפרגולות, סגירת מרפסות, רשתות נגד יתושים וסורגים שקופים.
             </motion.p>
 
             {/* CTA Buttons */}
