@@ -21,7 +21,7 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Video with Parallax */}
+      {/* Background Image with Parallax */}
       <div className="absolute inset-0 z-0">
         <motion.div
           initial={{ scale: 1.1 }}
@@ -29,81 +29,16 @@ export default function Hero() {
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="relative w-full h-full"
         >
-          <video
-            ref={(video) => {
-              if (video) {
-                let isReverse = false;
-                let duration = 0;
-                
-                video.addEventListener('loadedmetadata', () => {
-                  duration = video.duration;
-                });
-                
-                video.addEventListener('ended', () => {
-                  isReverse = !isReverse;
-                  
-                  if (isReverse) {
-                    // Play reverse - super smooth with smaller steps
-                    video.currentTime = duration;
-                    video.pause();
-                    
-                    const reversePlay = () => {
-                      if (video.currentTime > 0.01) { // Leave small buffer
-                        video.currentTime = Math.max(0, video.currentTime - 0.008); // Smaller, smoother steps
-                        requestAnimationFrame(reversePlay);
-                      } else {
-                        isReverse = false;
-                        video.currentTime = 0;
-                        video.play();
-                      }
-                    };
-                    
-                    requestAnimationFrame(reversePlay);
-                  } else {
-                    // Play forward normally
-                    video.currentTime = 0;
-                    video.play();
-                  }
-                });
-              }
-            }}
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
-            className="absolute inset-0 w-full h-full object-cover z-0"
-            style={{ zIndex: 0 }}
-            onError={(e) => {
-              // Hide video and show fallback image if video fails to load
-              console.error('Video failed to load:', e);
-              e.currentTarget.style.display = 'none';
-            }}
-            onLoadStart={() => {
-              console.log('Video started loading...');
-            }}
-            onCanPlay={() => {
-              console.log('Video can start playing');
-            }}
-            onLoadedData={() => {
-              console.log('Video data loaded');
-            }}
-          >
-            <source src="/hero.mp4" type="video/mp4" />
-            {/* Fallback for unsupported browsers */}
-            Your browser does not support the video tag.
-          </video>
-          
-          {/* Fallback image - only shown if video fails */}
           <Image
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
-            alt="Crystal View - חזית זכוכית מודרנית"
+            src="/images/hero.jpg"
+            alt="Crystal View - פתרונות זכוכית ואלומיניום מתקדמים"
             fill
             className="object-cover"
-            style={{ zIndex: -1 }}
+            style={{ zIndex: 0 }}
             priority
           />
-          {/* Dark Gradient Overlay */}
-          <div className="absolute inset-0 cinematic-gradient" style={{ zIndex: 1 }}></div>
+          {/* Glass Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-crystal-bg/20 via-crystal-bg/40 to-crystal-bg/60" style={{ zIndex: 1 }}></div>
         </motion.div>
       </div>
 
