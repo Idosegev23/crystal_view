@@ -55,7 +55,7 @@ export default function Header() {
     >
       <div className="section-padding">
         <div className="container-max">
-          <div className={`flex items-center justify-between h-16 lg:h-20 ${isScrolled ? 'glass-nav px-6' : ''}`}>
+          <div className="flex items-center justify-between h-16 lg:h-20 glass-nav px-6">
             {/* Logo */}
             <Link href="/">
               <motion.div
@@ -211,7 +211,7 @@ export default function Header() {
           height: isMobileMenuOpen ? 'auto' : 0,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="lg:hidden glass-nav overflow-hidden border-t border-crystal-glass-border"
+        className="lg:hidden glass-nav overflow-hidden border-t border-crystal-glass-border mt-2"
       >
         <div className="section-padding py-6">
           <nav className="flex flex-col space-y-2">
