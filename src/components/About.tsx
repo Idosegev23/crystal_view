@@ -39,7 +39,7 @@ export default function About() {
           </motion.div>
 
           {/* Main Content Split */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-24 items-center mb-16 sm:mb-20 lg:mb-24 px-4 sm:px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-0">
             {/* Image Side */}
             <motion.div
               initial="initial"
@@ -60,21 +60,21 @@ export default function About() {
                 <div className="absolute inset-4 bg-gradient-to-tr from-blue-500/20 via-transparent to-transparent rounded-xl pointer-events-none"></div>
               </div>
 
-              {/* Floating stats - Enhanced Glass */}
+              {/* Floating stats - Enhanced Glass - Mobile Responsive */}
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
-                className="absolute -bottom-6 -left-6 glass-card-dark p-6 shadow-xl"
+                className="absolute -bottom-3 sm:-bottom-4 lg:-bottom-6 -left-3 sm:-left-4 lg:-left-6 glass-card-dark p-3 sm:p-4 lg:p-6 shadow-xl"
               >
-                <div className="text-3xl font-bold text-blue-400 mb-1">15+</div>
-                <div className="text-blue-200 text-sm">שנות מומחיות</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-400 mb-1">15+</div>
+                <div className="text-blue-200 text-xs sm:text-sm">שנות מומחיות</div>
               </motion.div>
 
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
-                className="absolute -top-6 -right-6 glass-card-dark p-6 shadow-xl"
+                className="absolute -top-3 sm:-top-4 lg:-top-6 -right-3 sm:-right-4 lg:-right-6 glass-card-dark p-3 sm:p-4 lg:p-6 shadow-xl"
               >
-                <div className="text-3xl font-bold text-blue-400 mb-1">500+</div>
-                <div className="text-blue-200 text-sm">פרויקטים</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-400 mb-1">500+</div>
+                <div className="text-blue-200 text-xs sm:text-sm">פרויקטים</div>
               </motion.div>
             </motion.div>
 
@@ -127,7 +127,7 @@ export default function About() {
             whileInView="animate"
             viewport={{ once: true, amount: 0.3 }}
             variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-8 lg:gap-12"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           >
             {companyValues.map((value, index) => {
               const IconComponent = value.icon === 'precision' ? PrecisionIcon : 

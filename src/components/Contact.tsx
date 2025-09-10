@@ -82,7 +82,7 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 xl:gap-16">
             {/* Contact Form */}
             <motion.div
               initial="initial"
@@ -96,7 +96,7 @@ export default function Contact() {
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label htmlFor="name" className="block text-blue-200 font-medium mb-2">
                       שם מלא *
@@ -209,20 +209,20 @@ export default function Contact() {
                   פרטי קשר
                 </h3>
 
-                <div className="space-y-6">
+                <div className="space-y-3 sm:space-y-4 lg:space-y-6">
                   {/* Phone */}
                   <motion.div
                     whileHover={{ scale: 1.02, y: -2 }}
                     className="glass-card p-4 cursor-pointer"
                     onClick={handleCallClick}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 glass-card-dark rounded-full flex items-center justify-center text-blue-400">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 glass-card-dark rounded-full flex items-center justify-center text-blue-400 flex-shrink-0">
                         <PhoneIcon />
                       </div>
-                      <div>
-                        <h4 className="text-gray-800 font-bold">טלפון</h4>
-                        <p className="text-gray-600">050-123-4567</p>
+                      <div className="flex-1">
+                        <h4 className="text-gray-800 font-bold text-sm sm:text-base">טלפון</h4>
+                        <p className="text-gray-600 text-sm sm:text-base">050-123-4567</p>
                       </div>
                     </div>
                   </motion.div>
@@ -233,13 +233,13 @@ export default function Contact() {
                     className="glass-card p-4 cursor-pointer"
                     onClick={() => window.open('mailto:info@crystalview.co.il')}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 glass-card-dark rounded-full flex items-center justify-center text-blue-400">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 glass-card-dark rounded-full flex items-center justify-center text-blue-400 flex-shrink-0">
                         <EmailIcon />
                       </div>
-                      <div>
-                        <h4 className="text-gray-800 font-bold">אימייל</h4>
-                        <p className="text-gray-600">info@crystalview.co.il</p>
+                      <div className="flex-1">
+                        <h4 className="text-gray-800 font-bold text-sm sm:text-base">אימייל</h4>
+                        <p className="text-gray-600 text-sm sm:text-base">info@crystalview.co.il</p>
                       </div>
                     </div>
                   </motion.div>
@@ -249,13 +249,13 @@ export default function Contact() {
                     whileHover={{ scale: 1.02, y: -2 }}
                     className="glass-card p-4"
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 glass-card-dark rounded-full flex items-center justify-center text-blue-400">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 glass-card-dark rounded-full flex items-center justify-center text-blue-400 flex-shrink-0">
                         <LocationIcon />
                       </div>
-                      <div>
-                        <h4 className="text-gray-800 font-bold">כתובת</h4>
-                        <p className="text-gray-600">רחוב הזכוכית 123, תל אביב</p>
+                      <div className="flex-1">
+                        <h4 className="text-gray-800 font-bold text-sm sm:text-base">כתובת</h4>
+                        <p className="text-gray-600 text-sm sm:text-base">רחוב הזכוכית 123, תל אביב</p>
                       </div>
                     </div>
                   </motion.div>
@@ -265,14 +265,14 @@ export default function Contact() {
                     whileHover={{ scale: 1.02, y: -2 }}
                     className="glass-card p-4"
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 glass-card-dark rounded-full flex items-center justify-center text-blue-400">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 glass-card-dark rounded-full flex items-center justify-center text-blue-400 flex-shrink-0">
                         <TimeIcon />
                       </div>
-                      <div>
-                        <h4 className="text-gray-800 font-bold">שעות פעילות</h4>
-                        <p className="text-gray-600">ראשון-חמישי: 8:00-17:00</p>
-                        <p className="text-gray-600">ששי: 8:00-14:00</p>
+                      <div className="flex-1">
+                        <h4 className="text-gray-800 font-bold text-sm sm:text-base">שעות פעילות</h4>
+                        <p className="text-gray-600 text-xs sm:text-sm">ראשון-חמישי: 8:00-17:00</p>
+                        <p className="text-gray-600 text-xs sm:text-sm">ששי: 8:00-14:00</p>
                       </div>
                     </div>
                   </motion.div>

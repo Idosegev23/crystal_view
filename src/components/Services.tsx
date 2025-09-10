@@ -54,7 +54,7 @@ export default function Services() {
             whileInView="animate"
             viewport={{ once: true, amount: 0.1 }}
             variants={staggerContainer}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 px-4 sm:px-0"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16 px-4 sm:px-6 lg:px-0"
           >
             {services.map((service, index) => {
               const IconComponent = service.icon === 'window' ? WindowIcon : 
@@ -72,7 +72,7 @@ export default function Services() {
                 >
                   <div className="glass-card-dark overflow-hidden h-full">
                     {/* Background Image */}
-                    <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden rounded-t-2xl">
+                    <div className="relative h-40 sm:h-48 md:h-56 lg:h-64 overflow-hidden rounded-t-2xl">
                       <Image
                         src={service.image}
                         alt={service.title}
@@ -113,7 +113,7 @@ export default function Services() {
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={scrollToContact}
-                        className="mt-4 glass-button text-gray-800 px-6 py-3 font-bold text-sm w-full opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                        className="mt-3 sm:mt-4 glass-button text-gray-800 px-4 sm:px-6 py-2 sm:py-3 font-bold text-xs sm:text-sm w-full opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                       >
                         קבל הצעת מחיר
                       </motion.button>
@@ -141,7 +141,7 @@ export default function Services() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {[
                 {
                   icon: "🎯",
