@@ -83,31 +83,31 @@ export default function Hero() {
               Crystal View
             </motion.h1>
 
-            {/* Hebrew Tagline */}
-              <motion.p
-                variants={fadeInUp}
-                transition={{ delay: 0.2 }}
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-crystal-accent mb-3 sm:mb-4 px-4 sm:px-0"
-                style={{
-                  textShadow: '3px 3px 8px rgba(0,0,0,0.9), 0px 0px 10px rgba(0,0,0,0.5)',
-                  WebkitTextStroke: '1px rgba(0,0,0,0.8)'
-                }}
-              >
-                עיצוב. ביצוע. שלמות.
-              </motion.p>
+            {/* Hebrew Tagline with background */}
+            <motion.div
+              variants={fadeInUp}
+              transition={{ delay: 0.2 }}
+              className="mb-6 sm:mb-8"
+            >
+              <div className="inline-block bg-black/40 backdrop-blur-sm rounded-2xl px-6 py-3 border border-white/20">
+                <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-crystal-accent">
+                  עיצוב. ביצוע. שלמות.
+                </p>
+              </div>
+            </motion.div>
 
-            {/* Subheadline */}
-            <motion.p
+            {/* Subheadline with background */}
+            <motion.div
               variants={fadeInUp}
               transition={{ delay: 0.4 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-8 sm:mb-12 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4 sm:px-6 lg:px-0"
-              style={{
-                WebkitTextStroke: '0.5px rgba(0,0,0,0.6)',
-                textShadow: '1px 1px 3px rgba(0,0,0,0.7)'
-              }}
+              className="mb-8 sm:mb-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-0"
             >
-              עבודות אלומיניום בסטנדרטים הגבוהים ביותר. לווי אישי בכל עבודות האלומיניום בוילות ובבתים פרטיים, עם שירות אישי המותאם לכל צורך ודיוק ללא פשרות! מספקים פתרונות איכותיים לפרגולות, סגירת מרפסות, רשתות נגד יתושים וסורגים שקופים.
-            </motion.p>
+              <div className="bg-black/30 backdrop-blur-md rounded-2xl p-6 lg:p-8 border border-white/20">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white leading-relaxed">
+                  עבודות אלומיניום בסטנדרטים הגבוהים ביותר. לווי אישי בכל עבודות האלומיניום בוילות ובבתים פרטיים, עם שירות אישי המותאם לכל צורך ודיוק ללא פשרות! מספקים פתרונות איכותיים לפרגולות, סגירת מרפסות, רשתות נגד יתושים וסורגים שקופים.
+                </p>
+              </div>
+            </motion.div>
 
             {/* CTA Buttons */}
             <motion.div
@@ -134,31 +134,6 @@ export default function Hero() {
               </motion.button>
             </motion.div>
 
-            {/* Stats */}
-            <motion.div
-              variants={fadeInUp}
-              transition={{ delay: 0.8 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-crystal-glass-border"
-            >
-              {[
-                { number: "500+", label: "פרויקטים שהושלמו" },
-                { number: "15+", label: "שנות ניסיון" },
-                { number: "100%", label: "שביעות רצון לקוחות" },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  className="text-center"
-                >
-                  <div className="text-3xl lg:text-4xl font-bold text-crystal-blue mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-crystal-silver text-sm lg:text-base">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
           </motion.div>
         </div>
       </div>
