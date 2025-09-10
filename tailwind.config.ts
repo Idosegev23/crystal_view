@@ -9,10 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'crystal-dark': '#0D0D0D',
-        'crystal-silver': '#C0C0C0',
-        'crystal-blue': '#6DBFF2',
-        'crystal-white': '#FFFFFF',
+        // Glassmorphism Crystal View Palette
+        'crystal-bg': '#f0f9ff', // Light ice blue background
+        'crystal-surface': 'rgba(255, 255, 255, 0.25)', // Glass surface
+        'crystal-border': 'rgba(255, 255, 255, 0.3)', // Glass borders
+        'crystal-accent': '#38bdf8', // Soft blue accent
+        'crystal-soft': '#67e8f9', // Cyan soft
+        'crystal-mint': '#86efac', // Mint green
+        'crystal-text': '#1e293b', // Dark blue-gray text
+        'crystal-text-light': '#475569', // Medium text
+        'crystal-text-muted': '#64748b', // Muted text
+        'crystal-white': '#ffffff',
+        'crystal-glass-tint': 'rgba(255, 255, 255, 0.5)',
+        'crystal-glass-border': 'rgba(255, 255, 255, 0.2)',
       },
       fontFamily: {
         'heebo': ['Heebo', 'sans-serif'],

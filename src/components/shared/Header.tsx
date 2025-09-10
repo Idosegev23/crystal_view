@@ -47,9 +47,9 @@ export default function Header() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-crystal-dark/95 backdrop-blur-md shadow-lg'
+          ? 'glass-nav'
           : 'bg-transparent'
       }`}
     >
@@ -123,8 +123,8 @@ export default function Header() {
                       {/* Text */}
                       <span className={`relative z-10 text-sm font-medium transition-all duration-300 ${
                         pathname === item.href 
-                          ? 'text-crystal-blue font-bold' 
-                          : 'text-crystal-white group-hover:text-crystal-blue'
+                          ? 'text-crystal-accent font-bold' 
+                          : 'text-crystal-text group-hover:text-crystal-accent'
                       }`}>
                         {item.label}
                       </span>
@@ -145,10 +145,10 @@ export default function Header() {
               <motion.button
                 whileHover={{ 
                   scale: 1.05,
-                  boxShadow: "0 10px 25px rgba(59, 130, 246, 0.4)"
+                  y: -2
                 }}
                 whileTap={{ scale: 0.98 }}
-                className="hidden lg:block relative overflow-hidden bg-gradient-to-r from-crystal-blue to-crystal-silver text-crystal-dark px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 group"
+                className="hidden lg:block glass-button text-crystal-text px-8 py-3 font-bold transition-all duration-300 group"
               >
                 {/* Animated background */}
                 <motion.div
@@ -171,7 +171,7 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <motion.button
-              className="lg:hidden relative w-10 h-10 flex flex-col justify-center items-center rounded-lg bg-crystal-dark/30 backdrop-blur-sm border border-crystal-blue/20 hover:bg-crystal-blue/20 transition-all duration-300 group"
+              className="lg:hidden relative w-10 h-10 flex flex-col justify-center items-center glass-button group"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -211,7 +211,7 @@ export default function Header() {
           height: isMobileMenuOpen ? 'auto' : 0,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="lg:hidden bg-gradient-to-b from-crystal-dark/98 via-crystal-dark/95 to-crystal-dark/90 backdrop-blur-md overflow-hidden border-t border-crystal-blue/20"
+        className="lg:hidden glass-nav overflow-hidden border-t border-crystal-glass-border"
       >
         <div className="section-padding py-6">
           <nav className="flex flex-col space-y-2">

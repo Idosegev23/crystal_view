@@ -87,55 +87,59 @@ export default function Calculator() {
         initial="initial"
         animate="animate"
         variants={staggerContainer}
-        className="bg-gradient-to-br from-crystal-dark to-gray-900 rounded-2xl shadow-2xl glass-effect p-8 lg:p-12"
+        className="liquidGlass-wrapper"
       >
-        <motion.h1
-          variants={fadeInUp}
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-12 text-crystal-white"
-        >
-          מחשבון עלות משוערת
-        </motion.h1>
+        <div className="liquidGlass-effect"></div>
+        <div className="liquidGlass-tint"></div>
+        <div className="liquidGlass-shine"></div>
+        <div className="liquidGlass-content p-8 lg:p-12">
+          <motion.h1
+            variants={fadeInUp}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-12 text-crystal-text"
+          >
+            מחשבון עלות משוערת
+      </motion.h1>
 
-        {/* Step 1: Customer Info */}
-        {!showCalculator && (
+      {/* Step 1: Customer Info */}
+      {!showCalculator && (
           <motion.div 
             variants={staggerItem}
-            className="bg-gradient-to-br from-crystal-dark/50 to-gray-900/50 p-8 rounded-2xl glass-effect backdrop-blur-md"
+            className="glass-card p-8"
           >
             <motion.h2 
               variants={fadeInUp}
-              className="text-2xl sm:text-3xl font-bold mb-8 text-center text-crystal-white"
+              className="text-2xl sm:text-3xl font-bold mb-8 text-center text-crystal-text"
             >
               פרטי לקוח
             </motion.h2>
             <div className="grid grid-cols-1 gap-6">
               <motion.div variants={staggerItem}>
-                <input
-                  type="text"
-                  placeholder="שם מלא"
-                  value={customerName}
-                  onChange={(e) => setCustomerName(e.target.value)}
-                  className="w-full p-4 bg-crystal-dark/50 border border-crystal-silver/30 rounded-lg text-crystal-white placeholder-crystal-silver/60 focus:border-crystal-blue focus:outline-none transition-colors"
+              <input
+                type="text"
+                placeholder="שם מלא"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+                  className="w-full p-4 bg-crystal-dark/50 border border-crystal-silver/30 rounded-lg text-crystal-text placeholder-crystal-silver/60 focus:border-crystal-blue focus:outline-none transition-colors"
                 />
                 {errors.name && <p className="text-red-400 mt-2 text-sm">{errors.name}</p>}
               </motion.div>
               <motion.div variants={staggerItem}>
-                <input
+              <input
                   type="tel"
-                  placeholder="טלפון"
-                  value={customerPhone}
-                  onChange={(e) => setCustomerPhone(e.target.value)}
-                  className="w-full p-4 bg-crystal-dark/50 border border-crystal-silver/30 rounded-lg text-crystal-white placeholder-crystal-silver/60 focus:border-crystal-blue focus:outline-none transition-colors"
+                placeholder="טלפון"
+                value={customerPhone}
+                onChange={(e) => setCustomerPhone(e.target.value)}
+                  className="w-full p-4 bg-crystal-dark/50 border border-crystal-silver/30 rounded-lg text-crystal-text placeholder-crystal-silver/60 focus:border-crystal-blue focus:outline-none transition-colors"
                 />
                 {errors.phone && <p className="text-red-400 mt-2 text-sm">{errors.phone}</p>}
               </motion.div>
               <motion.div variants={staggerItem}>
-                <input
-                  type="email"
-                  placeholder="אימייל"
-                  value={customerEmail}
-                  onChange={(e) => setCustomerEmail(e.target.value)}
-                  className="w-full p-4 bg-crystal-dark/50 border border-crystal-silver/30 rounded-lg text-crystal-white placeholder-crystal-silver/60 focus:border-crystal-blue focus:outline-none transition-colors"
+              <input
+                type="email"
+                placeholder="אימייל"
+                value={customerEmail}
+                onChange={(e) => setCustomerEmail(e.target.value)}
+                  className="w-full p-4 bg-crystal-dark/50 border border-crystal-silver/30 rounded-lg text-crystal-text placeholder-crystal-silver/60 focus:border-crystal-blue focus:outline-none transition-colors"
                 />
                 {errors.email && <p className="text-red-400 mt-2 text-sm">{errors.email}</p>}
               </motion.div>
@@ -143,10 +147,10 @@ export default function Calculator() {
                 variants={staggerItem}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={handleCustomerSubmit}
+              onClick={handleCustomerSubmit}
                 className="w-full py-4 bg-gradient-to-r from-crystal-blue to-crystal-silver text-crystal-dark rounded-lg font-bold text-lg shadow-2xl transition-all duration-300"
-              >
-                המשך למחשבון
+            >
+              המשך למחשבון
               </motion.button>
               {infoSaved && (
                 <motion.p 
@@ -157,26 +161,26 @@ export default function Calculator() {
                   פרטי הלקוח נשמרו בהצלחה!
                 </motion.p>
               )}
-            </div>
-          </motion.div>
-        )}
+          </div>
+        </motion.div>
+      )}
 
-        {/* Step 2: Calculator */}
-        {showCalculator && (
+      {/* Step 2: Calculator */}
+      {showCalculator && (
           <motion.div 
             variants={staggerItem}
             className="space-y-8"
           >
-            {/* Option Cards */}
+          {/* Option Cards */}
             <motion.div 
               variants={staggerContainer}
               className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8"
             >
-              {options.map((opt) => (
-                <motion.div
-                  key={opt.key}
+            {options.map((opt) => (
+              <motion.div
+                key={opt.key}
                   variants={staggerItem}
-                  onClick={() => setSelectedOption(opt.key)}
+                onClick={() => setSelectedOption(opt.key)}
                   whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.95 }}
                   className={`cursor-pointer group relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-300 ${
@@ -194,9 +198,9 @@ export default function Calculator() {
                       {opt.icon}
                     </div>
                     <span className={`text-lg font-bold ${
-                      selectedOption === opt.key 
-                        ? 'text-crystal-white' 
-                        : 'text-crystal-silver group-hover:text-crystal-white'
+                  selectedOption === opt.key
+                        ? 'text-crystal-text' 
+                        : 'text-crystal-text-light group-hover:text-crystal-text'
                     } transition-colors duration-300`}>
                       {opt.key}
                     </span>
@@ -212,46 +216,46 @@ export default function Calculator() {
                       </motion.div>
                     )}
                   </div>
-                </motion.div>
-              ))}
+              </motion.div>
+            ))}
             </motion.div>
 
-            {/* Inputs */}
+          {/* Inputs */}
             <motion.div 
               variants={staggerContainer}
               className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8"
             >
               <motion.div variants={staggerItem}>
-                <label className="block mb-3 font-medium text-crystal-silver">רוחב (ס&quot;מ)</label>
-                <input
-                  type="number"
-                  value={width}
-                  onChange={(e) =>
-                    setWidth(e.target.value === '' ? '' : Number(e.target.value))
-                  }
-                  placeholder="הכנס רוחב בסנטימטרים"
-                  className="w-full p-4 bg-crystal-dark/50 border border-crystal-silver/30 rounded-lg text-crystal-white placeholder-crystal-silver/60 focus:border-crystal-blue focus:outline-none transition-colors"
+                <label className="block mb-3 font-medium text-crystal-text-light">רוחב (ס&quot;מ)</label>
+              <input
+                type="number"
+                value={width}
+                onChange={(e) =>
+                  setWidth(e.target.value === '' ? '' : Number(e.target.value))
+                }
+                placeholder="הכנס רוחב בסנטימטרים"
+                  className="w-full p-4 bg-crystal-dark/50 border border-crystal-silver/30 rounded-lg text-crystal-text placeholder-crystal-silver/60 focus:border-crystal-blue focus:outline-none transition-colors"
                 />
               </motion.div>
               <motion.div variants={staggerItem}>
-                <label className="block mb-3 font-medium text-crystal-silver">גובה (ס&quot;מ)</label>
-                <input
-                  type="number"
-                  value={height}
-                  onChange={(e) =>
-                    setHeight(e.target.value === '' ? '' : Number(e.target.value))
-                  }
-                  placeholder="הכנס גובה בסנטימטרים"
-                  className="w-full p-4 bg-crystal-dark/50 border border-crystal-silver/30 rounded-lg text-crystal-white placeholder-crystal-silver/60 focus:border-crystal-blue focus:outline-none transition-colors"
-                />
+                <label className="block mb-3 font-medium text-crystal-text-light">גובה (ס&quot;מ)</label>
+              <input
+                type="number"
+                value={height}
+                onChange={(e) =>
+                  setHeight(e.target.value === '' ? '' : Number(e.target.value))
+                }
+                placeholder="הכנס גובה בסנטימטרים"
+                  className="w-full p-4 bg-crystal-dark/50 border border-crystal-silver/30 rounded-lg text-crystal-text placeholder-crystal-silver/60 focus:border-crystal-blue focus:outline-none transition-colors"
+              />
               </motion.div>
             </motion.div>
 
-            {/* Result */}
-            <AnimatePresence>
-              {area > 0 && price > 0 && selectedOption && (
-                <motion.div
-                  key="result"
+          {/* Result */}
+          <AnimatePresence>
+            {area > 0 && price > 0 && selectedOption && (
+              <motion.div
+                key="result"
                   initial={{ opacity: 0, y: 30, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -270,8 +274,8 @@ export default function Calculator() {
                   </motion.div>
                   
                   <div className="space-y-4">
-                    <p className="text-xl text-crystal-silver">בחירה: <span className="font-bold text-crystal-white">{selectedOption}</span></p>
-                    <p className="text-2xl text-crystal-silver">שטח: <span className="font-extrabold text-crystal-white">{area} מ&quot;ר</span></p>
+                    <p className="text-xl text-crystal-text-light">בחירה: <span className="font-bold text-crystal-text">{selectedOption}</span></p>
+                    <p className="text-2xl text-crystal-text-light">שטח: <span className="font-extrabold text-crystal-text">{area} מ&quot;ר</span></p>
                     <motion.p 
                       initial={{ scale: 0.8 }}
                       animate={{ scale: 1 }}
@@ -281,12 +285,12 @@ export default function Calculator() {
                       מחיר משוער: {price.toLocaleString()} ₪
                     </motion.p>
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-            {/* Confirmation */}
-            {infoSaved && (
+          {/* Confirmation */}
+          {infoSaved && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -296,9 +300,10 @@ export default function Calculator() {
                   פרטי הלקוח כבר שמורים, ניצור איתך קשר בהקדם
                 </p>
               </motion.div>
-            )}
-          </motion.div>
-        )}
+          )}
+        </motion.div>
+      )}
+        </div>
       </motion.div>
     </div>
   );

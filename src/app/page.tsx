@@ -14,12 +14,12 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-crystal-dark">
+    <main className="min-h-screen">
       <Header />
       <Hero />
       
       {/* Process Steps */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-crystal-dark via-gray-900 to-crystal-dark">
+      <section className="py-20 lg:py-32">
         <div className="section-padding">
           <div className="container-max">
             
@@ -32,14 +32,14 @@ export default function Home() {
             >
               <motion.h2
                 variants={fadeInUp}
-                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-crystal-white mb-6 leading-tight"
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-crystal-text mb-6 leading-tight"
               >
                 תהליך עבודה מקצועי לזכוכית ואלומיניום
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 transition={{ delay: 0.2 }}
-                className="text-base sm:text-lg md:text-xl text-crystal-silver max-w-2xl lg:max-w-3xl mx-auto leading-relaxed"
+                className="text-base sm:text-lg md:text-xl text-crystal-text-light max-w-2xl lg:max-w-3xl mx-auto leading-relaxed"
               >
                 התקנת חלונות אלומיניום, דלתות זכוכית ופרגולות מודרניות בתהליך פשוט ושקוף
                 <br className="hidden sm:block" />
@@ -89,9 +89,9 @@ export default function Home() {
                   )
                 }
               ].map((process, index) => (
-                <motion.div
+                    <motion.div
                   key={index}
-                  variants={staggerItem}
+                      variants={staggerItem}
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="relative group"
                 >
@@ -106,18 +106,23 @@ export default function Home() {
                   </motion.div>
 
                   {/* Card */}
-                  <div className="bg-gradient-to-br from-crystal-dark/50 to-gray-900/50 p-8 rounded-2xl glass-effect backdrop-blur-md border border-crystal-silver/20 group-hover:border-crystal-blue/40 transition-all duration-300 h-full">
+                  <div className="liquidGlass-wrapper h-full">
+                    <div className="liquidGlass-effect"></div>
+                    <div className="liquidGlass-tint"></div>
+                    <div className="liquidGlass-shine"></div>
+                    <div className="liquidGlass-content p-8">
                     <div className="mb-6 p-4 bg-crystal-blue/10 rounded-xl w-fit">
                       {process.icon}
-                    </div>
-                    
-                    <h3 className="text-xl sm:text-2xl font-bold text-crystal-white mb-4 group-hover:text-crystal-blue transition-colors duration-300">
-                      {process.title}
-                    </h3>
-                    
-                    <p className="text-crystal-silver text-sm sm:text-base leading-relaxed">
-                      {process.description}
-                    </p>
+                      </div>
+
+                      <h3 className="text-xl sm:text-2xl font-bold text-crystal-text mb-4 group-hover:text-crystal-accent transition-colors duration-300">
+                        {process.title}
+                        </h3>
+                      
+                      <p className="text-crystal-text-light text-sm sm:text-base leading-relaxed">
+                        {process.description}
+                        </p>
+                      </div>
                   </div>
 
                   {/* Connecting Line */}
@@ -126,7 +131,7 @@ export default function Home() {
                   )}
                 </motion.div>
               ))}
-            </motion.div>
+                    </motion.div>
 
             {/* CTA Section */}
             <motion.div
@@ -134,33 +139,40 @@ export default function Home() {
               whileInView="animate"
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInUp}
-              className="text-center bg-gradient-to-r from-crystal-dark/50 to-gray-900/50 p-8 lg:p-12 rounded-2xl glass-effect backdrop-blur-md mb-20"
+              className="text-center mb-20"
             >
-              <h3 className="text-2xl lg:text-3xl font-bold text-crystal-white mb-4">
-                מוכנים להתחיל?
-              </h3>
-              <p className="text-crystal-silver mb-8 max-w-2xl mx-auto">
-                השאירו פרטים ונחזור אליכם עם הצעת מחיר מותאמת אישית
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link href="/calculator">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-gradient-to-r from-crystal-blue to-crystal-silver text-crystal-dark px-8 py-3 rounded-lg font-bold hover:shadow-2xl transition-all duration-300"
-                  >
-                    חשבו מחיר עכשיו
-                  </motion.button>
-                </Link>
-                <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-crystal-dark/50 border border-crystal-silver/30 text-crystal-white px-8 py-3 rounded-lg font-bold hover:border-crystal-blue transition-all duration-300"
-                  >
-                    יצירת קשר
-                  </motion.button>
-                </Link>
+              <div className="liquidGlass-wrapper">
+                <div className="liquidGlass-effect"></div>
+                <div className="liquidGlass-tint"></div>
+                <div className="liquidGlass-shine"></div>
+                <div className="liquidGlass-content p-8 lg:p-12">
+                  <h3 className="text-2xl lg:text-3xl font-bold text-crystal-text mb-4">
+                    מוכנים להתחיל?
+                  </h3>
+                  <p className="text-crystal-text-light mb-8 max-w-2xl mx-auto">
+                    השאירו פרטים ונחזור אליכם עם הצעת מחיר מותאמת אישית
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <Link href="/calculator">
+                      <motion.button
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="glass-button text-crystal-text px-8 py-3 font-bold"
+                      >
+                        חשבו מחיר עכשיו
+                      </motion.button>
+                    </Link>
+                    <Link href="/contact">
+                      <motion.button
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="glass-button text-crystal-text px-8 py-3 font-bold"
+                      >
+                        יצירת קשר
+                      </motion.button>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </motion.div>
 

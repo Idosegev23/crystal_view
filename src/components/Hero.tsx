@@ -124,7 +124,7 @@ export default function Hero() {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className={`absolute w-20 h-20 lg:w-32 lg:h-32 glass-effect rounded-lg ${
+            className={`absolute w-20 h-20 lg:w-32 lg:h-32 glass-card ${
               i === 0 ? 'top-1/4 right-1/4' : 
               i === 1 ? 'top-1/2 left-1/4' : 
               'bottom-1/4 right-1/3'
@@ -144,7 +144,7 @@ export default function Hero() {
             {/* Main Headline */}
             <motion.h1
               variants={fadeInUp}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-crystal-white mb-4 sm:mb-6 text-shadow-luxury leading-tight px-4 sm:px-0"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-crystal-text mb-4 sm:mb-6 text-shadow-luxury leading-tight px-4 sm:px-0"
             >
               Crystal View
             </motion.h1>
@@ -177,7 +177,7 @@ export default function Hero() {
                 whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgba(109, 191, 242, 0.5)" }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => window.location.href = '/gallery'}
-                className="w-full sm:w-auto bg-gradient-to-r from-crystal-blue to-crystal-silver text-crystal-dark px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg transition-all duration-300 min-w-[200px] hover:shadow-2xl"
+                className="w-full sm:w-auto glass-button text-crystal-text px-6 sm:px-8 py-3 sm:py-4 font-bold text-base sm:text-lg min-w-[200px]"
               >
                 צפה בפרויקטים
               </motion.button>
@@ -186,7 +186,7 @@ export default function Hero() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleWhatsAppClick}
-                className="w-full sm:w-auto bg-transparent border-2 border-crystal-white text-crystal-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg transition-all duration-300 min-w-[200px] hover:bg-crystal-white hover:text-crystal-dark glass-effect"
+                className="w-full sm:w-auto glass-button text-crystal-text px-6 sm:px-8 py-3 sm:py-4 font-bold text-base sm:text-lg min-w-[200px]"
               >
                 דברו איתנו ב-WhatsApp
               </motion.button>
@@ -196,7 +196,7 @@ export default function Hero() {
             <motion.div
               variants={fadeInUp}
               transition={{ delay: 0.8 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-crystal-silver/30"
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-crystal-glass-border"
             >
               {[
                 { number: "500+", label: "פרויקטים שהושלמו" },

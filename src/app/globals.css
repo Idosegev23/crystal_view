@@ -10,9 +10,12 @@
 
   body {
     font-family: 'Heebo', sans-serif;
-    background-color: #0D0D0D;
-    color: #FFFFFF;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #f0fdf4 50%, #fefce8 75%, #f0f9ff 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    color: #1e293b;
     overflow-x: hidden;
+    min-height: 100vh;
   }
 
   * {
@@ -20,17 +23,100 @@
     padding: 0;
     box-sizing: border-box;
   }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 }
 
 @layer components {
-  .cinematic-gradient {
-    background: linear-gradient(135deg, rgba(13, 13, 13, 0.8) 0%, rgba(192, 192, 192, 0.1) 50%, rgba(109, 191, 242, 0.1) 100%);
+  /* LIQUID GLASS STYLES - Crystal View */
+  .liquidGlass-wrapper {
+    position: relative;
+    display: flex;
+    font-weight: 600;
+    overflow: hidden;
+    border-radius: 24px;
+    box-shadow: 
+      0 8px 32px rgba(56, 189, 248, 0.15),
+      0 4px 16px rgba(56, 189, 248, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
   }
 
-  .glass-effect {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.1);
+  .liquidGlass-effect {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    backdrop-filter: blur(16px) saturate(180%);
+    filter: url(#glass-distortion);
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .liquidGlass-tint {
+    z-index: 1;
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: inherit;
+  }
+
+  .liquidGlass-shine {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: inherit;
+    box-shadow: 
+      inset 2px 2px 1px 0 rgba(255, 255, 255, 0.4),
+      inset -1px -1px 1px 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .liquidGlass-content {
+    z-index: 3;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Glass Morphism Variants */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    box-shadow: 
+      0 8px 32px rgba(56, 189, 248, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .glass-button {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .glass-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 24px rgba(56, 189, 248, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 4px 16px rgba(56, 189, 248, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
   .text-shadow-luxury {
@@ -133,4 +219,12 @@
       filter: brightness(1);
     }
   }
+}
+
+/* SVG Filter for Glass Distortion Effect */
+.glass-filter-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
 }
