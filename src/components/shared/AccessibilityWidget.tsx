@@ -71,6 +71,24 @@ export default function AccessibilityWidget() {
     }
   }, []);
 
+  // עדכון מיקום כפתור צף כאשר הפאנל פתוח, והגדרת רוחב פאנל כמשתנה CSS
+  useEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
+    const isSmall = window.matchMedia('(min-width: 640px)').matches;
+    const panelWidth = isSmall ? 384 : 320; // sm:w-96 = 384px, otherwise w-80 = 320px
+    root.style.setProperty('--accessibility-panel-width', `${panelWidth}px`);
+
+    if (isOpen) {
+      body.classList.add('accessibility-menu-open');
+      // הזזת הכפתור ימינה לפי רוחב הפאנל
+      root.style.setProperty('--accessibility-button-right', `calc(20px + var(--accessibility-panel-width, 320px))`);
+    } else {
+      body.classList.remove('accessibility-menu-open');
+      root.style.setProperty('--accessibility-button-right', '20px');
+    }
+  }, [isOpen]);
+
   // יישום ההגדרות על הדף
   useEffect(() => {
     const root = document.documentElement;
@@ -209,7 +227,7 @@ export default function AccessibilityWidget() {
               animate={{ x: 0, opacity: 1 }}
               exit={settings.reducedMotion ? { x: 0, opacity: 1 } : { x: '100%', opacity: 0 }}
               transition={settings.reducedMotion ? { duration: 0 } : { type: 'spring', damping: 25, stiffness: 500 }}
-              className="fixed top-0 right-0 h-full w-80 sm:w-96 bg-white shadow-2xl z-[59] overflow-y-auto"
+              className="fixed top-0 right-0 h-full w-[var(--accessibility-panel-width,320px)] bg-white shadow-2xl z-[59] overflow-y-auto"
               role="dialog"
               aria-labelledby="accessibility-title"
               aria-describedby="accessibility-description"

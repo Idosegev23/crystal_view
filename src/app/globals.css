@@ -128,7 +128,7 @@
   .accessibility-floating-button {
     position: fixed !important;
     bottom: 20px !important;
-    right: 20px !important;
+    right: var(--accessibility-button-right, 20px) !important;
     z-index: 9999 !important;
     background: rgba(59, 130, 246, 0.9) !important;
     backdrop-filter: blur(10px) !important;
@@ -373,6 +373,7 @@
     background: white !important;
     color: black !important;
     border-color: black !important;
+    width: var(--accessibility-panel-width, 320px) !important;
   }
 
   .accessibility-high-contrast button,
@@ -464,6 +465,13 @@
     outline-offset: 2px !important;
     background-color: #000080 !important;
     color: #ffffff !important;
+  }
+
+  /* הבטחת נראות הטקסט בתוך התפריט עצמו במצב ניגודיות גבוהה */
+  .accessibility-high-contrast #accessibility-menu * {
+    background-color: transparent !important;
+    color: black !important;
+    border-color: black !important;
   }
 
   /* Better Link Styling for Accessibility */
