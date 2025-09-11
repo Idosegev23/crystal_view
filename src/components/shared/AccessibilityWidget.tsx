@@ -128,7 +128,16 @@ export default function AccessibilityWidget() {
     key: K,
     value: AccessibilitySettings[K]
   ) => {
-    setSettings(prev => ({ ...prev, [key]: value }));
+    setSettings(prev => {
+      // מניעת התנגשות בין ניגודיות גבוהה למצב כהה
+      if (key === 'highContrast' && value === true) {
+        return { ...prev, highContrast: true, darkMode: false };
+      }
+      if (key === 'darkMode' && value === true) {
+        return { ...prev, darkMode: true, highContrast: false };
+      }
+      return ({ ...prev, [key]: value });
+    });
   };
 
   const resetSettings = () => {
@@ -164,6 +173,8 @@ export default function AccessibilityWidget() {
         aria-label="פתח תפריט נגישות"
         aria-expanded={isOpen}
         aria-controls="accessibility-menu"
+        aria-pressed={isOpen}
+        data-open={isOpen}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -193,10 +204,10 @@ export default function AccessibilityWidget() {
             {/* פאנל נגישות */}
             <motion.div
               id="accessibility-menu"
-              initial={{ x: '100%', opacity: 0 }}
+              initial={settings.reducedMotion ? { x: 0, opacity: 1 } : { x: '100%', opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: '100%', opacity: 0 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 500 }}
+              exit={settings.reducedMotion ? { x: 0, opacity: 1 } : { x: '100%', opacity: 0 }}
+              transition={settings.reducedMotion ? { duration: 0 } : { type: 'spring', damping: 25, stiffness: 500 }}
               className="fixed top-0 right-0 h-full w-80 sm:w-96 bg-white shadow-2xl z-[59] overflow-y-auto"
               role="dialog"
               aria-labelledby="accessibility-title"
@@ -210,7 +221,7 @@ export default function AccessibilityWidget() {
                   </h2>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
                     aria-label="סגור תפריט נגישות"
                   >
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -236,7 +247,7 @@ export default function AccessibilityWidget() {
                           updateSetting('fontSize', newSize);
                           announceToScreenReader(`גודל טקסט הוקטן ל-${newSize}%`);
                         }}
-                        className="glass-button px-3 py-1 text-sm"
+                        className="glass-button px-3 py-1 text-sm focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
                         aria-label="הקטן טקסט"
                       >
                         א-
@@ -262,7 +273,7 @@ export default function AccessibilityWidget() {
                           updateSetting('fontSize', newSize);
                           announceToScreenReader(`גודל טקסט הוגדל ל-${newSize}%`);
                         }}
-                        className="glass-button px-3 py-1 text-sm"
+                        className="glass-button px-3 py-1 text-sm focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
                         aria-label="הגדל טקסט"
                       >
                         א+
@@ -284,6 +295,7 @@ export default function AccessibilityWidget() {
                       aria-checked={settings.highContrast}
                       onClick={() => {
                         const newValue = !settings.highContrast;
+                        // הפעלת ניגודיות גבוהה מכבה מצב כהה
                         updateSetting('highContrast', newValue);
                         announceToScreenReader(newValue ? 'ניגודיות גבוהה הופעלה' : 'ניגודיות גבוהה כובתה');
                       }}
@@ -312,6 +324,7 @@ export default function AccessibilityWidget() {
                       aria-checked={settings.darkMode}
                       onClick={() => {
                         const newValue = !settings.darkMode;
+                        // הפעלת מצב כהה מכבה ניגודיות גבוהה
                         updateSetting('darkMode', newValue);
                         announceToScreenReader(newValue ? 'מצב כהה הופעל' : 'מצב כהה כובה');
                       }}
@@ -393,7 +406,7 @@ export default function AccessibilityWidget() {
                       resetSettings();
                       announceToScreenReader('הגדרות נגישות אופסו לברירת מחדל');
                     }}
-                    className="w-full glass-button text-gray-800 py-3 font-medium"
+                    className="w-full glass-button text-gray-800 py-3 font-medium focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
                   >
                     איפוס הגדרות
                   </button>
