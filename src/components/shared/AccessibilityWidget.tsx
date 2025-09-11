@@ -194,6 +194,7 @@ export default function AccessibilityWidget() {
           <>
             {/* רקע חצי שקוף */}
             <motion.div
+              id="accessibility-overlay"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

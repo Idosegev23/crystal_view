@@ -357,6 +357,24 @@
     box-shadow: none !important;
   }
 
+  /* שמירה על נראות רכיב הנגישות גם בניגודיות גבוהה */
+  .accessibility-high-contrast .accessibility-floating-button,
+  .accessibility-high-contrast #accessibility-menu,
+  .accessibility-high-contrast #accessibility-overlay {
+    position: fixed !important;
+    display: block !important;
+    background: black !important;
+    color: white !important;
+    border: 3px solid white !important;
+    z-index: 9999 !important;
+  }
+
+  .accessibility-high-contrast #accessibility-menu {
+    background: white !important;
+    color: black !important;
+    border-color: black !important;
+  }
+
   .accessibility-high-contrast button,
   .accessibility-high-contrast a,
   .accessibility-high-contrast .glass-button {
