@@ -474,6 +474,21 @@
     border-color: black !important;
   }
 
+  /* כפתור איפוס מהיר במצב ניגודיות גבוהה */
+  .accessibility-high-contrast #accessibility-menu button[aria-label*="איפוס"] {
+    background-color: #ffff00 !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+    font-weight: bold !important;
+  }
+
+  .accessibility-high-contrast #accessibility-menu button[aria-label*="איפוס"]:hover,
+  .accessibility-high-contrast #accessibility-menu button[aria-label*="איפוס"]:focus {
+    background-color: #000000 !important;
+    color: #ffff00 !important;
+    border: 2px solid #ffff00 !important;
+  }
+
   /* Better Link Styling for Accessibility */
   a:not(.glass-button):not(.no-underline) {
     text-decoration: underline;

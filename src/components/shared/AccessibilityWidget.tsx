@@ -159,14 +159,34 @@ export default function AccessibilityWidget() {
   };
 
   const resetSettings = () => {
-    setSettings({
+    const defaultSettings = {
       fontSize: 100,
       highContrast: false,
       darkMode: false,
       reducedMotion: false,
       focusIndicators: true,
       screenReader: false,
-    });
+    };
+    
+    // איפוס מיידי של כל הקלאסים והסטיילים
+    const root = document.documentElement;
+    const body = document.body;
+    
+    // הסרת כל הקלאסים
+    body.classList.remove('accessibility-high-contrast', 'accessibility-dark-mode', 'accessibility-reduced-motion', 'accessibility-enhanced-focus', 'accessibility-menu-open');
+    root.classList.remove('accessibility-high-contrast', 'accessibility-dark-mode', 'accessibility-reduced-motion', 'accessibility-enhanced-focus');
+    
+    // איפוס סטיילים
+    root.style.fontSize = '100%';
+    root.style.removeProperty('--animation-duration');
+    root.style.removeProperty('--transition-duration');
+    root.style.setProperty('--accessibility-button-right', '20px');
+    
+    // עדכון הגדרות
+    setSettings(defaultSettings);
+    
+    // שמירה מיידית
+    localStorage.setItem('accessibility-settings', JSON.stringify(defaultSettings));
   };
 
   const announceToScreenReader = (message: string) => {
@@ -238,15 +258,28 @@ export default function AccessibilityWidget() {
                   <h2 id="accessibility-title" className="text-2xl font-bold text-gray-800">
                     הגדרות נגישות
                   </h2>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
-                    aria-label="סגור תפריט נגישות"
-                  >
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        resetSettings();
+                        announceToScreenReader('הגדרות נגישות אופסו לברירת מחדל');
+                      }}
+                      className="px-3 py-1 text-xs bg-red-100 text-red-800 rounded-lg hover:bg-red-200 transition-colors focus-visible:outline-2 focus-visible:outline-red-600 focus-visible:outline-offset-2"
+                      aria-label="איפוס מהיר לברירת מחדל"
+                      title="איפוס כל ההגדרות"
+                    >
+                      איפוס
+                    </button>
+                    <button
+                      onClick={() => setIsOpen(false)}
+                      className="p-2 rounded-lg hover:bg-gray-100 transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
+                      aria-label="סגור תפריט נגישות"
+                    >
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
 
                 <p id="accessibility-description" className="text-gray-600 mb-6 text-sm">
