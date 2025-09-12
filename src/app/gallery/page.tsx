@@ -122,7 +122,7 @@ export default function GalleryPage() {
                         {/* Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-crystal-dark via-crystal-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <div className="absolute bottom-0 right-0 left-0 p-6">
-                            <h3 className="text-xl font-bold text-crystal-white mb-2">
+                            <h3 className="text-xl font-bold text-crystal-silver mb-2">
                               {project.title}
                             </h3>
                             <p className="text-crystal-blue font-medium mb-2">
@@ -143,7 +143,7 @@ export default function GalleryPage() {
 
                         {/* Year Badge */}
                         <div className="absolute top-4 left-4 bg-crystal-dark/90 backdrop-blur-sm px-3 py-1 rounded-lg">
-                          <span className="text-crystal-white text-sm font-medium">
+                          <span className="text-crystal-silver text-sm font-medium">
                             {project.year}
                           </span>
                         </div>
@@ -151,7 +151,7 @@ export default function GalleryPage() {
 
                       {/* Project Info */}
                       <div className="p-6">
-                        <h3 className="text-xl font-bold text-crystal-white mb-2">
+                        <h3 className="text-xl font-bold text-crystal-silver mb-2">
                           {project.title}
                         </h3>
                         <p className="text-crystal-blue font-medium mb-2">
@@ -240,7 +240,7 @@ export default function GalleryPage() {
 
               {/* Project Details */}
               <div className="p-6 pt-0">
-                <h3 className="text-3xl font-bold text-crystal-white mb-4">
+                <h3 className="text-3xl font-bold text-crystal-silver mb-4">
                   {selectedProject.title}
                 </h3>
                 
