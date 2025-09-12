@@ -105,7 +105,7 @@ export default function Testimonials() {
 
                 {/* Author Info */}
                 <div className="text-center">
-                  <h4 className="text-crystal-white font-bold text-lg mb-1">
+                  <h4 className="text-crystal-silver font-bold text-lg mb-1">
                     {testimonial.name}
                   </h4>
                   <p className="text-crystal-blue text-sm mb-2">
@@ -127,7 +127,7 @@ export default function Testimonials() {
             variants={fadeInUp}
             className="text-center"
           >
-            <h3 className="text-3xl lg:text-4xl font-bold text-crystal-white mb-12">
+            <h3 className="text-3xl lg:text-4xl font-bold text-crystal-silver mb-12">
               הפרטנרים שלנו
             </h3>
             
