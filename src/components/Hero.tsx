@@ -74,9 +74,6 @@ export default function Hero() {
       <div className="relative z-20 section-padding w-full">
         <div className="container-max text-center">
           {/* Glass morphism backdrop for text */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="glass-card w-full max-w-5xl h-fit py-12 px-8 opacity-30" />
-          </div>
           <motion.div
             initial="initial"
             animate="animate"

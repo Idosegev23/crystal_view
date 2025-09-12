@@ -105,9 +105,9 @@ export default function Header() {
                 >
                   <Link href={item.href}>
                     <motion.div
-                      className="relative group px-4 py-2"
+                      className="relative group px-4 py-2 focus-rounded"
                       whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileTap={{ scale: 0.95,}}
                     >
                       {/* Active indicator */}
                       {pathname === item.href && (

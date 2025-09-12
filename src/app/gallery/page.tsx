@@ -42,7 +42,7 @@ export default function GalleryPage() {
             >
               <motion.h1
                 variants={fadeInUp}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-crystal-white mb-4 sm:mb-6 leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-4 sm:mb-6 leading-tight"
               >
                 הפרויקטים שמגדירים אותנו
               </motion.h1>
@@ -83,7 +83,7 @@ export default function GalleryPage() {
                   className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                     selectedCategory === category
                       ? 'bg-gradient-to-r from-crystal-blue to-crystal-silver text-crystal-dark'
-                      : 'bg-crystal-dark/50 text-crystal-white hover:bg-crystal-silver/20 glass-effect'
+                      : 'bg-crystal-dark/50 text-crystal-blue hover:bg-crystal-silver/20 glass-effect'
                   }`}
                 >
                   {category}

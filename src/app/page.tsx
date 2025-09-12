@@ -235,7 +235,7 @@ export default function Home() {
                       <h4 className="text-white font-bold text-lg mb-2">
                         {project.title}
                       </h4>
-                      <p className="text-blue-300 text-sm">
+                      <p className="text-gray-700 text-sm">
                         {project.location}
                       </p>
                     </div>

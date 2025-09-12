@@ -67,7 +67,7 @@ export default function ContactPage() {
             >
               <motion.h1
                 variants={fadeInUp}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-crystal-white mb-4 sm:mb-6 leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-4 sm:mb-6 leading-tight"
               >
                 בואו נתחיל את הפרויקט שלכם
               </motion.h1>
@@ -99,7 +99,7 @@ export default function ContactPage() {
                 variants={fadeInLeft}
                 className="bg-gradient-to-br from-crystal-dark to-gray-900 p-6 sm:p-8 lg:p-12 rounded-2xl glass-effect"
               >
-                <h3 className="text-3xl font-bold text-crystal-white mb-8">
+                <h3 className="text-3xl font-bold text-gray-800 mb-8">
                   שלחו לנו הודעה
                 </h3>
 
@@ -212,7 +212,7 @@ export default function ContactPage() {
                 className="space-y-8"
               >
                 <div className="bg-gradient-to-br from-crystal-dark to-gray-900 p-8 rounded-2xl glass-effect">
-                  <h3 className="text-3xl font-bold text-crystal-white mb-8">
+                  <h3 className="text-3xl font-bold text-gray-800 mb-8">
                     פרטי קשר
                   </h3>
 
@@ -227,7 +227,7 @@ export default function ContactPage() {
                         <PhoneIcon />
                       </div>
                       <div>
-                        <h4 className="text-crystal-white font-bold">טלפון</h4>
+                        <h4 className="text-crystal-silver font-bold">טלפון</h4>
                         <p className="text-crystal-silver">050-123-4567</p>
                       </div>
                     </motion.div>
@@ -242,7 +242,7 @@ export default function ContactPage() {
                         <EmailIcon />
                       </div>
                       <div>
-                        <h4 className="text-crystal-white font-bold">אימייל</h4>
+                        <h4 className="text-crystal-silver font-bold">אימייל</h4>
                         <p className="text-crystal-silver">info@crystalview.co.il</p>
                       </div>
                     </motion.div>
@@ -256,7 +256,7 @@ export default function ContactPage() {
                         <LocationIcon />
                       </div>
                       <div>
-                        <h4 className="text-crystal-white font-bold">כתובת</h4>
+                        <h4 className="text-crystal-silver font-bold">כתובת</h4>
                         <p className="text-crystal-silver">רחוב הזכוכית 123, תל אביב</p>
                       </div>
                     </motion.div>
@@ -270,7 +270,7 @@ export default function ContactPage() {
                         <TimeIcon />
                       </div>
                       <div>
-                        <h4 className="text-crystal-white font-bold">שעות פעילות</h4>
+                        <h4 className="text-crystal-silver font-bold">שעות פעילות</h4>
                         <p className="text-crystal-silver">ראשון-חמישי: 8:00-17:00</p>
                         <p className="text-crystal-silver">ששי: 8:00-14:00</p>
                       </div>
@@ -280,7 +280,7 @@ export default function ContactPage() {
 
                 {/* Map */}
                 <div className="bg-gradient-to-br from-crystal-dark to-gray-900 p-8 rounded-2xl glass-effect">
-                  <h3 className="text-xl font-bold text-crystal-white mb-4">
+                  <h3 className="text-xl font-bold text-crystal-silver mb-4">
                     המיקום שלנו
                   </h3>
                   <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
@@ -299,25 +299,25 @@ export default function ContactPage() {
 
                 {/* Quick Info */}
                 <div className="bg-gradient-to-br from-crystal-dark to-gray-900 p-8 rounded-2xl glass-effect">
-                  <h3 className="text-xl font-bold text-crystal-white mb-4">
+                  <h3 className="text-xl font-bold text-crystal-silver mb-4">
                     מידע מהיר
                   </h3>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
                       <span className="text-crystal-silver">זמן תגובה ממוצע:</span>
-                      <span className="text-crystal-white font-bold">תוך שעתיים</span>
+                      <span className="text-crystal-silver font-bold">תוך שעתיים</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-crystal-silver">סקר מדידות:</span>
-                      <span className="text-crystal-white font-bold">ללא עלות</span>
+                      <span className="text-crystal-silver font-bold">ללא עלות</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-crystal-silver">הצעת מחיר:</span>
-                      <span className="text-crystal-white font-bold">תוך 24 שעות</span>
+                      <span className="text-crystal-silver font-bold">תוך 24 שעות</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-crystal-silver">אחריות:</span>
-                      <span className="text-crystal-white font-bold">5 שנים</span>
+                      <span className="text-crystal-silver font-bold">5 שנים</span>
                     </div>
                   </div>
                 </div>
