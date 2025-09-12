@@ -122,13 +122,13 @@ export default function GalleryPage() {
                         {/* Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-crystal-dark via-crystal-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <div className="absolute bottom-0 right-0 left-0 p-6">
-                            <h3 className="text-xl font-bold text-crystal-silver mb-2">
+                            <h3 className="text-xl font-bold text-crystal-white mb-2">
                               {project.title}
                             </h3>
-                            <p className="text-crystal-blue font-medium mb-2">
+                            <p className="text-crystal-white font-medium mb-2">
                               {project.location}
                             </p>
-                            <p className="text-crystal-silver text-sm line-clamp-2">
+                            <p className="text-crystal-white text-sm line-clamp-2">
                               {project.description}
                             </p>
                           </div>
@@ -136,14 +136,14 @@ export default function GalleryPage() {
 
                         {/* Category Badge */}
                         <div className="absolute top-4 right-4 bg-crystal-blue/90 backdrop-blur-sm px-3 py-1 rounded-lg">
-                          <span className="text-crystal-dark text-sm font-medium">
+                          <span className="text-crystal-white text-sm font-medium">
                             {project.category}
                           </span>
                         </div>
 
                         {/* Year Badge */}
                         <div className="absolute top-4 left-4 bg-crystal-dark/90 backdrop-blur-sm px-3 py-1 rounded-lg">
-                          <span className="text-crystal-silver text-sm font-medium">
+                          <span className="text-crystal-white text-sm font-medium">
                             {project.year}
                           </span>
                         </div>
