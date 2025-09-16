@@ -162,16 +162,46 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
     body.classList.toggle('accessibility-stop-autoplay', settings.stopAutoplay);
     if (settings.stopAutoplay) {
       // Pause all videos and stop autoplay
-      const videos = document.querySelectorAll('video[autoplay]');
+      const videos = document.querySelectorAll('video');
       videos.forEach(video => {
-        (video as HTMLVideoElement).pause();
-        video.removeAttribute('autoplay');
+        const videoEl = video as HTMLVideoElement;
+        videoEl.pause();
+        videoEl.removeAttribute('autoplay');
+        videoEl.muted = false; // Unmute to give users control
+        videoEl.controls = true; // Show controls
       });
 
       // Stop auto-advancing carousels/sliders
-      const autoSliders = document.querySelectorAll('[data-auto-slide]');
+      const autoSliders = document.querySelectorAll('[data-auto-slide], .carousel, .slider, .swiper');
       autoSliders.forEach(slider => {
         slider.setAttribute('data-auto-slide-paused', 'true');
+        // Stop any running intervals on the element
+        const intervals = (slider as any)._intervals || [];
+        intervals.forEach((interval: number) => clearInterval(interval));
+      });
+
+      // Stop CSS animations
+      const animatedElements = document.querySelectorAll('.animate-bounce, .animate-pulse, .animate-ping, .animate-spin');
+      animatedElements.forEach(el => {
+        (el as HTMLElement).style.animationPlayState = 'paused';
+      });
+
+      // Stop background video animations
+      const heroVideos = document.querySelectorAll('.hero-video, .hero-video-pingpong');
+      heroVideos.forEach(video => {
+        (video as HTMLVideoElement).pause();
+        (video as HTMLElement).style.animation = 'none';
+        (video as HTMLElement).style.transform = 'none';
+      });
+    } else {
+      // Re-enable autoplay when disabled
+      const videos = document.querySelectorAll('video');
+      videos.forEach(video => {
+        const videoEl = video as HTMLVideoElement;
+        if (videoEl.hasAttribute('data-was-autoplay')) {
+          videoEl.setAttribute('autoplay', '');
+          videoEl.play().catch(() => {}); // Attempt to play, ignore if blocked
+        }
       });
     }
 

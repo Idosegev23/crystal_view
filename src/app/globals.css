@@ -324,6 +324,17 @@
   .accessibility-high-contrast body {
     background: #000000 !important;
     animation: none !important;
+    color: #ffffff !important;
+  }
+
+  /* Ensure all elements have proper contrast */
+  .accessibility-high-contrast div:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-high-contrast section:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-high-contrast main:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-high-contrast header:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-high-contrast footer:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+    background-color: #000000 !important;
+    color: #ffffff !important;
   }
 
   .accessibility-high-contrast .glass-card,
@@ -333,6 +344,21 @@
     background: #000000 !important;
     backdrop-filter: none !important;
     border: 2px solid #ffffff !important;
+    color: #ffffff !important;
+  }
+
+  /* Keep accessibility widget visible in high contrast */
+  .accessibility-high-contrast #accessibility-panel,
+  .accessibility-high-contrast #accessibility-panel * {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+  }
+
+  .accessibility-high-contrast .accessibility-widget-trigger {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 4px solid #ffffff !important;
   }
 
   .accessibility-high-contrast button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger),
@@ -383,6 +409,18 @@
   .accessibility-inverted-contrast body {
     background: #ffffff !important;
     animation: none !important;
+    color: #000000 !important;
+  }
+
+  /* Ensure all elements have proper inverted contrast */
+  .accessibility-inverted-contrast div:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-inverted-contrast section:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-inverted-contrast main:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-inverted-contrast header:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-inverted-contrast footer:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
   }
 
   .accessibility-inverted-contrast .glass-card,
@@ -392,10 +430,28 @@
     background: #ffffff !important;
     backdrop-filter: none !important;
     border: 2px solid #000000 !important;
+    color: #000000 !important;
   }
 
-  .accessibility-inverted-contrast img:not(#accessibility-panel img):not(#accessibility-panel *):not(.accessibility-widget-trigger img) {
+  /* Invert images but keep widget normal */
+  .accessibility-inverted-contrast img:not(#accessibility-panel img):not(#accessibility-panel *):not(.accessibility-widget-trigger img):not(.accessibility-widget-trigger * img) {
     filter: invert(1) hue-rotate(180deg) !important;
+  }
+
+  /* Keep accessibility widget normal in inverted mode */
+  .accessibility-inverted-contrast #accessibility-panel,
+  .accessibility-inverted-contrast #accessibility-panel * {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+    font-weight: 400 !important;
+  }
+
+  .accessibility-inverted-contrast .accessibility-widget-trigger {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 4px solid #000000 !important;
+    font-weight: 700 !important;
   }
 
   .accessibility-inverted-contrast button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger),
@@ -412,17 +468,18 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
   }
 
-  /* Grayscale Mode */
+  /* Grayscale Mode - Apply to entire page including widget */
   .accessibility-grayscale {
     filter: grayscale(100%) !important;
   }
 
-  .accessibility-grayscale *:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+  .accessibility-grayscale * {
     filter: grayscale(100%) !important;
   }
 
   .accessibility-grayscale body {
     background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 25%, #f0f0f0 50%, #eeeeee 75%, #f5f5f5 100%) !important;
+    filter: grayscale(100%) !important;
   }
 
   .accessibility-grayscale .glass-card,
@@ -432,15 +489,23 @@
     filter: grayscale(100%) !important;
   }
 
-  /* Keep accessibility widget normal in grayscale mode */
+  /* Apply grayscale to accessibility widget as well */
   .accessibility-grayscale #accessibility-panel,
   .accessibility-grayscale #accessibility-panel *,
   .accessibility-grayscale .accessibility-widget-trigger,
   .accessibility-grayscale .accessibility-widget-trigger * {
-    filter: none !important;
+    filter: grayscale(100%) !important;
   }
 
-  /* Dark Mode */
+  /* Ensure images and media are also grayscale */
+  .accessibility-grayscale img,
+  .accessibility-grayscale video,
+  .accessibility-grayscale canvas,
+  .accessibility-grayscale svg {
+    filter: grayscale(100%) !important;
+  }
+
+  /* Dark Mode - Complete dark theme including widget */
   .accessibility-dark-mode {
     background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 25%, #151b26 50%, #1f252f 75%, #0f1419 100%) !important;
     background-size: 400% 400% !important;
@@ -458,6 +523,61 @@
     background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 25%, #151b26 50%, #1f252f 75%, #0f1419 100%) !important;
     background-size: 400% 400% !important;
     color: #e2e8f0 !important;
+  }
+
+  /* Ensure all elements have proper dark theme */
+  .accessibility-dark-mode div:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-dark-mode section:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-dark-mode main:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-dark-mode header:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *),
+  .accessibility-dark-mode footer:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+    background-color: transparent !important;
+    color: #e2e8f0 !important;
+  }
+
+  /* Apply dark theme to accessibility widget */
+  .accessibility-dark-mode #accessibility-panel {
+    background-color: #1a202c !important;
+    color: #e2e8f0 !important;
+    border-color: #4a5568 !important;
+  }
+
+  .accessibility-dark-mode #accessibility-panel * {
+    background-color: transparent !important;
+    color: #e2e8f0 !important;
+    border-color: #4a5568 !important;
+  }
+
+  .accessibility-dark-mode #accessibility-panel h1,
+  .accessibility-dark-mode #accessibility-panel h2,
+  .accessibility-dark-mode #accessibility-panel h3 {
+    color: #f7fafc !important;
+  }
+
+  .accessibility-dark-mode #accessibility-panel .text-gray-600 {
+    color: #a0aec0 !important;
+  }
+
+  .accessibility-dark-mode #accessibility-panel .text-gray-900 {
+    color: #f7fafc !important;
+  }
+
+  .accessibility-dark-mode #accessibility-panel .bg-gray-100 {
+    background-color: #2d3748 !important;
+  }
+
+  .accessibility-dark-mode #accessibility-panel .bg-gray-300 {
+    background-color: #4a5568 !important;
+  }
+
+  .accessibility-dark-mode #accessibility-panel .border-blue-200 {
+    border-color: #4a5568 !important;
+  }
+
+  .accessibility-dark-mode .accessibility-widget-trigger {
+    background-color: #2d3748 !important;
+    color: #e2e8f0 !important;
+    border: 4px solid #4a5568 !important;
   }
 
   .accessibility-dark-mode .glass-card,
@@ -557,37 +677,65 @@
     background-color: rgba(129, 230, 217, 0.1) !important;
   }
 
-  /* Highlight Links */
-  .accessibility-highlight-links a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
+  /* Highlight Links - Site-wide link highlighting */
+  .accessibility-highlight-links a {
     text-decoration: underline !important;
     text-decoration-thickness: 3px !important;
     text-underline-offset: 3px !important;
     color: #0066cc !important;
     background-color: #fffbcc !important;
-    padding: 2px 4px !important;
+    padding: 3px 6px !important;
     border-radius: 4px !important;
     font-weight: 700 !important;
     box-shadow: 0 0 0 2px #0066cc !important;
     position: relative !important;
     z-index: 1 !important;
+    display: inline-block !important;
+    margin: 1px !important;
   }
 
-  .accessibility-highlight-links a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover,
-  .accessibility-highlight-links a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):focus {
+  .accessibility-highlight-links a:hover,
+  .accessibility-highlight-links a:focus {
     background-color: #0066cc !important;
     color: #ffffff !important;
     text-decoration-thickness: 4px !important;
-    transform: scale(1.02) !important;
-    box-shadow: 0 0 0 3px #0066cc, 0 2px 4px rgba(0, 102, 204, 0.3) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 0 0 3px #0066cc, 0 2px 6px rgba(0, 102, 204, 0.4) !important;
   }
 
-  /* Highlight Headings */
-  .accessibility-highlight-headings h1:not(#accessibility-panel h1):not(#accessibility-panel *):not(.accessibility-widget-trigger h1),
-  .accessibility-highlight-headings h2:not(#accessibility-panel h2):not(#accessibility-panel *):not(.accessibility-widget-trigger h2),
-  .accessibility-highlight-headings h3:not(#accessibility-panel h3):not(#accessibility-panel *):not(.accessibility-widget-trigger h3),
-  .accessibility-highlight-headings h4:not(#accessibility-panel h4):not(#accessibility-panel *):not(.accessibility-widget-trigger h4),
-  .accessibility-highlight-headings h5:not(#accessibility-panel h5):not(#accessibility-panel *):not(.accessibility-widget-trigger h5),
-  .accessibility-highlight-headings h6:not(#accessibility-panel h6):not(#accessibility-panel *):not(.accessibility-widget-trigger h6) {
+  /* Dark mode compatibility for highlighted links */
+  .accessibility-dark-mode.accessibility-highlight-links a {
+    color: #4fd1c7 !important;
+    background-color: rgba(79, 209, 199, 0.2) !important;
+    box-shadow: 0 0 0 2px #4fd1c7 !important;
+  }
+
+  .accessibility-dark-mode.accessibility-highlight-links a:hover,
+  .accessibility-dark-mode.accessibility-highlight-links a:focus {
+    background-color: #4fd1c7 !important;
+    color: #0f1419 !important;
+  }
+
+  /* High contrast compatibility for highlighted links */
+  .accessibility-high-contrast.accessibility-highlight-links a {
+    color: #ffffff !important;
+    background-color: #000000 !important;
+    box-shadow: 0 0 0 2px #ffffff !important;
+  }
+
+  .accessibility-inverted-contrast.accessibility-highlight-links a {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 2px #000000 !important;
+  }
+
+  /* Highlight Headings - Site-wide heading highlighting */
+  .accessibility-highlight-headings h1,
+  .accessibility-highlight-headings h2,
+  .accessibility-highlight-headings h3,
+  .accessibility-highlight-headings h4,
+  .accessibility-highlight-headings h5,
+  .accessibility-highlight-headings h6 {
     background: linear-gradient(135deg, #fffbcc, #fff3a0) !important;
     color: #1a1a1a !important;
     padding: 12px 16px !important;
@@ -598,39 +746,123 @@
     margin: 12px 0 !important;
     position: relative !important;
     z-index: 1 !important;
+    border: 2px solid #0066cc !important;
   }
 
-  .accessibility-highlight-headings h1:not(#accessibility-panel h1):not(#accessibility-panel *):not(.accessibility-widget-trigger h1):before {
-    content: '🏷️' !important;
+  .accessibility-highlight-headings h1:before {
+    content: '📋 ' !important;
     margin-left: 8px !important;
     font-size: 0.8em !important;
   }
 
-  /* Improved Readability */
-  .accessibility-improved-readability {
-    line-height: 1.8 !important;
+  .accessibility-highlight-headings h2:before {
+    content: '🔖 ' !important;
+    margin-left: 8px !important;
+    font-size: 0.8em !important;
   }
 
-  .accessibility-improved-readability *:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+  .accessibility-highlight-headings h3:before {
+    content: '📌 ' !important;
+    margin-left: 8px !important;
+    font-size: 0.8em !important;
+  }
+
+  /* Dark mode compatibility for highlighted headings */
+  .accessibility-dark-mode.accessibility-highlight-headings h1,
+  .accessibility-dark-mode.accessibility-highlight-headings h2,
+  .accessibility-dark-mode.accessibility-highlight-headings h3,
+  .accessibility-dark-mode.accessibility-highlight-headings h4,
+  .accessibility-dark-mode.accessibility-highlight-headings h5,
+  .accessibility-dark-mode.accessibility-highlight-headings h6 {
+    background: linear-gradient(135deg, #2d3748, #4a5568) !important;
+    color: #f7fafc !important;
+    border-left: 6px solid #81e6d9 !important;
+    border-color: #81e6d9 !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* High contrast compatibility for highlighted headings */
+  .accessibility-high-contrast.accessibility-highlight-headings h1,
+  .accessibility-high-contrast.accessibility-highlight-headings h2,
+  .accessibility-high-contrast.accessibility-highlight-headings h3,
+  .accessibility-high-contrast.accessibility-highlight-headings h4,
+  .accessibility-high-contrast.accessibility-highlight-headings h5,
+  .accessibility-high-contrast.accessibility-highlight-headings h6 {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border-left: 6px solid #ffffff !important;
+    border-color: #ffffff !important;
+  }
+
+  .accessibility-inverted-contrast.accessibility-highlight-headings h1,
+  .accessibility-inverted-contrast.accessibility-highlight-headings h2,
+  .accessibility-inverted-contrast.accessibility-highlight-headings h3,
+  .accessibility-inverted-contrast.accessibility-highlight-headings h4,
+  .accessibility-inverted-contrast.accessibility-highlight-headings h5,
+  .accessibility-inverted-contrast.accessibility-highlight-headings h6 {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-left: 6px solid #000000 !important;
+    border-color: #000000 !important;
+    font-weight: 900 !important;
+  }
+
+  /* Improved Readability - Dyslexia-friendly font and spacing */
+  .accessibility-improved-readability {
     line-height: 1.8 !important;
+    font-family: 'OpenDyslexic', Arial, 'Comic Sans MS', sans-serif !important;
+  }
+
+  .accessibility-improved-readability * {
+    line-height: 1.8 !important;
+    letter-spacing: 0.1em !important;
+    word-spacing: 0.2em !important;
+    font-family: 'OpenDyslexic', Arial, 'Comic Sans MS', sans-serif !important;
+  }
+
+  .accessibility-improved-readability p,
+  .accessibility-improved-readability div,
+  .accessibility-improved-readability span,
+  .accessibility-improved-readability li {
+    margin-bottom: 1.2rem !important;
+    padding: 0.75rem 0 !important;
+    line-height: 2.0 !important;
+  }
+
+  .accessibility-improved-readability h1,
+  .accessibility-improved-readability h2,
+  .accessibility-improved-readability h3,
+  .accessibility-improved-readability h4,
+  .accessibility-improved-readability h5,
+  .accessibility-improved-readability h6 {
+    margin-top: 2.5rem !important;
+    margin-bottom: 2rem !important;
+    line-height: 1.6 !important;
+    font-weight: 700 !important;
+  }
+
+  .accessibility-improved-readability ul,
+  .accessibility-improved-readability ol {
+    margin: 1.5rem 0 !important;
+    padding-right: 2rem !important;
+  }
+
+  .accessibility-improved-readability a {
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 3px !important;
+  }
+
+  /* Apply dyslexia-friendly font to accessibility widget too */
+  .accessibility-improved-readability #accessibility-panel,
+  .accessibility-improved-readability #accessibility-panel *,
+  .accessibility-improved-readability .accessibility-widget-trigger {
+    font-family: 'OpenDyslexic', Arial, 'Comic Sans MS', sans-serif !important;
+    line-height: 1.6 !important;
     letter-spacing: 0.05em !important;
   }
 
-  .accessibility-improved-readability p:not(#accessibility-panel p):not(#accessibility-panel *):not(.accessibility-widget-trigger p),
-  .accessibility-improved-readability div:not(#accessibility-panel div):not(#accessibility-panel *):not(.accessibility-widget-trigger div),
-  .accessibility-improved-readability span:not(#accessibility-panel span):not(#accessibility-panel *):not(.accessibility-widget-trigger span) {
-    margin-bottom: 1rem !important;
-    padding: 0.75rem 0 !important;
-  }
-
-  .accessibility-improved-readability h1:not(#accessibility-panel h1):not(#accessibility-panel *):not(.accessibility-widget-trigger h1),
-  .accessibility-improved-readability h2:not(#accessibility-panel h2):not(#accessibility-panel *):not(.accessibility-widget-trigger h2),
-  .accessibility-improved-readability h3:not(#accessibility-panel h3):not(#accessibility-panel *):not(.accessibility-widget-trigger h3) {
-    margin-top: 2rem !important;
-    margin-bottom: 1.5rem !important;
-  }
-
-  /* Reduce Animations */
+  /* Reduce Animations - Disable parallax, transitions, and motion effects */
   .accessibility-reduce-animations *,
   .accessibility-reduce-animations *::before,
   .accessibility-reduce-animations *::after {
@@ -639,19 +871,133 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
     transform: none !important;
+    animation-play-state: paused !important;
+    animation-fill-mode: forwards !important;
   }
 
-  /* Stop Autoplay */
+  /* Disable specific animations and effects */
+  .accessibility-reduce-animations {
+    scroll-behavior: auto !important;
+  }
+
+  .accessibility-reduce-animations body {
+    animation: none !important;
+    background-attachment: scroll !important;
+  }
+
+  .accessibility-reduce-animations .hero-video,
+  .accessibility-reduce-animations .hero-video-pingpong {
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .accessibility-reduce-animations .liquidGlass-wrapper,
+  .accessibility-reduce-animations .glass-card,
+  .accessibility-reduce-animations .glass-button,
+  .accessibility-reduce-animations .hover-lift {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .accessibility-reduce-animations .liquidGlass-wrapper:hover,
+  .accessibility-reduce-animations .glass-button:hover,
+  .accessibility-reduce-animations .hover-lift:hover {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* Disable gradient animation */
+  .accessibility-reduce-animations .gradientShift {
+    animation: none !important;
+    background-size: 100% 100% !important;
+  }
+
+  /* Disable parallax effects */
+  .accessibility-reduce-animations [style*="transform: translate"],
+  .accessibility-reduce-animations [style*="transform:translate"] {
+    transform: none !important;
+  }
+
+  /* Disable motion on accessibility widget */
+  .accessibility-reduce-animations #accessibility-panel {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .accessibility-reduce-animations .accessibility-widget-trigger {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .accessibility-reduce-animations .accessibility-widget-trigger:hover {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* Stop Autoplay - Prevent videos, sliders, and animations from auto-playing */
   .accessibility-stop-autoplay video[autoplay] {
     animation-play-state: paused !important;
+  }
+
+  .accessibility-stop-autoplay video {
+    autoplay: none !important;
   }
 
   .accessibility-stop-autoplay [data-auto-slide] {
     animation-play-state: paused !important;
   }
 
-  /* Enhanced Focus Indicators */
-  .accessibility-enhanced-focus *:focus-visible:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+  /* Stop carousel auto-advance */
+  .accessibility-stop-autoplay .carousel,
+  .accessibility-stop-autoplay .slider,
+  .accessibility-stop-autoplay .swiper {
+    animation-play-state: paused !important;
+    animation: none !important;
+  }
+
+  /* Stop auto-playing elements */
+  .accessibility-stop-autoplay .autoplay,
+  .accessibility-stop-autoplay [autoplay],
+  .accessibility-stop-autoplay .auto-advance,
+  .accessibility-stop-autoplay .auto-rotate {
+    animation-play-state: paused !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Stop background video motion */
+  .accessibility-stop-autoplay .hero-video,
+  .accessibility-stop-autoplay .background-video {
+    animation-play-state: paused !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Stop CSS animations that auto-play */
+  .accessibility-stop-autoplay .animate-bounce,
+  .accessibility-stop-autoplay .animate-pulse,
+  .accessibility-stop-autoplay .animate-ping,
+  .accessibility-stop-autoplay .animate-spin {
+    animation-play-state: paused !important;
+    animation: none !important;
+  }
+
+  /* Stop gradient shifting animation */
+  .accessibility-stop-autoplay body {
+    animation: none !important;
+  }
+
+  /* Display controls for videos when autoplay is disabled */
+  .accessibility-stop-autoplay video {
+    controls: true !important;
+  }
+
+  /* Enhanced Focus Indicators - Clear visible focus for all elements */
+  .accessibility-enhanced-focus *:focus-visible {
     outline: 4px solid #0066cc !important;
     outline-offset: 3px !important;
     box-shadow: 0 0 0 7px rgba(0, 102, 204, 0.3) !important;
@@ -660,12 +1006,14 @@
     z-index: 999 !important;
   }
 
-  .accessibility-enhanced-focus button:focus-visible:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger),
-  .accessibility-enhanced-focus a:focus-visible:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger),
-  .accessibility-enhanced-focus input:focus-visible:not(#accessibility-panel input):not(#accessibility-panel *),
-  .accessibility-enhanced-focus textarea:focus-visible:not(#accessibility-panel textarea):not(#accessibility-panel *),
-  .accessibility-enhanced-focus select:focus-visible:not(#accessibility-panel select):not(#accessibility-panel *),
-  .accessibility-enhanced-focus [role="button"]:focus-visible:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
+  .accessibility-enhanced-focus button:focus-visible,
+  .accessibility-enhanced-focus a:focus-visible,
+  .accessibility-enhanced-focus input:focus-visible,
+  .accessibility-enhanced-focus textarea:focus-visible,
+  .accessibility-enhanced-focus select:focus-visible,
+  .accessibility-enhanced-focus [role="button"]:focus-visible,
+  .accessibility-enhanced-focus [tabindex="0"]:focus-visible,
+  .accessibility-enhanced-focus [tabindex="-1"]:focus-visible {
     outline: 4px solid #0066cc !important;
     outline-offset: 3px !important;
     background-color: #fffbcc !important;
@@ -681,6 +1029,35 @@
     border-color: #0066cc !important;
     background-color: #fffbcc !important;
     box-shadow: 0 0 0 7px rgba(0, 102, 204, 0.3), inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Dark mode compatibility for enhanced focus */
+  .accessibility-dark-mode.accessibility-enhanced-focus *:focus-visible {
+    outline: 4px solid #81e6d9 !important;
+    box-shadow: 0 0 0 7px rgba(129, 230, 217, 0.3) !important;
+    background-color: rgba(129, 230, 217, 0.1) !important;
+  }
+
+  .accessibility-dark-mode.accessibility-enhanced-focus input:focus-visible,
+  .accessibility-dark-mode.accessibility-enhanced-focus textarea:focus-visible,
+  .accessibility-dark-mode.accessibility-enhanced-focus select:focus-visible {
+    border-color: #81e6d9 !important;
+    background-color: rgba(129, 230, 217, 0.1) !important;
+  }
+
+  /* High contrast compatibility for enhanced focus */
+  .accessibility-high-contrast.accessibility-enhanced-focus *:focus-visible {
+    outline: 4px solid #ffffff !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .accessibility-inverted-contrast.accessibility-enhanced-focus *:focus-visible {
+    outline: 4px solid #000000 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: 0 0 0 7px rgba(0, 0, 0, 0.3) !important;
   }
 
   /* Special styling for accessibility widget trigger button */
