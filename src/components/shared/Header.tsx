@@ -105,9 +105,12 @@ export default function Header() {
                 >
                   <Link href={item.href}>
                     <motion.div
-                      className="relative group px-4 py-2 focus-rounded"
+                      className="relative group px-4 py-2 focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 rounded-lg"
                       whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.95,}}
+                      whileTap={{ scale: 0.95 }}
+                      role="button"
+                      tabIndex={0}
+                      aria-current={pathname === item.href ? 'page' : undefined}
                     >
                       {/* Active indicator */}
                       {pathname === item.href && (
@@ -153,7 +156,8 @@ export default function Header() {
                   y: -2
                 }}
                 whileTap={{ scale: 0.98 }}
-                className="hidden lg:block glass-button text-gray-800 px-8 py-3 font-bold transition-all duration-300 group"
+                className="hidden lg:block glass-button text-gray-800 px-8 py-3 font-bold transition-all duration-300 group focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
+                aria-label="עבור לעמוד צור קשר לקבלת הצעת מחיר"
               >
                 {/* Animated background */}
                 <motion.div
@@ -165,7 +169,7 @@ export default function Header() {
                 
                 {/* Button text */}
                 <span className="relative z-10 flex items-center gap-2">
-                  <svg className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                   </svg>
@@ -180,6 +184,9 @@ export default function Header() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              aria-label={isMobileMenuOpen ? 'סגור תפריט ניווט' : 'פתח תפריט ניווט'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               <motion.div
                 animate={isMobileMenuOpen ? "open" : "closed"}
@@ -210,6 +217,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <motion.div
+        id="mobile-navigation"
         initial={{ opacity: 0, height: 0 }}
         animate={{
           opacity: isMobileMenuOpen ? 1 : 0,
@@ -217,9 +225,12 @@ export default function Header() {
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="lg:hidden glass-nav overflow-hidden border-t border-crystal-glass-border mt-2"
+        role="navigation"
+        aria-label="תפריט ניווט נייד"
+        aria-hidden={!isMobileMenuOpen}
       >
         <div className="section-padding py-6">
-          <nav className="flex flex-col space-y-2">
+          <nav className="flex flex-col space-y-2" role="list">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.href}
@@ -229,16 +240,20 @@ export default function Header() {
                   x: isMobileMenuOpen ? 0 : -20
                 }}
                 transition={{ delay: index * 0.1, duration: 0.3 }}
+                role="listitem"
               >
                 <Link href={item.href}>
                   <motion.div
                     whileTap={{ scale: 0.95, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`relative group flex items-center justify-between p-4 rounded-xl border transition-all duration-300 ${
+                    className={`relative group flex items-center justify-between p-4 rounded-xl border transition-all duration-300 focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${
                       pathname === item.href 
                         ? 'bg-gradient-to-r from-blue-100/50 to-blue-50/50 border-blue-300/50 text-blue-600' 
                         : 'border-gray-200/30 text-gray-800 hover:border-blue-300/50 hover:bg-blue-50/20'
                     }`}
+                    role="button"
+                    tabIndex={0}
+                    aria-current={pathname === item.href ? 'page' : undefined}
                   >
                     <span className="font-medium text-lg">{item.label}</span>
                     
@@ -251,6 +266,7 @@ export default function Header() {
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                       whileHover={{ x: 3 }}
+                      aria-hidden="true"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </motion.svg>
@@ -283,7 +299,8 @@ export default function Header() {
                 <motion.button
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="relative overflow-hidden glass-button text-gray-800 px-8 py-4 rounded-xl font-bold text-center w-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  className="relative overflow-hidden glass-button text-gray-800 px-8 py-4 rounded-xl font-bold text-center w-full shadow-lg hover:shadow-xl transition-all duration-300 group focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
+                  aria-label="עבור לעמוד צור קשר לקבלת הצעת מחיר"
                 >
                   {/* Animated background */}
                   <motion.div
@@ -294,7 +311,7 @@ export default function Header() {
                   />
                   
                   <span className="relative z-10 flex items-center justify-center gap-2 text-lg">
-                    <svg className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                       <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                     </svg>

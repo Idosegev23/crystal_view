@@ -3,6 +3,7 @@ import { Heebo } from 'next/font/google'
 import './globals.css'
 import StructuredData from '@/components/StructuredData'
 import AccessibilityWidget from '@/components/shared/AccessibilityWidget'
+import { AccessibilityProvider } from '@/contexts/AccessibilityContext'
 
 const heebo = Heebo({
   subsets: ['latin', 'hebrew'],
@@ -164,8 +165,10 @@ export default function RootLayout({
           דלג לתפריט הניווט
         </a>
 
-        {children}
-        <AccessibilityWidget />
+        <AccessibilityProvider>
+          {children}
+          <AccessibilityWidget />
+        </AccessibilityProvider>
       </body>
     </html>
   )

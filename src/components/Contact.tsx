@@ -14,6 +14,7 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [formErrors, setFormErrors] = useState<{[key: string]: string}>({});
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -23,9 +24,39 @@ export default function Contact() {
     }));
   };
 
+  const validateForm = () => {
+    const errors: {[key: string]: string} = {};
+    
+    if (!formData.name.trim()) {
+      errors.name = 'שם מלא הוא שדה חובה';
+    }
+    
+    if (!formData.phone.trim()) {
+      errors.phone = 'מספר טלפון הוא שדה חובה';
+    } else if (!/^[0-9\-\s\+\(\)]+$/.test(formData.phone)) {
+      errors.phone = 'מספר טלפון לא תקין';
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = 'כתובת אימייל היא שדה חובה';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'כתובת אימייל לא תקינה';
+    }
+    
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      setSubmitStatus('error');
+      return;
+    }
+    
     setIsSubmitting(true);
+    setFormErrors({});
     
     // Simulate form submission
     setTimeout(() => {
@@ -33,8 +64,8 @@ export default function Contact() {
       setSubmitStatus('success');
       setFormData({ name: '', phone: '', email: '', message: '' });
       
-      // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus('idle'), 3000);
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     }, 1000);
   };
 
@@ -50,7 +81,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-32 relative">
+    <section id="contact" className="py-20 lg:py-32 relative" role="region" aria-labelledby="contact-heading">
       {/* Glass Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-gray-900/70 to-black/80 backdrop-blur-sm"></div>
       
@@ -65,6 +96,7 @@ export default function Contact() {
           >
             <div className="glass-card-dark p-8 lg:p-12">
               <motion.h2
+                id="contact-heading"
                 variants={fadeInUp}
                 className="text-4xl lg:text-6xl font-bold text-white mb-6"
               >
