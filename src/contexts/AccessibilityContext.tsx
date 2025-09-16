@@ -11,6 +11,7 @@ export interface AccessibilitySettings {
   highContrast: boolean; // Black bg, white text
   invertedContrast: boolean; // White bg, black text bold
   grayscaleMode: boolean; // Grayscale filter
+  darkMode: boolean; // Dark theme mode
   highlightLinks: boolean; // Underline + color links
   highlightHeadings: boolean; // Border/background highlight for headings
 
@@ -34,6 +35,7 @@ export const DEFAULT_ACCESSIBILITY_SETTINGS: AccessibilitySettings = {
   highContrast: false,
   invertedContrast: false,
   grayscaleMode: false,
+  darkMode: false,
   highlightLinks: false,
   highlightHeadings: false,
   enhancedFocus: true,
@@ -62,6 +64,8 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
 
   // Load saved settings on mount
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const savedSettings = localStorage.getItem('crystal-view-accessibility');
     if (savedSettings) {
       try {
@@ -88,8 +92,13 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
       // Handle mutual exclusivity for contrast modes
       if (key === 'highContrast' && value === true) {
         newSettings.invertedContrast = false;
+        newSettings.darkMode = false;
       } else if (key === 'invertedContrast' && value === true) {
         newSettings.highContrast = false;
+        newSettings.darkMode = false;
+      } else if (key === 'darkMode' && value === true) {
+        newSettings.highContrast = false;
+        newSettings.invertedContrast = false;
       }
 
       return newSettings;
@@ -103,12 +112,13 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
 
   // Apply settings to DOM and save to localStorage
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const root = document.documentElement;
     const body = document.body;
 
     // Save settings to localStorage (exclude isOpen state)
-    const settingsToSave = { ...settings };
-    delete settingsToSave.isOpen;
+    const { isOpen, ...settingsToSave } = settings;
     localStorage.setItem('crystal-view-accessibility', JSON.stringify(settingsToSave));
 
     // Font size
@@ -129,6 +139,9 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
 
     // Grayscale mode
     body.classList.toggle('accessibility-grayscale', settings.grayscaleMode);
+
+    // Dark mode
+    body.classList.toggle('accessibility-dark-mode', settings.darkMode);
 
     // Highlight links
     body.classList.toggle('accessibility-highlight-links', settings.highlightLinks);

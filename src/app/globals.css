@@ -305,81 +305,111 @@
   }
 }
 
-/* Accessibility Widget Styles */
+/* Accessibility Widget Styles - Enhanced with Proper Mode Handling */
 @layer utilities {
   /* High Contrast Mode - Black background, white text */
   .accessibility-high-contrast {
-    filter: contrast(200%) saturate(0%) !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
   }
 
-  .accessibility-high-contrast *:not(#accessibility-panel):not(#accessibility-panel *) {
-    background-color: white !important;
-    color: black !important;
-    border-color: black !important;
+  .accessibility-high-contrast *:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
     text-shadow: none !important;
-    box-shadow: 2px 2px 0px black !important;
+    box-shadow: none !important;
   }
 
   .accessibility-high-contrast body {
-    background-color: black !important;
-    color: white !important;
+    background: #000000 !important;
+    animation: none !important;
   }
 
-  .accessibility-high-contrast button:not(#accessibility-panel button):not(#accessibility-panel *),
-  .accessibility-high-contrast a:not(#accessibility-panel a):not(#accessibility-panel *),
-  .accessibility-high-contrast .glass-button:not(#accessibility-panel .glass-button):not(#accessibility-panel *),
-  .accessibility-high-contrast [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *) {
-    background-color: black !important;
-    color: white !important;
-    border: 3px solid white !important;
+  .accessibility-high-contrast .glass-card,
+  .accessibility-high-contrast .glass-card-dark,
+  .accessibility-high-contrast .glass-section,
+  .accessibility-high-contrast .liquidGlass-wrapper {
+    background: #000000 !important;
     backdrop-filter: none !important;
+    border: 2px solid #ffffff !important;
   }
 
-  .accessibility-high-contrast button:not(#accessibility-panel button):not(#accessibility-panel *):hover,
-  .accessibility-high-contrast a:not(#accessibility-panel a):not(#accessibility-panel *):hover,
-  .accessibility-high-contrast .glass-button:not(#accessibility-panel .glass-button):not(#accessibility-panel *):hover,
-  .accessibility-high-contrast [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):hover {
-    background-color: white !important;
-    color: black !important;
-    border: 3px solid black !important;
+  .accessibility-high-contrast button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger),
+  .accessibility-high-contrast a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger),
+  .accessibility-high-contrast .glass-button:not(#accessibility-panel .glass-button):not(#accessibility-panel *):not(.accessibility-widget-trigger),
+  .accessibility-high-contrast [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 3px solid #ffffff !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
   }
 
-  .accessibility-high-contrast button:not(#accessibility-panel button):not(#accessibility-panel *):focus,
-  .accessibility-high-contrast a:not(#accessibility-panel a):not(#accessibility-panel *):focus,
-  .accessibility-high-contrast .glass-button:not(#accessibility-panel .glass-button):not(#accessibility-panel *):focus,
-  .accessibility-high-contrast [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):focus {
+  .accessibility-high-contrast button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover,
+  .accessibility-high-contrast a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover,
+  .accessibility-high-contrast .glass-button:not(#accessibility-panel .glass-button):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover,
+  .accessibility-high-contrast [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 3px solid #000000 !important;
+  }
+
+  .accessibility-high-contrast button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger):focus,
+  .accessibility-high-contrast a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):focus,
+  .accessibility-high-contrast .glass-button:not(#accessibility-panel .glass-button):not(#accessibility-panel *):not(.accessibility-widget-trigger):focus,
+  .accessibility-high-contrast [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger):focus {
     outline: 4px solid #ffff00 !important;
     outline-offset: 2px !important;
-    background-color: #000080 !important;
+    background-color: #0000ff !important;
     color: #ffffff !important;
   }
 
   /* Inverted Contrast Mode - White background, black text bold */
   .accessibility-inverted-contrast {
-    background-color: white !important;
-    color: black !important;
-    filter: invert(1) hue-rotate(180deg) !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
   }
 
-  .accessibility-inverted-contrast *:not(#accessibility-panel):not(#accessibility-panel *) {
-    background-color: white !important;
-    color: black !important;
+  .accessibility-inverted-contrast *:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+    background-color: #ffffff !important;
+    color: #000000 !important;
     font-weight: 700 !important;
     text-shadow: none !important;
-    border-color: black !important;
+    border-color: #000000 !important;
+    box-shadow: none !important;
   }
 
-  .accessibility-inverted-contrast img:not(#accessibility-panel img):not(#accessibility-panel *) {
+  .accessibility-inverted-contrast body {
+    background: #ffffff !important;
+    animation: none !important;
+  }
+
+  .accessibility-inverted-contrast .glass-card,
+  .accessibility-inverted-contrast .glass-card-dark,
+  .accessibility-inverted-contrast .glass-section,
+  .accessibility-inverted-contrast .liquidGlass-wrapper {
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    border: 2px solid #000000 !important;
+  }
+
+  .accessibility-inverted-contrast img:not(#accessibility-panel img):not(#accessibility-panel *):not(.accessibility-widget-trigger img) {
     filter: invert(1) hue-rotate(180deg) !important;
   }
 
-  /* Keep accessibility panel normal in inverted mode */
-  .accessibility-inverted-contrast #accessibility-panel,
-  .accessibility-inverted-contrast #accessibility-panel * {
-    filter: invert(1) hue-rotate(180deg) !important;
-    background-color: white !important;
-    color: black !important;
-    font-weight: normal !important;
+  .accessibility-inverted-contrast button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger),
+  .accessibility-inverted-contrast [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 3px solid #000000 !important;
+    font-weight: 700 !important;
+  }
+
+  .accessibility-inverted-contrast button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover,
+  .accessibility-inverted-contrast [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover {
+    background-color: #f0f0f0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
   }
 
   /* Grayscale Mode */
@@ -387,18 +417,148 @@
     filter: grayscale(100%) !important;
   }
 
-  .accessibility-grayscale *:not(#accessibility-panel):not(#accessibility-panel *) {
+  .accessibility-grayscale *:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
     filter: grayscale(100%) !important;
   }
 
-  /* Keep accessibility panel normal in grayscale mode */
+  .accessibility-grayscale body {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 25%, #f0f0f0 50%, #eeeeee 75%, #f5f5f5 100%) !important;
+  }
+
+  .accessibility-grayscale .glass-card,
+  .accessibility-grayscale .glass-card-dark,
+  .accessibility-grayscale .glass-section,
+  .accessibility-grayscale .liquidGlass-wrapper {
+    filter: grayscale(100%) !important;
+  }
+
+  /* Keep accessibility widget normal in grayscale mode */
   .accessibility-grayscale #accessibility-panel,
-  .accessibility-grayscale #accessibility-panel * {
+  .accessibility-grayscale #accessibility-panel *,
+  .accessibility-grayscale .accessibility-widget-trigger,
+  .accessibility-grayscale .accessibility-widget-trigger * {
     filter: none !important;
   }
 
+  /* Dark Mode */
+  .accessibility-dark-mode {
+    background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 25%, #151b26 50%, #1f252f 75%, #0f1419 100%) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 15s ease infinite !important;
+    color: #e2e8f0 !important;
+  }
+
+  .accessibility-dark-mode *:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+    background-color: transparent !important;
+    color: #e2e8f0 !important;
+    border-color: #4a5568 !important;
+  }
+
+  .accessibility-dark-mode body {
+    background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 25%, #151b26 50%, #1f252f 75%, #0f1419 100%) !important;
+    background-size: 400% 400% !important;
+    color: #e2e8f0 !important;
+  }
+
+  .accessibility-dark-mode .glass-card,
+  .accessibility-dark-mode .glass-section,
+  .accessibility-dark-mode .liquidGlass-wrapper {
+    background: rgba(15, 20, 25, 0.8) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(226, 232, 240, 0.1) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .accessibility-dark-mode .glass-card-dark {
+    background: rgba(26, 31, 46, 0.8) !important;
+    border: 1px solid rgba(74, 85, 104, 0.3) !important;
+  }
+
+  .accessibility-dark-mode button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger),
+  .accessibility-dark-mode [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%) !important;
+    color: #e2e8f0 !important;
+    border: 2px solid #4a5568 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .accessibility-dark-mode button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover,
+  .accessibility-dark-mode [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover {
+    background: linear-gradient(135deg, #4a5568 0%, #68d391 100%) !important;
+    border-color: #68d391 !important;
+    box-shadow: 0 6px 16px rgba(104, 211, 145, 0.3) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  .accessibility-dark-mode h1:not(#accessibility-panel h1):not(#accessibility-panel *):not(.accessibility-widget-trigger h1),
+  .accessibility-dark-mode h2:not(#accessibility-panel h2):not(#accessibility-panel *):not(.accessibility-widget-trigger h2),
+  .accessibility-dark-mode h3:not(#accessibility-panel h3):not(#accessibility-panel *):not(.accessibility-widget-trigger h3),
+  .accessibility-dark-mode h4:not(#accessibility-panel h4):not(#accessibility-panel *):not(.accessibility-widget-trigger h4),
+  .accessibility-dark-mode h5:not(#accessibility-panel h5):not(#accessibility-panel *):not(.accessibility-widget-trigger h5),
+  .accessibility-dark-mode h6:not(#accessibility-panel h6):not(#accessibility-panel *):not(.accessibility-widget-trigger h6) {
+    color: #f7fafc !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .accessibility-dark-mode a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
+    color: #81e6d9 !important;
+  }
+
+  .accessibility-dark-mode a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover,
+  .accessibility-dark-mode a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):focus {
+    color: #4fd1c7 !important;
+    background-color: rgba(129, 230, 217, 0.1) !important;
+  }
+
+  .accessibility-dark-mode input:not(#accessibility-panel input):not(#accessibility-panel *),
+  .accessibility-dark-mode textarea:not(#accessibility-panel textarea):not(#accessibility-panel *),
+  .accessibility-dark-mode select:not(#accessibility-panel select):not(#accessibility-panel *) {
+    background-color: #2d3748 !important;
+    color: #e2e8f0 !important;
+    border-color: #4a5568 !important;
+  }
+
+  .accessibility-dark-mode input:not(#accessibility-panel input):not(#accessibility-panel *):focus,
+  .accessibility-dark-mode textarea:not(#accessibility-panel textarea):not(#accessibility-panel *):focus,
+  .accessibility-dark-mode select:not(#accessibility-panel select):not(#accessibility-panel *):focus {
+    background-color: #4a5568 !important;
+    border-color: #81e6d9 !important;
+    box-shadow: 0 0 0 5px rgba(129, 230, 217, 0.2) !important;
+  }
+
+  .accessibility-dark-mode input:not(#accessibility-panel input):not(#accessibility-panel *)::placeholder,
+  .accessibility-dark-mode textarea:not(#accessibility-panel textarea):not(#accessibility-panel *)::placeholder {
+    color: #a0aec0 !important;
+  }
+
+  /* Dark mode combined with other modes */
+  .accessibility-dark-mode.accessibility-highlight-links a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
+    color: #4fd1c7 !important;
+    background-color: rgba(79, 209, 199, 0.1) !important;
+    box-shadow: 0 0 0 2px #4fd1c7 !important;
+  }
+
+  .accessibility-dark-mode.accessibility-highlight-headings h1:not(#accessibility-panel h1):not(#accessibility-panel *):not(.accessibility-widget-trigger h1),
+  .accessibility-dark-mode.accessibility-highlight-headings h2:not(#accessibility-panel h2):not(#accessibility-panel *):not(.accessibility-widget-trigger h2),
+  .accessibility-dark-mode.accessibility-highlight-headings h3:not(#accessibility-panel h3):not(#accessibility-panel *):not(.accessibility-widget-trigger h3),
+  .accessibility-dark-mode.accessibility-highlight-headings h4:not(#accessibility-panel h4):not(#accessibility-panel *):not(.accessibility-widget-trigger h4),
+  .accessibility-dark-mode.accessibility-highlight-headings h5:not(#accessibility-panel h5):not(#accessibility-panel *):not(.accessibility-widget-trigger h5),
+  .accessibility-dark-mode.accessibility-highlight-headings h6:not(#accessibility-panel h6):not(#accessibility-panel *):not(.accessibility-widget-trigger h6) {
+    background: linear-gradient(135deg, #2d3748, #4a5568) !important;
+    color: #f7fafc !important;
+    border-left: 6px solid #81e6d9 !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* Enhanced focus in dark mode */
+  .accessibility-dark-mode.accessibility-enhanced-focus *:focus-visible:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+    outline: 4px solid #81e6d9 !important;
+    box-shadow: 0 0 0 7px rgba(129, 230, 217, 0.3) !important;
+    background-color: rgba(129, 230, 217, 0.1) !important;
+  }
+
   /* Highlight Links */
-  .accessibility-highlight-links a:not(#accessibility-panel a):not(#accessibility-panel *) {
+  .accessibility-highlight-links a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
     text-decoration: underline !important;
     text-decoration-thickness: 3px !important;
     text-underline-offset: 3px !important;
@@ -408,30 +568,42 @@
     border-radius: 4px !important;
     font-weight: 700 !important;
     box-shadow: 0 0 0 2px #0066cc !important;
+    position: relative !important;
+    z-index: 1 !important;
   }
 
-  .accessibility-highlight-links a:not(#accessibility-panel a):not(#accessibility-panel *):hover,
-  .accessibility-highlight-links a:not(#accessibility-panel a):not(#accessibility-panel *):focus {
+  .accessibility-highlight-links a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover,
+  .accessibility-highlight-links a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):focus {
     background-color: #0066cc !important;
-    color: white !important;
+    color: #ffffff !important;
     text-decoration-thickness: 4px !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 0 0 3px #0066cc, 0 2px 4px rgba(0, 102, 204, 0.3) !important;
   }
 
   /* Highlight Headings */
-  .accessibility-highlight-headings h1:not(#accessibility-panel h1):not(#accessibility-panel *),
-  .accessibility-highlight-headings h2:not(#accessibility-panel h2):not(#accessibility-panel *),
-  .accessibility-highlight-headings h3:not(#accessibility-panel h3):not(#accessibility-panel *),
-  .accessibility-highlight-headings h4:not(#accessibility-panel h4):not(#accessibility-panel *),
-  .accessibility-highlight-headings h5:not(#accessibility-panel h5):not(#accessibility-panel *),
-  .accessibility-highlight-headings h6:not(#accessibility-panel h6):not(#accessibility-panel *) {
-    background-color: #fffbcc !important;
+  .accessibility-highlight-headings h1:not(#accessibility-panel h1):not(#accessibility-panel *):not(.accessibility-widget-trigger h1),
+  .accessibility-highlight-headings h2:not(#accessibility-panel h2):not(#accessibility-panel *):not(.accessibility-widget-trigger h2),
+  .accessibility-highlight-headings h3:not(#accessibility-panel h3):not(#accessibility-panel *):not(.accessibility-widget-trigger h3),
+  .accessibility-highlight-headings h4:not(#accessibility-panel h4):not(#accessibility-panel *):not(.accessibility-widget-trigger h4),
+  .accessibility-highlight-headings h5:not(#accessibility-panel h5):not(#accessibility-panel *):not(.accessibility-widget-trigger h5),
+  .accessibility-highlight-headings h6:not(#accessibility-panel h6):not(#accessibility-panel *):not(.accessibility-widget-trigger h6) {
+    background: linear-gradient(135deg, #fffbcc, #fff3a0) !important;
     color: #1a1a1a !important;
-    padding: 8px 12px !important;
+    padding: 12px 16px !important;
     border-left: 6px solid #0066cc !important;
-    border-radius: 4px !important;
+    border-radius: 8px !important;
     font-weight: 900 !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-    margin: 8px 0 !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+    margin: 12px 0 !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  .accessibility-highlight-headings h1:not(#accessibility-panel h1):not(#accessibility-panel *):not(.accessibility-widget-trigger h1):before {
+    content: '🏷️' !important;
+    margin-left: 8px !important;
+    font-size: 0.8em !important;
   }
 
   /* Improved Readability */
@@ -439,16 +611,23 @@
     line-height: 1.8 !important;
   }
 
-  .accessibility-improved-readability *:not(#accessibility-panel):not(#accessibility-panel *) {
+  .accessibility-improved-readability *:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
     line-height: 1.8 !important;
     letter-spacing: 0.05em !important;
   }
 
-  .accessibility-improved-readability p:not(#accessibility-panel p):not(#accessibility-panel *),
-  .accessibility-improved-readability div:not(#accessibility-panel div):not(#accessibility-panel *),
-  .accessibility-improved-readability span:not(#accessibility-panel span):not(#accessibility-panel *) {
+  .accessibility-improved-readability p:not(#accessibility-panel p):not(#accessibility-panel *):not(.accessibility-widget-trigger p),
+  .accessibility-improved-readability div:not(#accessibility-panel div):not(#accessibility-panel *):not(.accessibility-widget-trigger div),
+  .accessibility-improved-readability span:not(#accessibility-panel span):not(#accessibility-panel *):not(.accessibility-widget-trigger span) {
     margin-bottom: 1rem !important;
-    padding: 0.5rem 0 !important;
+    padding: 0.75rem 0 !important;
+  }
+
+  .accessibility-improved-readability h1:not(#accessibility-panel h1):not(#accessibility-panel *):not(.accessibility-widget-trigger h1),
+  .accessibility-improved-readability h2:not(#accessibility-panel h2):not(#accessibility-panel *):not(.accessibility-widget-trigger h2),
+  .accessibility-improved-readability h3:not(#accessibility-panel h3):not(#accessibility-panel *):not(.accessibility-widget-trigger h3) {
+    margin-top: 2rem !important;
+    margin-bottom: 1.5rem !important;
   }
 
   /* Reduce Animations */
@@ -472,7 +651,7 @@
   }
 
   /* Enhanced Focus Indicators */
-  .accessibility-enhanced-focus *:focus-visible {
+  .accessibility-enhanced-focus *:focus-visible:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
     outline: 4px solid #0066cc !important;
     outline-offset: 3px !important;
     box-shadow: 0 0 0 7px rgba(0, 102, 204, 0.3) !important;
@@ -481,25 +660,41 @@
     z-index: 999 !important;
   }
 
-  .accessibility-enhanced-focus button:focus-visible,
-  .accessibility-enhanced-focus a:focus-visible,
-  .accessibility-enhanced-focus input:focus-visible,
-  .accessibility-enhanced-focus textarea:focus-visible,
-  .accessibility-enhanced-focus select:focus-visible,
-  .accessibility-enhanced-focus [role="button"]:focus-visible {
+  .accessibility-enhanced-focus button:focus-visible:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger),
+  .accessibility-enhanced-focus a:focus-visible:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger),
+  .accessibility-enhanced-focus input:focus-visible:not(#accessibility-panel input):not(#accessibility-panel *),
+  .accessibility-enhanced-focus textarea:focus-visible:not(#accessibility-panel textarea):not(#accessibility-panel *),
+  .accessibility-enhanced-focus select:focus-visible:not(#accessibility-panel select):not(#accessibility-panel *),
+  .accessibility-enhanced-focus [role="button"]:focus-visible:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
     outline: 4px solid #0066cc !important;
     outline-offset: 3px !important;
     background-color: #fffbcc !important;
-    box-shadow: 0 0 0 7px rgba(0, 102, 204, 0.3) !important;
-    transform: scale(1.05) !important;
+    box-shadow: 0 0 0 7px rgba(0, 102, 204, 0.3), 0 4px 12px rgba(0, 102, 204, 0.2) !important;
+    transform: scale(1.03) !important;
+    transition: all 0.2s ease !important;
+  }
+
+  /* Enhanced focus for form elements */
+  .accessibility-enhanced-focus input:focus-visible,
+  .accessibility-enhanced-focus textarea:focus-visible,
+  .accessibility-enhanced-focus select:focus-visible {
+    border-color: #0066cc !important;
+    background-color: #fffbcc !important;
+    box-shadow: 0 0 0 7px rgba(0, 102, 204, 0.3), inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
   }
 
   /* Special styling for accessibility widget trigger button */
-  .accessibility-enhanced-focus [data-accessibility-trigger]:focus-visible {
+  .accessibility-enhanced-focus .accessibility-widget-trigger:focus-visible {
     outline: 4px solid #ffffff !important;
     outline-offset: 3px !important;
-    box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.8), 0 8px 24px rgba(0, 0, 0, 0.2) !important;
     transform: scale(1.1) !important;
+    animation: pulse 0.6s ease-in-out !important;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1.1); }
+    50% { transform: scale(1.15); }
   }
 
 /* Keyboard navigation helpers */
@@ -621,9 +816,9 @@
   pointer-events: none;
 }
 
-/* Accessibility Styles - WCAG AA Compliance */
+/* Accessibility Styles - Enhanced WCAG AA Compliance */
 @layer utilities {
-  /* Reduced motion support */
+  /* Reduced motion support - Enhanced */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -632,26 +827,56 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+      transform: none !important;
+    }
+
+    .accessibility-reduce-animations {
+      scroll-behavior: auto !important;
     }
   }
 
-  /* High contrast mode support */
+  /* High contrast mode support - Enhanced */
   @media (prefers-contrast: high) {
-    * {
+    *:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
       color: CanvasText !important;
       background-color: Canvas !important;
+      border-color: CanvasText !important;
     }
-    
-    button,
-    [role="button"] {
-      border: 2px solid ButtonText !important;
+
+    button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger),
+    [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
+      border: 3px solid ButtonText !important;
       background-color: ButtonFace !important;
       color: ButtonText !important;
+      min-height: 44px !important;
     }
-    
-    button:focus,
-    [role="button"]:focus {
-      outline: 3px solid Highlight !important;
+
+    button:focus:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger),
+    [role="button"]:focus:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
+      outline: 4px solid Highlight !important;
+      outline-offset: 2px !important;
+      box-shadow: 0 0 0 8px rgba(0, 123, 255, 0.3) !important;
+    }
+
+    a:not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
+      color: LinkText !important;
+      text-decoration: underline !important;
+      text-decoration-thickness: 2px !important;
+    }
+  }
+
+  /* Dark mode preference support */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accessibility-bg: #1a1a1a;
+      --accessibility-text: #ffffff;
+      --accessibility-border: #404040;
+    }
+
+    body:not(.accessibility-high-contrast):not(.accessibility-inverted-contrast) {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #1f1f1f 50%, #292929 75%, #1a1a1a 100%) !important;
+      background-size: 400% 400% !important;
+      color: #ffffff !important;
     }
   }
   /* Screen Reader Only */
@@ -687,26 +912,34 @@
 
 
   /* Better Link Styling for Accessibility - WCAG AA Compliant */
-  a:not(.glass-button):not(.no-underline):not(#accessibility-panel a):not(#accessibility-panel *) {
+  a:not(.glass-button):not(.no-underline):not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
     text-decoration: underline !important;
     text-underline-offset: 3px !important;
     text-decoration-thickness: 2px !important;
     color: #0066cc !important; /* High contrast blue */
     transition: all 0.2s ease !important;
+    position: relative !important;
   }
 
-  a:not(.glass-button):not(.no-underline):not(#accessibility-panel a):not(#accessibility-panel *):hover,
-  a:not(.glass-button):not(.no-underline):not(#accessibility-panel a):not(#accessibility-panel *):focus {
+  a:not(.glass-button):not(.no-underline):not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover,
+  a:not(.glass-button):not(.no-underline):not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):focus {
     color: #004499 !important; /* Darker on hover/focus */
     text-decoration-thickness: 3px !important;
     background-color: #fffbcc !important;
-    padding: 2px 4px !important;
-    border-radius: 4px !important;
+    padding: 3px 6px !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2) !important;
+    transform: translateY(-1px) !important;
   }
 
   /* Visited links */
-  a:not(.glass-button):not(.no-underline):not(#accessibility-panel a):not(#accessibility-panel *):visited {
+  a:not(.glass-button):not(.no-underline):not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):visited {
     color: #663399 !important; /* Purple for visited links */
+  }
+
+  a:not(.glass-button):not(.no-underline):not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):visited:hover,
+  a:not(.glass-button):not(.no-underline):not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger):visited:focus {
+    color: #4d2673 !important;
   }
 
 
@@ -826,4 +1059,5 @@
     margin-top: 4px !important;
     font-size: 14px !important;
   }
+}
 }

@@ -53,7 +53,7 @@ export default function AccessibilityStatementPage() {
                 </h2>
                 <p className="text-gray-700 leading-relaxed text-lg">
                   Crystal View מחויבת להנגשת שירותיה לכלל האוכלוסייה, לרבות אנשים עם מוגבלויות.
-                  אנו עושים מאמץ מתמיד להקפיד על הנגשה מירבית של האתר בהתאם לתקן הישראלי ת"י 5568 (חלק 1)
+                  אנו עושים מאמץ מתמיד להקפיד על הנגשה מירבית של האתר בהתאם לתקן הישראלי ת&quot;י 5568 (חלק 1)
                   בדרגת הנגישות AA ולהנחיות הנגישות הבינלאומיות WCAG 2.1 ברמת AA.
                 </p>
               </section>
@@ -69,7 +69,7 @@ export default function AccessibilityStatementPage() {
                       <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm ml-3">
                         🇮🇱
                       </span>
-                      תקן ישראלי ת"י 5568
+                      תקן ישראלי ת&quot;י 5568
                     </h3>
                     <p className="text-gray-700">
                       התאמה מלאה לתקן הישראלי לנגישות תוכן אתרי אינטרנט בדרגת AA
