@@ -83,6 +83,8 @@ export const metadata: Metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
 }
 
 export default function RootLayout({
@@ -100,6 +102,14 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#0D0D0D" />
         <meta name="msapplication-TileColor" content="#0D0D0D" />
+        
+        {/* Accessibility Meta Tags */}
+        <meta name="accessibility-features" content="WCAG-AA" />
+        <meta name="screen-reader-support" content="true" />
+        <meta name="keyboard-navigation" content="true" />
+        <meta name="high-contrast-support" content="true" />
+        <meta name="font-resize-support" content="true" />
+        
         <StructuredData />
       </head>
       <body className={`${heebo.className} antialiased`}>
@@ -164,9 +174,14 @@ export default function RootLayout({
         <a href="#navigation" className="skip-link">
           דלג לתפריט הניווט
         </a>
+        <a href="#contact" className="skip-link">
+          דלג לטופס יצירת קשר
+        </a>
 
         <AccessibilityProvider>
-          {children}
+          <main id="main-content" role="main" aria-label="תוכן ראשי">
+            {children}
+          </main>
           <AccessibilityWidget />
         </AccessibilityProvider>
       </body>

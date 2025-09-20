@@ -25,7 +25,7 @@ export default function Portfolio() {
   };
 
   return (
-    <section id="portfolio" className="py-20 lg:py-32 bg-gradient-to-br from-gray-900 via-crystal-dark to-crystal-dark">
+    <section id="portfolio" className="py-20 lg:py-32 bg-gradient-to-br from-gray-900 via-crystal-dark to-crystal-dark" role="region" aria-labelledby="portfolio-heading">
       <div className="section-padding">
         <div className="container-max">
           {/* Section Header */}
@@ -36,6 +36,7 @@ export default function Portfolio() {
             className="text-center mb-12 sm:mb-16 px-4 sm:px-0"
           >
             <motion.h2
+              id="portfolio-heading"
               variants={fadeInUp}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-crystal-white mb-4 sm:mb-6 leading-tight"
             >
@@ -60,7 +61,12 @@ export default function Portfolio() {
             viewport={{ once: true, amount: 0.3 }}
             variants={staggerContainer}
             className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12 sm:mb-16 px-4 sm:px-0"
+            role="group"
+            aria-labelledby="category-filter-heading"
           >
+            <h3 id="category-filter-heading" className="sr-only">
+              סינון פרויקטים לפי קטגוריה
+            </h3>
             {categories.map((category) => (
               <motion.button
                 key={category}
@@ -73,10 +79,17 @@ export default function Portfolio() {
                     ? 'bg-gradient-to-r from-crystal-blue to-crystal-silver text-crystal-dark'
                     : 'bg-crystal-dark/50 text-crystal-white hover:bg-crystal-silver/20 glass-effect'
                 }`}
+                aria-pressed={selectedCategory === category}
+                aria-label={`${selectedCategory === category ? 'מסנן פעיל' : 'סנן לפי'} ${category}`}
               >
                 {category}
               </motion.button>
             ))}
+            
+            {/* Status message for screen readers */}
+            <div className="sr-only" aria-live="polite" role="status">
+              {`מציג ${filteredProjects.length} פרויקטים בקטגוריה ${selectedCategory}`}
+            </div>
           </motion.div>
 
           {/* Projects Grid */}
@@ -90,23 +103,33 @@ export default function Portfolio() {
           >
             <AnimatePresence mode="wait">
               {filteredProjects.map((project) => (
-                <motion.div
+                <motion.button
                   key={project.id}
                   layout
                   variants={staggerItem}
                   whileHover={{ y: -10 }}
-                  className="group cursor-pointer"
+                  className="group cursor-pointer w-full text-right"
                   onClick={() => openLightbox(project)}
+                  aria-label={`פתח תצוגה מורחבת של פרויקט ${project.title} - ${project.category} ב${project.location}`}
+                  aria-describedby={`project-summary-${project.id}`}
                 >
                   <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-crystal-dark">
                     <div className="aspect-w-16 aspect-h-12 relative">
                       <Image
                         src={project.images[0]}
-                        alt={`${project.title} - ${project.category} ב${project.location} | פרויקט זכוכית ואלומיניום Crystal View`}
+                        alt={`${project.title} - ${project.category} ב${project.location} שנת ${project.year} | פרויקט זכוכית ואלומיניום Crystal View`}
                         width={400}
                         height={300}
                         className="object-cover w-full h-64 group-hover:scale-110 transition-transform duration-700"
+                        aria-describedby={`project-desc-${project.id}`}
+                        loading="lazy"
                       />
+                      
+                      <p id={`project-desc-${project.id}`} className="sr-only">
+                        פרויקט {project.title} בקטגוריה {project.category}, 
+                        מיקום: {project.location}, שנת ביצוע: {project.year}.
+                        {project.description}
+                      </p>
                       
                       {/* Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-crystal-dark via-crystal-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -151,7 +174,11 @@ export default function Portfolio() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                  
+                  <span id={`project-summary-${project.id}`} className="sr-only">
+                    לחץ כדי לפתוח תצוגה מורחבת עם כל התמונות ופרטים נוספים על הפרויקט
+                  </span>
+                </motion.button>
               ))}
             </AnimatePresence>
           </motion.div>
@@ -167,6 +194,10 @@ export default function Portfolio() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 bg-crystal-dark/95 backdrop-blur-md flex items-center justify-center p-4"
             onClick={closeLightbox}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="lightbox-title"
+            aria-describedby="lightbox-description"
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
@@ -179,8 +210,13 @@ export default function Portfolio() {
               <button
                 onClick={closeLightbox}
                 className="absolute top-4 left-4 z-10 w-10 h-10 bg-crystal-dark/80 backdrop-blur-sm rounded-full flex items-center justify-center text-crystal-white hover:bg-crystal-silver/20 transition-colors"
+                aria-label="סגור תצוגה מורחבת"
+                aria-describedby="close-help"
               >
-                ✕
+                <span aria-hidden="true">✕</span>
+                <span id="close-help" className="sr-only">
+                  לחץ כדי לסגור את התצוגה המורחבת ולחזור לרשימת הפרויקטים
+                </span>
               </button>
 
               {/* Image Gallery */}
@@ -200,9 +236,12 @@ export default function Portfolio() {
 
               {/* Project Details */}
               <div className="p-6 pt-0">
-                <h3 className="text-3xl font-bold text-crystal-white mb-4">
+                <h3 id="lightbox-title" className="text-3xl font-bold text-crystal-white mb-4">
                   {selectedProject.title}
                 </h3>
+                <p id="lightbox-description" className="sr-only">
+                  תצוגה מורחבת של פרויקט {selectedProject.title} - {selectedProject.category} ב{selectedProject.location}
+                </p>
                 
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>

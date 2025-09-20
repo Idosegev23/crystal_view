@@ -15,7 +15,7 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-20 lg:py-32 relative">
+    <section id="services" className="py-20 lg:py-32 relative" role="region" aria-labelledby="services-heading">
       {/* Glass Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-blue-900/60 to-black/90 backdrop-blur-sm"></div>
       
@@ -30,6 +30,7 @@ export default function Services() {
           >
             <div className="glass-card-dark p-8 lg:p-12 mb-8">
               <motion.h2
+                id="services-heading"
                 variants={fadeInUp}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight"
               >
@@ -75,10 +76,17 @@ export default function Services() {
                     <div className="relative h-40 sm:h-48 md:h-56 lg:h-64 overflow-hidden rounded-t-2xl">
                       <Image
                         src={service.image}
-                        alt={service.title}
+                        alt={`${service.title} - שירותי זכוכית ואלומיניום מקצועיים של Crystal View`}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        aria-describedby={`service-desc-${service.id}`}
+                        loading="lazy"
                       />
+                      
+                      <p id={`service-desc-${service.id}`} className="sr-only">
+                        שירות {service.title}: {service.description}
+                        כולל: {service.features.slice(0, 3).join(', ')}
+                      </p>
                       
                       {/* Glass Gradient Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -114,8 +122,13 @@ export default function Services() {
                         whileTap={{ scale: 0.95 }}
                         onClick={scrollToContact}
                         className="mt-3 sm:mt-4 glass-button text-gray-800 px-4 sm:px-6 py-2 sm:py-3 font-bold text-xs sm:text-sm w-full opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                        aria-label={`קבל הצעת מחיר לשירות ${service.title}`}
+                        aria-describedby={`service-cta-${service.id}`}
                       >
                         קבל הצעת מחיר
+                        <span id={`service-cta-${service.id}`} className="sr-only">
+                          לחץ כדי לעבור לטופס יצירת קשר ולקבל הצעת מחיר לשירות {service.title}
+                        </span>
                       </motion.button>
                     </div>
                   </div>

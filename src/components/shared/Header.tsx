@@ -53,12 +53,13 @@ export default function Header() {
           ? ''
           : 'bg-transparent'
       }`}
+      aria-label="ניווט ראשי של Crystal View"
     >
       <div className="section-padding">
         <div className="container-max">
           <div className="flex items-center justify-between h-16 lg:h-20 glass-nav px-6">
             {/* Logo */}
-            <Link href="/">
+            <Link href="/" aria-label="Crystal View - עמוד הבית">
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
@@ -182,11 +183,18 @@ export default function Header() {
             <motion.button
               className="lg:hidden relative w-10 h-10 flex flex-col justify-center items-center glass-button group"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(!isMobileMenuOpen);
+                }
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              aria-label={isMobileMenuOpen ? 'סגור תפריט ניווט' : 'פתח תפריט ניווט'}
+              aria-label={isMobileMenuOpen ? 'סגור תפריט ניווט נייד' : 'פתח תפריט ניווט נייד'}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation"
+              aria-describedby="mobile-menu-help"
             >
               <motion.div
                 animate={isMobileMenuOpen ? "open" : "closed"}
@@ -210,6 +218,9 @@ export default function Header() {
                   </motion.div>
                 )}
               </motion.div>
+              <span id="mobile-menu-help" className="sr-only">
+                {isMobileMenuOpen ? 'התפריט פתוח - השתמש בטאב לניווט או לחץ שוב לסגירה' : 'לחץ כדי לפתוח את תפריט הניווט הנייד'}
+              </span>
             </motion.button>
           </div>
         </div>

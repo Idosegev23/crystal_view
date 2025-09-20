@@ -154,7 +154,25 @@ export default function StructuredData() {
         "query-input": "required name=search_term_string"
       }
     ],
-    "inLanguage": "he-IL"
+    "inLanguage": "he-IL",
+    "accessibilityFeature": [
+      "alternativeText",
+      "highContrastDisplay", 
+      "resizeText",
+      "readingOrder",
+      "structuralNavigation",
+      "keyboardNavigation",
+      "skipToContent",
+      "focusVisible",
+      "screenReaderSupport"
+    ],
+    "accessibilityHazard": "none",
+    "accessibilityControl": [
+      "fullKeyboardControl",
+      "fullMouseControl",
+      "fullTouchControl"
+    ],
+    "accessibilityAPI": "ARIA"
   };
 
   return (

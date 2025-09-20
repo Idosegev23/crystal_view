@@ -3,6 +3,7 @@
 import { useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
+import { useFocusManagement } from '@/hooks/useFocusManagement';
 
 export default function AccessibilityWidget() {
   const {
@@ -17,6 +18,9 @@ export default function AccessibilityWidget() {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const firstFocusableRef = useRef<HTMLButtonElement>(null);
   const lastFocusableRef = useRef<HTMLButtonElement>(null);
+  
+  // Use our custom focus management hook
+  const { focusRef, handleKeyNavigation, restoreFocus } = useFocusManagement();
 
   const closeWidget = useCallback(() => {
     updateSetting('isOpen', false);
@@ -49,7 +53,7 @@ export default function AccessibilityWidget() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [settings.isOpen, closeWidget]);
 
-  // Keyboard navigation
+  // Enhanced keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!settings.isOpen) {
@@ -61,32 +65,20 @@ export default function AccessibilityWidget() {
         return;
       }
 
-      switch (e.key) {
-        case 'Escape':
-          e.preventDefault();
-          closeWidget();
-          break;
-        case 'Tab':
-          if (e.shiftKey) {
-            // Shift + Tab - move backward
-            if (document.activeElement === firstFocusableRef.current) {
-              e.preventDefault();
-              lastFocusableRef.current?.focus();
-            }
-          } else {
-            // Tab - move forward
-            if (document.activeElement === lastFocusableRef.current) {
-              e.preventDefault();
-              firstFocusableRef.current?.focus();
-            }
-          }
-          break;
+      // Handle escape to close
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeWidget();
+        return;
       }
+
+      // Use our enhanced keyboard navigation
+      handleKeyNavigation(e);
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [settings.isOpen, toggleWidget, closeWidget]);
+  }, [settings.isOpen, toggleWidget, closeWidget, handleKeyNavigation]);
 
   const adjustFontSize = (increment: number) => {
     const newSize = Math.max(75, Math.min(175, settings.fontSize + increment));
@@ -201,7 +193,14 @@ export default function AccessibilityWidget() {
 
             {/* Panel with dynamic styling */}
             <motion.div
-              ref={widgetRef}
+              ref={(node) => {
+                if (widgetRef.current !== node) {
+                  (widgetRef as any).current = node;
+                }
+                if (focusRef.current !== node) {
+                  (focusRef as any).current = node;
+                }
+              }}
               id="accessibility-panel"
               initial={{ x: '100%', opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
