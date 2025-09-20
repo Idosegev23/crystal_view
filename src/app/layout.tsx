@@ -3,6 +3,9 @@ import { Heebo } from 'next/font/google'
 import './globals.css'
 import StructuredData from '@/components/StructuredData'
 import AccessibilityWidget from '@/components/shared/AccessibilityWidget'
+import Header from '@/components/shared/Header'
+import Footer from '@/components/shared/Footer'
+import WhatsApp from '@/components/shared/WhatsApp'
 import { AccessibilityProvider } from '@/contexts/AccessibilityContext'
 
 const heebo = Heebo({
@@ -179,9 +182,12 @@ export default function RootLayout({
         </a>
 
         <AccessibilityProvider>
+          <Header />
           <main id="main-content" role="main" aria-label="תוכן ראשי">
             {children}
           </main>
+          <Footer />
+          <WhatsApp />
           <AccessibilityWidget />
         </AccessibilityProvider>
       </body>

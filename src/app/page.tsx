@@ -2,10 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Header from '@/components/shared/Header';
 import Hero from '@/components/Hero';
-import Footer from '@/components/shared/Footer';
-import WhatsApp from '@/components/shared/WhatsApp';
 import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations';
 import { services } from '@/lib/services';
 import { projects } from '@/lib/projects';
@@ -15,8 +12,7 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <>
-      <Header />
-      <main id="main-content" className="min-h-screen" role="main">
+      <div className="min-h-screen" role="main">
         <Hero />
       
       {/* Process Steps - Glass Morphism Background */}
@@ -258,10 +254,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      </main>
-
-      <Footer />
-      <WhatsApp />
+      </div>
     </>
   );
 }

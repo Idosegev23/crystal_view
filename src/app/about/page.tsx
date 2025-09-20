@@ -1,16 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
-import WhatsApp from '@/components/shared/WhatsApp';
 import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations';
 
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen">
-      <Header />
+    <div className="min-h-screen">
       
       {/* Hero Section */}
       <section className="relative pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-32 lg:pb-20">
@@ -168,8 +164,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Footer />
-      <WhatsApp />
-    </main>
+    </div>
   );
 }

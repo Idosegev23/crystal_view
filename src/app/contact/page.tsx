@@ -2,9 +2,6 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
-import WhatsApp from '@/components/shared/WhatsApp';
 import { fadeInUp, fadeInLeft, fadeInRight } from '@/lib/animations';
 import { PhoneIcon, EmailIcon, LocationIcon, TimeIcon } from '@/lib/icons';
 
@@ -53,8 +50,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-crystal-dark">
-      <Header />
+    <div className="min-h-screen">
       
       {/* Hero Section */}
       <section className="relative pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-32 lg:pb-20">
@@ -297,38 +293,12 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Quick Info */}
-                <div className="bg-gradient-to-br from-crystal-dark to-gray-900 p-8 rounded-2xl glass-effect">
-                  <h3 className="text-xl font-bold text-crystal-silver mb-4">
-                    מידע מהיר
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-crystal-silver">זמן תגובה ממוצע:</span>
-                      <span className="text-crystal-silver font-bold">תוך שעתיים</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-crystal-silver">סקר מדידות:</span>
-                      <span className="text-crystal-silver font-bold">ללא עלות</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-crystal-silver">הצעת מחיר:</span>
-                      <span className="text-crystal-silver font-bold">תוך 24 שעות</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-crystal-silver">אחריות:</span>
-                      <span className="text-crystal-silver font-bold">5 שנים</span>
-                    </div>
-                  </div>
-                </div>
               </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      <Footer />
-      <WhatsApp />
-    </main>
+    </div>
   );
 }

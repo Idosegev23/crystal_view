@@ -3,9 +3,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
-import WhatsApp from '@/components/shared/WhatsApp';
 import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations';
 import { projects, categories } from '@/lib/projects';
 
@@ -28,8 +25,7 @@ export default function GalleryPage() {
   };
 
   return (
-    <main className="min-h-screen bg-crystal-dark">
-      <Header />
+    <div className="min-h-screen">
       
       {/* Hero Section */}
       <section className="relative pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-32 lg:pb-20">
@@ -289,8 +285,6 @@ export default function GalleryPage() {
         )}
       </AnimatePresence>
 
-      <Footer />
-      <WhatsApp />
-    </main>
+    </div>
   );
 }

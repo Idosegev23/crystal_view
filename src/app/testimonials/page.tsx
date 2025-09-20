@@ -1,7 +1,4 @@
 import { Metadata } from 'next';
-import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
-import WhatsApp from '@/components/shared/WhatsApp';
 
 export const metadata: Metadata = {
   title: 'המלצות לקוחות - Crystal View | עדויות על עבודות אלומיניום איכותיות',
@@ -29,7 +26,6 @@ export const metadata: Metadata = {
 export default function TestimonialsPage() {
   return (
     <div className="min-h-screen">
-      <Header />
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 relative">
@@ -72,8 +68,6 @@ export default function TestimonialsPage() {
         </div>
       </section>
 
-      <Footer />
-      <WhatsApp />
     </div>
   );
 }

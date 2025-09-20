@@ -123,11 +123,6 @@ export default function Header() {
                         />
                       )}
                       
-                      {/* Hover indicator */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-crystal-blue/10 to-crystal-silver/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        initial={false}
-                      />
                       
                       {/* Text */}
                       <span className={`relative z-10 text-sm font-medium transition-all duration-300 ${
