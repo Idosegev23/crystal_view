@@ -539,32 +539,141 @@
     color: #e2e8f0 !important;
   }
 
-  /* Force dark theme on ALL elements with higher specificity */
-  body.accessibility-dark-mode * {
+  /* Force dark theme on main content elements only */
+  body.accessibility-dark-mode main *,
+  body.accessibility-dark-mode section *,
+  body.accessibility-dark-mode header *,
+  body.accessibility-dark-mode footer *,
+  body.accessibility-dark-mode div:not(#accessibility-panel):not(.accessibility-widget-trigger) * {
     color: #f7fafc !important;
   }
 
-  /* Force dark backgrounds on all elements */
-  body.accessibility-dark-mode div,
-  body.accessibility-dark-mode section,
-  body.accessibility-dark-mode main,
-  body.accessibility-dark-mode header,
-  body.accessibility-dark-mode footer {
+  /* Force white text on ALL text elements in dark mode */
+  body.accessibility-dark-mode h1:not(#accessibility-panel h1):not(.accessibility-widget-trigger h1),
+  body.accessibility-dark-mode h2:not(#accessibility-panel h2):not(.accessibility-widget-trigger h2),
+  body.accessibility-dark-mode h3:not(#accessibility-panel h3):not(.accessibility-widget-trigger h3),
+  body.accessibility-dark-mode h4:not(#accessibility-panel h4):not(.accessibility-widget-trigger h4),
+  body.accessibility-dark-mode h5:not(#accessibility-panel h5):not(.accessibility-widget-trigger h5),
+  body.accessibility-dark-mode h6:not(#accessibility-panel h6):not(.accessibility-widget-trigger h6),
+  body.accessibility-dark-mode p:not(#accessibility-panel p):not(.accessibility-widget-trigger p),
+  body.accessibility-dark-mode span:not(#accessibility-panel span):not(.accessibility-widget-trigger span),
+  body.accessibility-dark-mode label:not(#accessibility-panel label):not(.accessibility-widget-trigger label),
+  body.accessibility-dark-mode a:not(#accessibility-panel a):not(.accessibility-widget-trigger a) {
+    color: #ffffff !important;
+  }
+
+  /* Force dark backgrounds on main content elements */
+  body.accessibility-dark-mode main div,
+  body.accessibility-dark-mode section div,
+  body.accessibility-dark-mode header div,
+  body.accessibility-dark-mode footer div {
     background-color: transparent !important;
   }
 
-  /* Override any gradient backgrounds */
-  body.accessibility-dark-mode [class*="bg-gradient"] {
+  /* Override any gradient backgrounds in main content */
+  body.accessibility-dark-mode main [class*="bg-gradient"],
+  body.accessibility-dark-mode section [class*="bg-gradient"],
+  body.accessibility-dark-mode header [class*="bg-gradient"],
+  body.accessibility-dark-mode footer [class*="bg-gradient"] {
     background: #2d3748 !important;
   }
 
-  /* Ensure accessibility widget remains unaffected */
-  body.accessibility-dark-mode #accessibility-panel,
-  body.accessibility-dark-mode #accessibility-panel *,
-  body.accessibility-dark-mode .accessibility-widget-trigger,
-  body.accessibility-dark-mode .accessibility-widget-trigger * {
-    color: initial !important;
-    background-color: initial !important;
+  /* Ensure accessibility widget has proper dark mode styling */
+  body.accessibility-dark-mode #accessibility-panel {
+    background-color: #1a202c !important;
+    color: #e2e8f0 !important;
+    border: 2px solid #4a5568 !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8) !important;
+  }
+
+  body.accessibility-dark-mode #accessibility-panel * {
+    color: #e2e8f0 !important;
+  }
+
+  body.accessibility-dark-mode #accessibility-panel h1,
+  body.accessibility-dark-mode #accessibility-panel h2,
+  body.accessibility-dark-mode #accessibility-panel h3 {
+    color: #f7fafc !important;
+  }
+
+  body.accessibility-dark-mode .accessibility-widget-trigger {
+    background-color: #2d3748 !important;
+    color: #e2e8f0 !important;
+    border: 4px solid #4a5568 !important;
+  }
+
+  /* High Contrast Mode - Widget Protection */
+  body.accessibility-high-contrast #accessibility-panel {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 3px solid #ffffff !important;
+    box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.3) !important;
+  }
+
+  body.accessibility-high-contrast #accessibility-panel * {
+    color: #ffffff !important;
+    background-color: transparent !important;
+  }
+
+  body.accessibility-high-contrast #accessibility-panel h1,
+  body.accessibility-high-contrast #accessibility-panel h2,
+  body.accessibility-high-contrast #accessibility-panel h3 {
+    color: #ffffff !important;
+  }
+
+  body.accessibility-high-contrast .accessibility-widget-trigger {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 4px solid #ffffff !important;
+  }
+
+  /* Button styling in high contrast */
+  body.accessibility-high-contrast #accessibility-panel button {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+  }
+
+  body.accessibility-high-contrast #accessibility-panel button:hover {
+    background-color: #555555 !important;
+  }
+
+  /* Switch styling in high contrast */
+  body.accessibility-high-contrast #accessibility-panel .bg-blue-600 {
+    background-color: #ffffff !important;
+  }
+
+  body.accessibility-high-contrast #accessibility-panel .bg-gray-300 {
+    background-color: #666666 !important;
+  }
+
+  /* Force white text on ALL elements in high contrast mode */
+  body.accessibility-high-contrast h1:not(#accessibility-panel h1):not(.accessibility-widget-trigger h1),
+  body.accessibility-high-contrast h2:not(#accessibility-panel h2):not(.accessibility-widget-trigger h2),
+  body.accessibility-high-contrast h3:not(#accessibility-panel h3):not(.accessibility-widget-trigger h3),
+  body.accessibility-high-contrast h4:not(#accessibility-panel h4):not(.accessibility-widget-trigger h4),
+  body.accessibility-high-contrast h5:not(#accessibility-panel h5):not(.accessibility-widget-trigger h5),
+  body.accessibility-high-contrast h6:not(#accessibility-panel h6):not(.accessibility-widget-trigger h6),
+  body.accessibility-high-contrast p:not(#accessibility-panel p):not(.accessibility-widget-trigger p),
+  body.accessibility-high-contrast span:not(#accessibility-panel span):not(.accessibility-widget-trigger span),
+  body.accessibility-high-contrast label:not(#accessibility-panel label):not(.accessibility-widget-trigger label),
+  body.accessibility-high-contrast a:not(#accessibility-panel a):not(.accessibility-widget-trigger a),
+  body.accessibility-high-contrast div:not(#accessibility-panel):not(.accessibility-widget-trigger),
+  body.accessibility-high-contrast section:not(#accessibility-panel):not(.accessibility-widget-trigger),
+  body.accessibility-high-contrast main:not(#accessibility-panel):not(.accessibility-widget-trigger) {
+    color: #ffffff !important;
+    background-color: transparent !important;
+  }
+
+  /* Override any background gradients in high contrast */
+  body.accessibility-high-contrast [class*="bg-gradient"]:not(#accessibility-panel):not(.accessibility-widget-trigger) {
+    background: #000000 !important;
+  }
+
+  /* Force black background on body in high contrast */
+  body.accessibility-high-contrast {
+    background: #000000 !important;
+    color: #ffffff !important;
   }
 
   /* Override common background classes */
@@ -643,6 +752,23 @@
   .accessibility-dark-mode .text-gray-700,
   .accessibility-dark-mode .text-blue-800 {
     color: #cbd5e0 !important;
+  }
+
+  /* Override ALL Tailwind text color classes in dark mode */
+  body.accessibility-dark-mode .text-gray-100,
+  body.accessibility-dark-mode .text-gray-200,
+  body.accessibility-dark-mode .text-gray-300,
+  body.accessibility-dark-mode .text-gray-400,
+  body.accessibility-dark-mode .text-gray-500,
+  body.accessibility-dark-mode .text-gray-600,
+  body.accessibility-dark-mode .text-gray-700,
+  body.accessibility-dark-mode .text-gray-800,
+  body.accessibility-dark-mode .text-gray-900,
+  body.accessibility-dark-mode .text-blue-600,
+  body.accessibility-dark-mode .text-blue-700,
+  body.accessibility-dark-mode .text-blue-800,
+  body.accessibility-dark-mode .text-blue-900 {
+    color: #ffffff !important;
   }
 
   /* Force dark mode on gradients and special backgrounds */
