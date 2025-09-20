@@ -214,8 +214,8 @@
     text-wrap: balance;
   }
 
-  .bg-radial-gradient {
-    background: radial-gradient(ellipse at center, var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to));
+  .bg-solid-overlay {
+    background: rgba(0, 0, 0, 0.4);
   }
 
   .animation-delay-200 {
@@ -495,7 +495,7 @@
   }
 
   .accessibility-grayscale body {
-    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 25%, #f0f0f0 50%, #eeeeee 75%, #f5f5f5 100%) !important;
+    background: #f0f0f0 !important;
     filter: grayscale(100%) !important;
   }
 
@@ -524,22 +524,124 @@
 
   /* Dark Mode - Complete dark theme including widget */
   .accessibility-dark-mode {
-    background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 25%, #151b26 50%, #1f252f 75%, #0f1419 100%) !important;
-    background-size: 400% 400% !important;
-    animation: gradientShift 15s ease infinite !important;
+    background: #0f1419 !important;
     color: #e2e8f0 !important;
-  }
-
-  .accessibility-dark-mode *:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
-    background-color: transparent !important;
-    color: #e2e8f0 !important;
-    border-color: #4a5568 !important;
   }
 
   .accessibility-dark-mode body {
-    background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 25%, #151b26 50%, #1f252f 75%, #0f1419 100%) !important;
-    background-size: 400% 400% !important;
+    background: #0f1419 !important;
     color: #e2e8f0 !important;
+    animation: none !important;
+  }
+
+  /* Force dark mode on body with higher specificity */
+  body.accessibility-dark-mode {
+    background: #0f1419 !important;
+    color: #e2e8f0 !important;
+    animation: none !important;
+  }
+
+  /* Apply dark colors to all elements except accessibility widget */
+  .accessibility-dark-mode *:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+    color: #e2e8f0 !important;
+  }
+
+  /* Override common background classes */
+  .accessibility-dark-mode .bg-white,
+  .accessibility-dark-mode .bg-gray-50,
+  .accessibility-dark-mode .bg-gray-100,
+  .accessibility-dark-mode .bg-blue-50,
+  .accessibility-dark-mode .bg-crystal-dark,
+  .accessibility-dark-mode .bg-blue-600,
+  .accessibility-dark-mode .bg-green-500 {
+    background-color: #2d3748 !important;
+  }
+
+  /* Force dark backgrounds on sections and containers */
+  .accessibility-dark-mode section,
+  .accessibility-dark-mode main,
+  .accessibility-dark-mode div,
+  .accessibility-dark-mode header,
+  .accessibility-dark-mode footer {
+    background-color: transparent !important;
+  }
+
+  /* Override specific background classes */
+  .accessibility-dark-mode .bg-solid-overlay {
+    background: rgba(0, 0, 0, 0.8) !important;
+  }
+
+  /* Force white text on dark backgrounds */
+  .accessibility-dark-mode .text-white {
+    color: #ffffff !important;
+  }
+
+  /* Override all text colors to ensure readability */
+  .accessibility-dark-mode h1,
+  .accessibility-dark-mode h2,
+  .accessibility-dark-mode h3,
+  .accessibility-dark-mode h4,
+  .accessibility-dark-mode h5,
+  .accessibility-dark-mode h6,
+  .accessibility-dark-mode p,
+  .accessibility-dark-mode span,
+  .accessibility-dark-mode div {
+    color: #f7fafc !important;
+  }
+
+  /* Ensure buttons are visible in dark mode */
+  .accessibility-dark-mode button {
+    background: #2d3748 !important;
+    color: #f7fafc !important;
+    border: 1px solid #4a5568 !important;
+  }
+
+  .accessibility-dark-mode button:hover {
+    background: #4a5568 !important;
+  }
+
+  /* Override text color classes */
+  .accessibility-dark-mode .text-gray-800,
+  .accessibility-dark-mode .text-gray-900,
+  .accessibility-dark-mode .text-crystal-silver,
+  .accessibility-dark-mode .text-blue-900 {
+    color: #f7fafc !important;
+  }
+
+  .accessibility-dark-mode .text-gray-600,
+  .accessibility-dark-mode .text-gray-700,
+  .accessibility-dark-mode .text-blue-800 {
+    color: #cbd5e0 !important;
+  }
+
+  /* Force dark mode on gradients and special backgrounds */
+  .accessibility-dark-mode .bg-gradient-to-br,
+  .accessibility-dark-mode .bg-gradient-to-r,
+  .accessibility-dark-mode .bg-gradient-to-l,
+  .accessibility-dark-mode .bg-gradient-to-t,
+  .accessibility-dark-mode .bg-gradient-to-b {
+    background: #1a202c !important;
+  }
+
+  /* Override glass effects in dark mode */
+  .accessibility-dark-mode .glass-card,
+  .accessibility-dark-mode .glass-card-dark,
+  .accessibility-dark-mode .glass-section {
+    background: rgba(26, 32, 44, 0.9) !important;
+    backdrop-filter: none !important;
+    border: 1px solid #4a5568 !important;
+  }
+
+  /* Fix button styling in dark mode */
+  .accessibility-dark-mode .glass-button {
+    background: #2d3748 !important;
+    color: #f7fafc !important;
+    border: 1px solid #4a5568 !important;
+  }
+
+  .accessibility-dark-mode .glass-button:hover {
+    background: #4a5568 !important;
+    color: #fff !important;
   }
 
   /* Ensure all elements have proper dark theme */
@@ -613,7 +715,7 @@
 
   .accessibility-dark-mode button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger),
   .accessibility-dark-mode [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger) {
-    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%) !important;
+    background: #2d3748 !important;
     color: #e2e8f0 !important;
     border: 2px solid #4a5568 !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
@@ -621,7 +723,7 @@
 
   .accessibility-dark-mode button:not(#accessibility-panel button):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover,
   .accessibility-dark-mode [role="button"]:not(#accessibility-panel [role="button"]):not(#accessibility-panel *):not(.accessibility-widget-trigger):hover {
-    background: linear-gradient(135deg, #4a5568 0%, #68d391 100%) !important;
+    background: #4a5568 !important;
     border-color: #68d391 !important;
     box-shadow: 0 6px 16px rgba(104, 211, 145, 0.3) !important;
     transform: translateY(-2px) !important;
@@ -681,7 +783,7 @@
   .accessibility-dark-mode.accessibility-highlight-headings h4:not(#accessibility-panel h4):not(#accessibility-panel *):not(.accessibility-widget-trigger h4),
   .accessibility-dark-mode.accessibility-highlight-headings h5:not(#accessibility-panel h5):not(#accessibility-panel *):not(.accessibility-widget-trigger h5),
   .accessibility-dark-mode.accessibility-highlight-headings h6:not(#accessibility-panel h6):not(#accessibility-panel *):not(.accessibility-widget-trigger h6) {
-    background: linear-gradient(135deg, #2d3748, #4a5568) !important;
+    background: #2d3748 !important;
     color: #f7fafc !important;
     border-left: 6px solid #81e6d9 !important;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
@@ -753,7 +855,7 @@
   .accessibility-highlight-headings h4,
   .accessibility-highlight-headings h5,
   .accessibility-highlight-headings h6 {
-    background: linear-gradient(135deg, #fffbcc, #fff3a0) !important;
+    background: #fffbcc !important;
     color: #1a1a1a !important;
     padding: 12px 16px !important;
     border-left: 6px solid #0066cc !important;
@@ -791,7 +893,7 @@
   .accessibility-dark-mode.accessibility-highlight-headings h4,
   .accessibility-dark-mode.accessibility-highlight-headings h5,
   .accessibility-dark-mode.accessibility-highlight-headings h6 {
-    background: linear-gradient(135deg, #2d3748, #4a5568) !important;
+    background: #2d3748 !important;
     color: #f7fafc !important;
     border-left: 6px solid #81e6d9 !important;
     border-color: #81e6d9 !important;
@@ -1268,8 +1370,7 @@
     }
 
     body:not(.accessibility-high-contrast):not(.accessibility-inverted-contrast) {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #1f1f1f 50%, #292929 75%, #1a1a1a 100%) !important;
-      background-size: 400% 400% !important;
+      background: #1a1a1a !important;
       color: #ffffff !important;
     }
   }

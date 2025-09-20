@@ -37,10 +37,8 @@ export default function Hero() {
             style={{ zIndex: 0 }}
             priority
           />
-          {/* Dark Gradient Overlay for Text Contrast */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
-          <div className="absolute inset-0 bg-radial-gradient from-black/40 via-transparent to-transparent" />
+          {/* Dark Overlay for Text Contrast */}
+          <div className="absolute inset-0 bg-solid-overlay" />
         </motion.div>
       </div>
 

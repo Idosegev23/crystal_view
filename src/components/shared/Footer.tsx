@@ -7,12 +7,12 @@ import { fadeInUp } from '@/lib/animations';
 export default function Footer() {
   return (
     <footer 
-      className="bg-gradient-to-br from-blue-50/30 via-white/20 to-blue-100/30 backdrop-blur-sm text-gray-800 relative overflow-hidden"
+      className="bg-blue-50/30 backdrop-blur-sm text-gray-800 relative overflow-hidden"
       role="contentinfo"
       aria-label="מידע על החברה וקישורים"
     >
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.3),transparent_50%)] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-blue-50/20 pointer-events-none"></div>
       
       <div className="section-padding relative z-10">
         <div className="container-max">
@@ -66,7 +66,7 @@ export default function Footer() {
                 viewport={{ once: true, amount: 0.3 }}
                 variants={fadeInUp}
                 transition={{ delay: 0.2 }}
-                className="text-center md:text-right lg:col-span-1 md:col-span-2 lg:col-span-1"
+                className="text-center md:text-right md:col-span-2 lg:col-span-1"
               >
                 <h4 className="text-lg font-bold text-gray-800 mb-3">צרו קשר</h4>
                 <div className="space-y-2 text-gray-600 text-sm">

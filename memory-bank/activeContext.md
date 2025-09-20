@@ -12,6 +12,7 @@ Crystal View website is now fully complete with WCAG 2.1 AA accessibility compli
 - Enhanced form validation with accessible error handling
 - **NEW**: Simplified accessibility widget with custom icon from public/Accessibility.svg
 - Streamlined accessibility menu to focus on essential options only
+- **LATEST**: Removed all animated gradient backgrounds and replaced with solid colors for better performance and cleaner design
 
 ## Current Status: Production Ready ✅
 The website is now fully accessible and production-ready with:
@@ -23,10 +24,10 @@ The website is now fully accessible and production-ready with:
 
 ## Active Decisions
 - **Language**: Primary Hebrew with English technical terms where appropriate
-- **Design**: Dark luxury theme with metallic accents and glass blue highlights
-- **Typography**: Heebo font family for Hebrew optimization
+- **Design**: Clean luxury theme with solid backgrounds, metallic accents and glass blue highlights
+- **Typography**: Assistant font family for Hebrew optimization
 - **Layout**: Minimalist with generous white space and cinematic spacing
-- **Performance**: Static generation for SEO and speed
+- **Performance**: Static generation for SEO and speed, solid backgrounds for better performance
 
 ## Current Considerations
 - Portfolio images will need to be generated/sourced for glass and aluminum projects
