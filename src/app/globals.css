@@ -604,47 +604,67 @@
 
   /* High Contrast Mode - Widget Protection */
   body.accessibility-high-contrast #accessibility-panel {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-    border: 3px solid #ffffff !important;
-    box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.3) !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 3px solid #000000 !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8) !important;
   }
 
   body.accessibility-high-contrast #accessibility-panel * {
-    color: #ffffff !important;
+    color: #000000 !important;
     background-color: transparent !important;
   }
 
   body.accessibility-high-contrast #accessibility-panel h1,
   body.accessibility-high-contrast #accessibility-panel h2,
   body.accessibility-high-contrast #accessibility-panel h3 {
-    color: #ffffff !important;
+    color: #000000 !important;
   }
 
   body.accessibility-high-contrast .accessibility-widget-trigger {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-    border: 4px solid #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 4px solid #000000 !important;
   }
 
   /* Button styling in high contrast */
   body.accessibility-high-contrast #accessibility-panel button {
-    background-color: #333333 !important;
-    color: #ffffff !important;
-    border: 2px solid #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
   }
 
   body.accessibility-high-contrast #accessibility-panel button:hover {
-    background-color: #555555 !important;
+    background-color: #f0f0f0 !important;
+    color: #000000 !important;
   }
 
-  /* Switch styling in high contrast */
+  /* Switch styling in high contrast - Active state */
   body.accessibility-high-contrast #accessibility-panel .bg-blue-600 {
+    background-color: #000000 !important;
+  }
+
+  /* Switch styling in high contrast - Inactive state */
+  body.accessibility-high-contrast #accessibility-panel .bg-gray-300 {
+    background-color: #cccccc !important;
+  }
+
+  /* Switch inner circle */
+  body.accessibility-high-contrast #accessibility-panel .bg-blue-600 .bg-white {
     background-color: #ffffff !important;
   }
 
-  body.accessibility-high-contrast #accessibility-panel .bg-gray-300 {
-    background-color: #666666 !important;
+  body.accessibility-high-contrast #accessibility-panel .bg-gray-300 .bg-white {
+    background-color: #ffffff !important;
+  }
+
+  /* Text colors in widget */
+  body.accessibility-high-contrast #accessibility-panel .text-gray-600,
+  body.accessibility-high-contrast #accessibility-panel .text-gray-700,
+  body.accessibility-high-contrast #accessibility-panel .text-gray-900,
+  body.accessibility-high-contrast #accessibility-panel .text-blue-800,
+  body.accessibility-high-contrast #accessibility-panel .text-blue-900 {
+    color: #000000 !important;
   }
 
   /* Force white text on ALL elements in high contrast mode */
@@ -674,6 +694,32 @@
   body.accessibility-high-contrast {
     background: #000000 !important;
     color: #ffffff !important;
+  }
+
+  /* Force black background on ALL containers in high contrast */
+  body.accessibility-high-contrast *:not(#accessibility-panel):not(#accessibility-panel *):not(.accessibility-widget-trigger):not(.accessibility-widget-trigger *) {
+    background-color: transparent !important;
+  }
+
+  /* Force black background on major layout elements */
+  body.accessibility-high-contrast main:not(#accessibility-panel):not(.accessibility-widget-trigger),
+  body.accessibility-high-contrast section:not(#accessibility-panel):not(.accessibility-widget-trigger),
+  body.accessibility-high-contrast header:not(#accessibility-panel):not(.accessibility-widget-trigger),
+  body.accessibility-high-contrast footer:not(#accessibility-panel):not(.accessibility-widget-trigger),
+  body.accessibility-high-contrast div:not(#accessibility-panel):not(.accessibility-widget-trigger) {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  /* Override ALL background classes in high contrast */
+  body.accessibility-high-contrast .bg-white:not(#accessibility-panel .bg-white):not(.accessibility-widget-trigger .bg-white),
+  body.accessibility-high-contrast .bg-gray-50:not(#accessibility-panel .bg-gray-50):not(.accessibility-widget-trigger .bg-gray-50),
+  body.accessibility-high-contrast .bg-gray-100:not(#accessibility-panel .bg-gray-100):not(.accessibility-widget-trigger .bg-gray-100),
+  body.accessibility-high-contrast .bg-blue-50:not(#accessibility-panel .bg-blue-50):not(.accessibility-widget-trigger .bg-blue-50),
+  body.accessibility-high-contrast [class*="bg-"]:not(#accessibility-panel [class*="bg-"]):not(.accessibility-widget-trigger [class*="bg-"]) {
+    background: transparent !important;
+    background-color: transparent !important;
   }
 
   /* Override common background classes */
