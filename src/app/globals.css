@@ -10,9 +10,7 @@
 
   body {
     font-family: 'Assistant', sans-serif;
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #f0fdf4 50%, #fefce8 75%, #f0f9ff 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    background: #f0f9ff;
     color: #1e293b;
     overflow-x: hidden;
     min-height: 100vh;
@@ -24,11 +22,6 @@
     box-sizing: border-box;
   }
 
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
 }
 
 @layer components {
@@ -546,6 +539,34 @@
     color: #e2e8f0 !important;
   }
 
+  /* Force dark theme on ALL elements with higher specificity */
+  body.accessibility-dark-mode * {
+    color: #f7fafc !important;
+  }
+
+  /* Force dark backgrounds on all elements */
+  body.accessibility-dark-mode div,
+  body.accessibility-dark-mode section,
+  body.accessibility-dark-mode main,
+  body.accessibility-dark-mode header,
+  body.accessibility-dark-mode footer {
+    background-color: transparent !important;
+  }
+
+  /* Override any gradient backgrounds */
+  body.accessibility-dark-mode [class*="bg-gradient"] {
+    background: #2d3748 !important;
+  }
+
+  /* Ensure accessibility widget remains unaffected */
+  body.accessibility-dark-mode #accessibility-panel,
+  body.accessibility-dark-mode #accessibility-panel *,
+  body.accessibility-dark-mode .accessibility-widget-trigger,
+  body.accessibility-dark-mode .accessibility-widget-trigger * {
+    color: initial !important;
+    background-color: initial !important;
+  }
+
   /* Override common background classes */
   .accessibility-dark-mode .bg-white,
   .accessibility-dark-mode .bg-gray-50,
@@ -553,8 +574,16 @@
   .accessibility-dark-mode .bg-blue-50,
   .accessibility-dark-mode .bg-crystal-dark,
   .accessibility-dark-mode .bg-blue-600,
-  .accessibility-dark-mode .bg-green-500 {
+  .accessibility-dark-mode .bg-green-500,
+  .accessibility-dark-mode .bg-gray-900 {
     background-color: #2d3748 !important;
+  }
+
+  /* Override crystal-specific backgrounds */
+  .accessibility-dark-mode .bg-crystal-dark\/50,
+  .accessibility-dark-mode .bg-crystal-dark\/90,
+  .accessibility-dark-mode .bg-crystal-blue\/90 {
+    background-color: rgba(45, 55, 72, 0.9) !important;
   }
 
   /* Force dark backgrounds on sections and containers */
@@ -604,7 +633,9 @@
   .accessibility-dark-mode .text-gray-800,
   .accessibility-dark-mode .text-gray-900,
   .accessibility-dark-mode .text-crystal-silver,
-  .accessibility-dark-mode .text-blue-900 {
+  .accessibility-dark-mode .text-blue-900,
+  .accessibility-dark-mode .text-crystal-blue,
+  .accessibility-dark-mode .text-crystal-white {
     color: #f7fafc !important;
   }
 
