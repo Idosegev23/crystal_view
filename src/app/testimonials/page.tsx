@@ -85,7 +85,7 @@ export default function TestimonialsPage() {
                     )}
 
                     <footer className="mt-5 flex items-center justify-between pt-4 border-t border-gray-200">
-                      <span className="text-xs text-gray-500">מס' הצעת מחיר פנימי: {t.reference}</span>
+                      <span className="text-xs text-gray-500">מס&#39; הצעת מחיר פנימי: {t.reference}</span>
                       <span className="inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 px-2 py-1 rounded-md" aria-label="לקוח מאומת">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="#15803d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                         מאומת
@@ -118,7 +118,6 @@ export default function TestimonialsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(getReviewsSchema()) }}
-        aria-hidden="true"
       />
     </div>
   );
