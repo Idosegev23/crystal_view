@@ -128,7 +128,7 @@ export default function Header() {
                       <span className={`relative z-10 text-sm font-medium transition-all duration-300 ${
                         pathname === item.href 
                           ? 'text-blue-600 font-bold' 
-                          : 'text-gray-800 group-hover:text-blue-600'
+                          : 'text-gray-800'
                       }`}>
                         {item.label}
                       </span>
@@ -193,7 +193,7 @@ export default function Header() {
             >
               <motion.div
                 animate={isMobileMenuOpen ? "open" : "closed"}
-                className="w-5 h-5 text-gray-800 group-hover:text-blue-600 transition-colors duration-300"
+                className="w-5 h-5 text-gray-800 transition-colors duration-300"
               >
                 {isMobileMenuOpen ? (
                   <motion.div
@@ -255,7 +255,7 @@ export default function Header() {
                     className={`relative group flex items-center justify-between p-4 rounded-xl border transition-all duration-300 focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${
                       pathname === item.href 
                         ? 'bg-gradient-to-r from-blue-100/50 to-blue-50/50 border-blue-300/50 text-blue-600' 
-                        : 'border-gray-200/30 text-gray-800 hover:border-blue-300/50 hover:bg-blue-50/20'
+                        : 'border-gray-200/30 text-gray-800'
                     }`}
                     role="button"
                     tabIndex={0}
@@ -266,7 +266,7 @@ export default function Header() {
                     {/* Arrow indicator */}
                     <motion.svg
                       className={`w-5 h-5 transition-colors duration-300 ${
-                        pathname === item.href ? 'text-blue-600' : 'text-gray-600 group-hover:text-blue-600'
+                        pathname === item.href ? 'text-blue-600' : 'text-gray-600'
                       }`}
                       fill="none"
                       stroke="currentColor"

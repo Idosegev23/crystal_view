@@ -160,6 +160,30 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
 
     // Stop autoplay
     body.classList.toggle('accessibility-stop-autoplay', settings.stopAutoplay);
+    // Debug visibility + deterministic attributes
+    try {
+      body.setAttribute('data-hc', settings.highContrast ? '1' : '0');
+      body.setAttribute('data-inv', settings.invertedContrast ? '1' : '0');
+      body.setAttribute('data-dark', settings.darkMode ? '1' : '0');
+      body.setAttribute('data-gray', settings.grayscaleMode ? '1' : '0');
+      body.setAttribute('data-hl', settings.highlightLinks ? '1' : '0');
+      body.setAttribute('data-ir', settings.improvedReadability ? '1' : '0');
+      body.setAttribute('data-hh', settings.highlightHeadings ? '1' : '0');
+      // Helpful console signal during dev
+      // eslint-disable-next-line no-console
+      console.log('[Accessibility] Applied:', {
+        highContrast: settings.highContrast,
+        invertedContrast: settings.invertedContrast,
+        darkMode: settings.darkMode,
+        grayscaleMode: settings.grayscaleMode,
+        highlightLinks: settings.highlightLinks,
+        highlightHeadings: settings.highlightHeadings,
+        improvedReadability: settings.improvedReadability,
+        reduceAnimations: settings.reduceAnimations,
+        stopAutoplay: settings.stopAutoplay,
+        bodyClassList: Array.from(body.classList.values()),
+      });
+    } catch {}
     if (settings.stopAutoplay) {
       // Pause all videos and stop autoplay
       const videos = document.querySelectorAll('video');

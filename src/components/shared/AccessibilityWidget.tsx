@@ -235,177 +235,176 @@ export default function AccessibilityWidget() {
                   התאם את האתר לצרכי הנגישות שלך. השינויים יישמרו אוטומטית ויחזרו בביקור הבא.
                 </p>
 
-                <div className="space-y-6">
-                  {/* Font Size Controls */}
+                <div className="space-y-4">
+                  {/* Group: Typography */}
+                  <details className="group rounded-xl border border-gray-200 open:bg-gray-50">
+                    <summary className="flex items-center justify-between cursor-pointer px-4 py-3 select-none">
+                      <span className="text-sm font-semibold text-gray-900">טיפוגרפיה</span>
+                      <span className="text-gray-500 group-open:rotate-180 transition-transform">▾</span>
+                    </summary>
+                    <div className="px-4 pb-4 space-y-4">
+                      {/* Font size */}
                   <section aria-labelledby="font-size-section">
-                    <h2 id="font-size-section" className="text-lg font-semibold text-gray-900 mb-4">
-                      גודל טקסט
-                    </h2>
-                    <div className="mb-4" role="group" aria-labelledby="font-size-label">
-                      <label id="font-size-label" className="block text-sm font-medium text-gray-700 mb-3">
+                        <h2 id="font-size-section" className="sr-only">גודל טקסט</h2>
+                        <div className="mb-2" role="group" aria-labelledby="font-size-label">
+                          <label id="font-size-label" className="block text-xs font-medium text-gray-700 mb-2">
                         גודל נוכחי: {settings.fontSize}%
                       </label>
-                      <div className="flex items-center gap-3" role="group" aria-label="בקרי גודל טקסט">
-                        <button
-                          onClick={() => adjustFontSize(-25)}
-                          disabled={settings.fontSize <= 75}
-                          className="px-4 py-2 bg-blue-100 hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
-                          aria-label={`הקטן טקסט - גודל נוכחי ${settings.fontSize}%`}
-                          type="button"
-                        >
-                          א-
-                        </button>
-                        
-                        <button
-                          onClick={() => updateSetting('fontSize', 100)}
-                          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
-                          aria-label="איפוס גודל טקסט ל-100 אחוז"
-                          type="button"
-                        >
-                          רגיל
-                        </button>
-
-                        <button
-                          onClick={() => adjustFontSize(25)}
-                          disabled={settings.fontSize >= 175}
-                          className="px-4 py-2 bg-blue-100 hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
-                          aria-label={`הגדל טקסט - גודל נוכחי ${settings.fontSize}%`}
-                          type="button"
-                        >
-                          א+
+                          <div className="flex items-center gap-2" role="group" aria-label="בקרי גודל טקסט">
+                            <button onClick={() => adjustFontSize(-25)} disabled={settings.fontSize <= 75} className="px-3 py-1.5 bg-blue-100 hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-md text-sm font-medium focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2" aria-label={`הקטן טקסט - גודל נוכחי ${settings.fontSize}%`} type="button">א-</button>
+                            <button onClick={() => updateSetting('fontSize', 100)} className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-md text-sm font-medium focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2" aria-label="איפוס גודל טקסט ל-100 אחוז" type="button">רגיל</button>
+                            <button onClick={() => adjustFontSize(25)} disabled={settings.fontSize >= 175} className="px-3 py-1.5 bg-blue-100 hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-md text-sm font-medium focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2" aria-label={`הגדל טקסט - גודל נוכחי ${settings.fontSize}%`} type="button">א+</button>
+                          </div>
+                        </div>
+                      </section>
+                      {/* Readable font */}
+                      <div className="flex items-center justify-between" role="group" aria-labelledby="readable-font-label">
+                        <div>
+                          <label id="readable-font-label" htmlFor="readable-font" className="text-sm font-medium text-gray-900">גופן קריא</label>
+                          <p className="text-xs text-gray-600 mt-1">גופן Arial קריא יותר</p>
+                        </div>
+                        <button id="readable-font" role="switch" aria-checked={settings.fontFamily === 'readable'} onClick={handleFontFamilyToggle} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${settings.fontFamily === 'readable' ? 'bg-blue-600' : 'bg-gray-300'}`} type="button">
+                          <span className="sr-only">{settings.fontFamily === 'readable' ? 'גופן קריא פעיל' : 'גופן קריא כבוי'}</span>
+                          <span className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${settings.fontFamily === 'readable' ? 'translate-x-6' : 'translate-x-1'}`} aria-hidden="true" />
                         </button>
                       </div>
                     </div>
-                  </section>
+                  </details>
 
-                  {/* Essential Accessibility Options */}
-                  <section aria-labelledby="essential-options">
-                    <h2 id="essential-options" className="text-lg font-semibold text-gray-900 mb-4">
-                      אפשרויות נגישות
-                    </h2>
-                    <div className="space-y-4">
+                  {/* Group: Contrast & Colors */}
+                  <details className="group rounded-xl border border-gray-200 open:bg-gray-50">
+                    <summary className="flex items-center justify-between cursor-pointer px-4 py-3 select-none">
+                      <span className="text-sm font-semibold text-gray-900">ניגודיות וצבע</span>
+                      <span className="text-gray-500 group-open:rotate-180 transition-transform">▾</span>
+                    </summary>
+                    <div className="px-4 pb-4 space-y-4">
                       {/* High Contrast */}
                       <div className="flex items-center justify-between" role="group" aria-labelledby="high-contrast-label">
                         <div>
-                          <label id="high-contrast-label" htmlFor="high-contrast" className="text-sm font-medium text-gray-900">
-                            ניגודיות גבוהה
-                          </label>
+                          <label id="high-contrast-label" htmlFor="high-contrast" className="text-sm font-medium text-gray-900">ניגודיות גבוהה</label>
                           <p className="text-xs text-gray-600 mt-1">רקע שחור וטקסט לבן</p>
                         </div>
-                        <button
-                          id="high-contrast"
-                          role="switch"
-                          aria-checked={settings.highContrast}
-                          onClick={() => handleBooleanToggle('highContrast', 'ניגודיות גבוהה הופעלה', 'ניגודיות גבוהה כובתה')}
-                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${
-                            settings.highContrast ? 'bg-blue-600' : 'bg-gray-300'
-                          }`}
-                          type="button"
-                        >
-                          <span className="sr-only">
-                            {settings.highContrast ? 'ניגודיות גבוהה פעילה' : 'ניגודיות גבוהה כבויה'}
-                          </span>
-                          <span
-                            className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
-                              settings.highContrast ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                            aria-hidden="true"
-                          />
+                        <button id="high-contrast" role="switch" aria-checked={settings.highContrast} onClick={() => handleBooleanToggle('highContrast', 'ניגודיות גבוהה הופעלה', 'ניגודיות גבוהה כובתה')} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${settings.highContrast ? 'bg-blue-600' : 'bg-gray-300'}`} type="button">
+                          <span className="sr-only">{settings.highContrast ? 'ניגודיות גבוהה פעילה' : 'ניגודיות גבוהה כבויה'}</span>
+                          <span className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${settings.highContrast ? 'translate-x-6' : 'translate-x-1'}`} aria-hidden="true" />
                         </button>
                       </div>
 
                       {/* Dark Mode */}
                       <div className="flex items-center justify-between" role="group" aria-labelledby="dark-mode-label">
                         <div>
-                          <label id="dark-mode-label" htmlFor="dark-mode" className="text-sm font-medium text-gray-900">
-                            מצב כהה
-                          </label>
+                          <label id="dark-mode-label" htmlFor="dark-mode" className="text-sm font-medium text-gray-900">מצב כהה</label>
                           <p className="text-xs text-gray-600 mt-1">עיצוב כהה נוח לעיניים</p>
                         </div>
-                        <button
-                          id="dark-mode"
-                          role="switch"
-                          aria-checked={settings.darkMode}
-                          disabled={settings.highContrast}
-                          onClick={() => handleBooleanToggle('darkMode', 'מצב כהה הופעל', 'מצב כהה כובה')}
-                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${
-                            settings.darkMode ? 'bg-blue-600' : 'bg-gray-300'
-                          } ${settings.highContrast ? 'opacity-50 cursor-not-allowed' : ''}`}
-                          type="button"
-                        >
-                          <span className="sr-only">
-                            {settings.darkMode ? 'מצב כהה פעיל' : 'מצב כהה כבוי'}
-                          </span>
-                          <span
-                            className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
-                              settings.darkMode ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                            aria-hidden="true"
-                          />
+                        <button id="dark-mode" role="switch" aria-checked={settings.darkMode} disabled={settings.highContrast} onClick={() => handleBooleanToggle('darkMode', 'מצב כהה הופעל', 'מצב כהה כובה')} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${settings.darkMode ? 'bg-blue-600' : 'bg-gray-300'} ${settings.highContrast ? 'opacity-50 cursor-not-allowed' : ''}`} type="button">
+                          <span className="sr-only">{settings.darkMode ? 'מצב כהה פעיל' : 'מצב כהה כבוי'}</span>
+                          <span className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${settings.darkMode ? 'translate-x-6' : 'translate-x-1'}`} aria-hidden="true" />
                         </button>
                       </div>
 
-                      {/* Readable Font */}
-                      <div className="flex items-center justify-between" role="group" aria-labelledby="readable-font-label">
+                      {/* Inverted Contrast */}
+                      <div className="flex items-center justify-between" role="group" aria-labelledby="inverted-contrast-label">
                         <div>
-                          <label id="readable-font-label" htmlFor="readable-font" className="text-sm font-medium text-gray-900">
-                            גופן קריא
-                          </label>
-                          <p className="text-xs text-gray-600 mt-1">גופן Arial קריא יותר</p>
+                          <label id="inverted-contrast-label" htmlFor="inverted-contrast" className="text-sm font-medium text-gray-900">ניגודיות הפוכה</label>
+                          <p className="text-xs text-gray-600 mt-1">רקע לבן וטקסט שחור עבה</p>
                         </div>
-                        <button
-                          id="readable-font"
-                          role="switch"
-                          aria-checked={settings.fontFamily === 'readable'}
-                          onClick={handleFontFamilyToggle}
-                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${
-                            settings.fontFamily === 'readable' ? 'bg-blue-600' : 'bg-gray-300'
-                          }`}
-                          type="button"
-                        >
-                          <span className="sr-only">
-                            {settings.fontFamily === 'readable' ? 'גופן קריא פעיל' : 'גופן קריא כבוי'}
-                          </span>
-                          <span
-                            className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
-                              settings.fontFamily === 'readable' ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                            aria-hidden="true"
-                          />
+                        <button id="inverted-contrast" role="switch" aria-checked={settings.invertedContrast} disabled={settings.highContrast || settings.darkMode} onClick={() => handleBooleanToggle('invertedContrast', 'ניגודיות הפוכה הופעלה', 'ניגודיות הפוכה כובתה')} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${settings.invertedContrast ? 'bg-blue-600' : 'bg-gray-300'} ${settings.highContrast || settings.darkMode ? 'opacity-50 cursor-not-allowed' : ''}`} type="button">
+                          <span className="sr-only">{settings.invertedContrast ? 'ניגודיות הפוכה פעילה' : 'ניגודיות הפוכה כבויה'}</span>
+                          <span className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${settings.invertedContrast ? 'translate-x-6' : 'translate-x-1'}`} aria-hidden="true" />
                         </button>
                       </div>
 
-                      {/* Reduce Animations */}
-                      <div className="flex items-center justify-between" role="group" aria-labelledby="reduce-animations-label">
+                      {/* Grayscale */}
+                      <div className="flex items-center justify-between" role="group" aria-labelledby="grayscale-label">
                         <div>
-                          <label id="reduce-animations-label" htmlFor="reduce-animations" className="text-sm font-medium text-gray-900">
-                            הפחת אנימציות
-                          </label>
-                          <p className="text-xs text-gray-600 mt-1">השבת אנימציות מסחררות</p>
+                          <label id="grayscale-label" htmlFor="grayscale" className="text-sm font-medium text-gray-900">מצב אפור</label>
+                          <p className="text-xs text-gray-600 mt-1">הצגה בגווני אפור בלבד</p>
                         </div>
-                        <button
-                          id="reduce-animations"
-                          role="switch"
-                          aria-checked={settings.reduceAnimations}
-                          onClick={() => handleBooleanToggle('reduceAnimations', 'הפחתת אנימציות הופעלה', 'הפחתת אנימציות כובתה')}
-                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${
-                            settings.reduceAnimations ? 'bg-blue-600' : 'bg-gray-300'
-                          }`}
-                          type="button"
-                        >
-                          <span className="sr-only">
-                            {settings.reduceAnimations ? 'הפחתת אנימציות פעילה' : 'הפחתת אנימציות כבויה'}
-                          </span>
-                          <span
-                            className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
-                              settings.reduceAnimations ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                            aria-hidden="true"
-                          />
+                        <button id="grayscale" role="switch" aria-checked={settings.grayscaleMode} onClick={() => handleBooleanToggle('grayscaleMode', 'מצב אפור הופעל', 'מצב אפור כובה')} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${settings.grayscaleMode ? 'bg-blue-600' : 'bg-gray-300'}`} type="button">
+                          <span className="sr-only">{settings.grayscaleMode ? 'מצב אפור פעיל' : 'מצב אפור כבוי'}</span>
+                          <span className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${settings.grayscaleMode ? 'translate-x-6' : 'translate-x-1'}`} aria-hidden="true" />
                         </button>
                       </div>
                     </div>
-                  </section>
+                  </details>
+
+                  {/* Group: Visual Aids */}
+                  <details className="group rounded-xl border border-gray-200 open:bg-gray-50">
+                    <summary className="flex items-center justify-between cursor-pointer px-4 py-3 select-none">
+                      <span className="text-sm font-semibold text-gray-900">סיוע חזותי</span>
+                      <span className="text-gray-500 group-open:rotate-180 transition-transform">▾</span>
+                    </summary>
+                    <div className="px-4 pb-4 space-y-4">
+                      {/* Highlight links */}
+                      <div className="flex items-center justify-between" role="group" aria-labelledby="highlight-links-label">
+                        <div>
+                          <label id="highlight-links-label" htmlFor="highlight-links" className="text-sm font-medium text-gray-900">הדגש קישורים</label>
+                          <p className="text-xs text-gray-600 mt-1">רקע צהוב לכל הקישורים</p>
+                        </div>
+                        <button id="highlight-links" role="switch" aria-checked={settings.highlightLinks} onClick={() => handleBooleanToggle('highlightLinks', 'הדגשת קישורים הופעלה', 'הדגשת קישורים כובתה')} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${settings.highlightLinks ? 'bg-blue-600' : 'bg-gray-300'}`} type="button">
+                          <span className="sr-only">{settings.highlightLinks ? 'הדגשת קישורים פעילה' : 'הדגשת קישורים כבויה'}</span>
+                          <span className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${settings.highlightLinks ? 'translate-x-6' : 'translate-x-1'}`} aria-hidden="true" />
+                        </button>
+                      </div>
+
+                      {/* Highlight headings */}
+                      <div className="flex items-center justify-between" role="group" aria-labelledby="highlight-headings-label">
+                        <div>
+                          <label id="highlight-headings-label" htmlFor="highlight-headings" className="text-sm font-medium text-gray-900">הדגש כותרות</label>
+                          <p className="text-xs text-gray-600 mt-1">רקע וגבול לכותרות</p>
+                        </div>
+                        <button id="highlight-headings" role="switch" aria-checked={settings.highlightHeadings} onClick={() => handleBooleanToggle('highlightHeadings', 'הדגשת כותרות הופעלה', 'הדגשת כותרות כובתה')} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${settings.highlightHeadings ? 'bg-blue-600' : 'bg-gray-300'}`} type="button">
+                          <span className="sr-only">{settings.highlightHeadings ? 'הדגשת כותרות פעילה' : 'הדגשת כותרות כבויה'}</span>
+                          <span className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${settings.highlightHeadings ? 'translate-x-6' : 'translate-x-1'}`} aria-hidden="true" />
+                        </button>
+                      </div>
+
+                      {/* Improved readability */}
+                      <div className="flex items-center justify-between" role="group" aria-labelledby="improve-readability-label">
+                        <div>
+                          <label id="improve-readability-label" htmlFor="improve-readability" className="text-sm font-medium text-gray-900">שפר קריאות</label>
+                          <p className="text-xs text-gray-600 mt-1">ריווח רחב יותר בין השורות</p>
+                        </div>
+                        <button id="improve-readability" role="switch" aria-checked={settings.improvedReadability} onClick={() => handleBooleanToggle('improvedReadability', 'שיפור קריאות הופעל', 'שיפור קריאות כובה')} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${settings.improvedReadability ? 'bg-blue-600' : 'bg-gray-300'}`} type="button">
+                          <span className="sr-only">{settings.improvedReadability ? 'שיפור קריאות פעיל' : 'שיפור קריאות כבוי'}</span>
+                          <span className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${settings.improvedReadability ? 'translate-x-6' : 'translate-x-1'}`} aria-hidden="true" />
+                        </button>
+                      </div>
+                    </div>
+                  </details>
+
+                  {/* Group: Motion & Media */}
+                  <details className="group rounded-xl border border-gray-200 open:bg-gray-50">
+                    <summary className="flex items-center justify-between cursor-pointer px-4 py-3 select-none">
+                      <span className="text-sm font-semibold text-gray-900">תנועה ומדיה</span>
+                      <span className="text-gray-500 group-open:rotate-180 transition-transform">▾</span>
+                    </summary>
+                    <div className="px-4 pb-4 space-y-4">
+                      {/* Reduce animations */}
+                      <div className="flex items-center justify-between" role="group" aria-labelledby="reduce-animations-label">
+                        <div>
+                          <label id="reduce-animations-label" htmlFor="reduce-animations" className="text-sm font-medium text-gray-900">הפחת אנימציות</label>
+                          <p className="text-xs text-gray-600 mt-1">השבת אנימציות מסחררות</p>
+                        </div>
+                        <button id="reduce-animations" role="switch" aria-checked={settings.reduceAnimations} onClick={() => handleBooleanToggle('reduceAnimations', 'הפחתת אנימציות הופעלה', 'הפחתת אנימציות כובתה')} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${settings.reduceAnimations ? 'bg-blue-600' : 'bg-gray-300'}`} type="button">
+                          <span className="sr-only">{settings.reduceAnimations ? 'הפחתת אנימציות פעילה' : 'הפחתת אנימציות כבויה'}</span>
+                          <span className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${settings.reduceAnimations ? 'translate-x-6' : 'translate-x-1'}`} aria-hidden="true" />
+                        </button>
+                      </div>
+
+                      {/* Stop autoplay */}
+                      <div className="flex items-center justify-between" role="group" aria-labelledby="stop-autoplay-label">
+                        <div>
+                          <label id="stop-autoplay-label" htmlFor="stop-autoplay" className="text-sm font-medium text-gray-900">עצור הפעלה אוטומטית</label>
+                          <p className="text-xs text-gray-600 mt-1">השבת וידאו ואנימציות אוטומטיות</p>
+                        </div>
+                        <button id="stop-autoplay" role="switch" aria-checked={settings.stopAutoplay} onClick={() => handleBooleanToggle('stopAutoplay', 'עצירת הפעלה אוטומטית הופעלה', 'עצירת הפעלה אוטומטית כובתה')} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${settings.stopAutoplay ? 'bg-blue-600' : 'bg-gray-300'}`} type="button">
+                          <span className="sr-only">{settings.stopAutoplay ? 'עצירת הפעלה אוטומטית פעילה' : 'עצירת הפעלה אוטומטית כבויה'}</span>
+                          <span className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${settings.stopAutoplay ? 'translate-x-6' : 'translate-x-1'}`} aria-hidden="true" />
+                        </button>
+                      </div>
+                    </div>
+                  </details>
                 </div>
 
                 {/* Reset button */}
