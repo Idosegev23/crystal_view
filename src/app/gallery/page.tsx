@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useMemo, useState } from 'react';
@@ -6,24 +7,15 @@ import Image from 'next/image';
 import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations';
 import { projects, categories } from '@/lib/projects';
 
-function slugify(input: string): string {
-  return input
-    .normalize('NFKD')
-    .toLowerCase()
-    // keep latin, digits, and Hebrew letters (U+0590–U+05FF), replace others with '-'
-    .replace(/[^a-z0-9\u0590-\u05FF]+/gi, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
 export default function GalleryPage() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedTag, setSelectedTag] = useState<string>('כל הפרויקטים');
 
-  const serviceCategories = useMemo(() => categories.filter(c => c !== 'כל הפרויקטים'), []);
-  const grouped = useMemo(() => serviceCategories.map(cat => ({
-    cat,
-    slug: slugify(cat),
-    items: projects.filter(p => p.category === cat)
-  })), [serviceCategories]);
+  const tags = useMemo(() => categories, []);
+  const filteredProjects = useMemo(
+    () => (selectedTag === 'כל הפרויקטים' ? projects : projects.filter((p) => p.category === selectedTag)),
+    [selectedTag]
+  );
 
   const openLightbox = (project: any) => {
     setSelectedProject(project);
@@ -53,19 +45,31 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Services Navigation (anchors) */}
-      <nav className="py-6" aria-label="ניווט לפי סוג שירות">
+      {/* Tag Filters */}
+      <nav className="py-6" aria-label="סינון לפי תגיות">
         <div className="section-padding">
           <div className="container-max">
-            <motion.ul initial="initial" animate="animate" variants={staggerContainer} className="flex flex-wrap justify-center gap-3 sm:gap-4" role="list">
-              {serviceCategories.map((cat) => (
-                <motion.li key={slugify(cat)} variants={staggerItem} role="listitem">
-                  <a
-                    href={`#${slugify(cat)}`}
-                    className="px-5 py-2.5 rounded-lg font-medium bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
+            <motion.ul
+              initial="initial"
+              animate="animate"
+              variants={staggerContainer}
+              className="flex flex-wrap justify-center gap-3 sm:gap-4"
+              role="list"
+            >
+              {tags.map((tag) => (
+                <motion.li key={tag} variants={staggerItem} role="listitem">
+                  <button
+                    type="button"
+                    aria-pressed={selectedTag === tag}
+                    onClick={() => setSelectedTag(tag)}
+                    className={`px-5 py-2.5 rounded-lg font-medium transition-colors ${
+                      selectedTag === tag
+                        ? 'bg-gray-900 text-white'
+                        : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                    }`}
                   >
-                    {cat}
-                  </a>
+                    {tag}
+                  </button>
                 </motion.li>
               ))}
             </motion.ul>
@@ -73,63 +77,62 @@ export default function GalleryPage() {
         </div>
       </nav>
 
-      {/* Grouped sections */}
-      {grouped.map(({ cat, slug, items }) => (
-        <section key={slug} id={slug} className="py-10 lg:py-14" aria-labelledby={`heading-${slug}`}>
-          <div className="section-padding">
-            <div className="container-max">
-              <div className="text-center mb-6 lg:mb-8">
-                <h2 id={`heading-${slug}`} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
-                  {cat}
-                </h2>
-              </div>
-
-              <motion.div layout variants={staggerContainer} initial="initial" animate="animate" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8" role="list">
-                <AnimatePresence mode="wait">
-                  {items.map((project) => (
-                    <motion.div
-                      key={project.id}
-                      layout
-                      variants={staggerItem}
-                      whileHover={{ y: -6 }}
-                      className="group cursor-pointer"
-                      role="listitem"
-                      aria-label={`${project.title} – ${project.location} (${project.year})`}
-                      onClick={() => openLightbox(project)}
-                    >
-                      <div className="relative overflow-hidden rounded-2xl shadow-lg bg-white">
-                        <div className="relative w-full h-56 sm:h-64">
-                          <Image
-                            src={project.images[0]}
-                            alt={`${project.title} – ${project.category} ב${project.location}`}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                            priority={false}
-                          />
-                          {/* Readable text overlay */}
-                          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4">
-                            <h3 className="text-white font-bold text-lg leading-tight line-clamp-1">{project.title}</h3>
-                            <div className="flex items-center gap-2 text-sm text-gray-100">
-                              <span>{project.location}</span>
-                              <span>•</span>
-                              <span>{project.year}</span>
-                            </div>
+      {/* Unified Grid */}
+      <section className="py-10 lg:py-14" aria-label="גלריית פרויקטים">
+        <div className="section-padding">
+          <div className="container-max">
+            <motion.div
+              layout
+              variants={staggerContainer}
+              initial="initial"
+              animate="animate"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 justify-items-center"
+              role="list"
+            >
+              <AnimatePresence mode="wait">
+                {filteredProjects.map((project) => (
+                  <motion.div
+                    key={project.id}
+                    layout
+                    variants={staggerItem}
+                    whileHover={{ y: -6 }}
+                    className="group cursor-pointer w-full"
+                    role="listitem"
+                    aria-label={`${project.title} – ${project.location} (${project.year})`}
+                    onClick={() => openLightbox(project)}
+                  >
+                    <div className="relative overflow-hidden rounded-2xl shadow-lg bg-white">
+                      <div className="relative w-full h-56 sm:h-64">
+                        <Image
+                          src={project.images[0]}
+                          alt={`${project.title} – ${project.category} ב${project.location}`}
+                          fill
+                          className="object-cover object-center"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          priority={false}
+                        />
+                        {/* Readable text overlay */}
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4">
+                          <h3 className="text-white font-bold text-lg leading-tight line-clamp-1">{project.title}</h3>
+                          <div className="flex items-center gap-2 text-sm text-gray-100">
+                            <span>{project.location}</span>
+                            <span>•</span>
+                            <span>{project.year}</span>
                           </div>
                         </div>
-                        {/* Card bottom info */}
-                        <div className="p-4">
-                          <p className="text-sm text-gray-700 line-clamp-2">{project.description}</p>
-                        </div>
                       </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </motion.div>
-            </div>
+                      {/* Card bottom info */}
+                      <div className="p-4">
+                        <p className="text-sm text-gray-700 line-clamp-2">{project.description}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
           </div>
-        </section>
-      ))}
+        </div>
+      </section>
 
       {/* Lightbox Modal */}
       <AnimatePresence>
