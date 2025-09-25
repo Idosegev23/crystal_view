@@ -8,8 +8,10 @@ import { projects, categories } from '@/lib/projects';
 
 function slugify(input: string): string {
   return input
+    .normalize('NFKD')
     .toLowerCase()
-    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    // keep latin, digits, and Hebrew letters (U+0590–U+05FF), replace others with '-'
+    .replace(/[^a-z0-9\u0590-\u05FF]+/gi, '-')
     .replace(/^-+|-+$/g, '');
 }
 
