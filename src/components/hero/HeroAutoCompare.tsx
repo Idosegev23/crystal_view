@@ -132,8 +132,8 @@ export default function HeroAutoCompare() {
             aria-valuenow={dividerValue}
           />
           <div className="flex justify-between text-white/80 text-sm mt-2">
-            <span>לפני</span>
             <span>אחרי</span>
+            <span>לפני</span>
           </div>
         </div>
       </div>
