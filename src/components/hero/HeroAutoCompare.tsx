@@ -35,7 +35,7 @@ export default function HeroAutoCompare() {
     <section
       role="region"
       aria-label="Hero – הדגמה ויזואלית"
-      className="relative w-screen h-[100svh] overflow-hidden"
+      className="relative w-full h-[100svh] overflow-hidden"
       style={{ '--divider': `${dividerValue}%` } as React.CSSProperties}
     >
       {/* SR/SEO H1 */}
@@ -80,12 +80,6 @@ export default function HeroAutoCompare() {
         />
       </div>
 
-      {/* Divider bar */}
-      <motion.div
-        className="absolute top-0 h-full w-[2px] bg-gradient-to-b from-white/90 via-white/70 to-white/20 shadow-[0_0_12px_rgba(255,255,255,0.4)]"
-        style={{ left: dividerPercent }}
-        aria-hidden="true"
-      />
 
       {/* Center title - always visible */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">

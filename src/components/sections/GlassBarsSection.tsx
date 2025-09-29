@@ -14,7 +14,7 @@ export default function GlassBarsSection() {
     <section
       role="region"
       aria-label="סגירת סורגים שקופים – הדגמה אינטראקטיבית"
-      className="relative w-screen h-[100svh] overflow-hidden"
+      className="relative w-full h-[100svh] overflow-hidden"
     >
       {/* Black 3D aluminum window frame container */}
       <div className="absolute inset-8 sm:inset-12 lg:inset-16">
