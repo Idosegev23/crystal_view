@@ -2,16 +2,12 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useMotionValue, useTransform, animate, useMotionValueEvent } from 'framer-motion';
-import { useEffect, useMemo, useState } from 'react';
+import { motion, useMotionValue, useTransform, useMotionValueEvent } from 'framer-motion';
+import { useMemo, useState, useCallback } from 'react';
 
 export default function HeroAutoCompare() {
   const [dividerValue, setDividerValue] = useState(50);
-
-  const prefersReduced = useMemo(() => {
-    if (typeof window === 'undefined') return false;
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }, []);
+  const [isDragging, setIsDragging] = useState(false);
 
   const x = useMotionValue(0.5);
   const dividerPercent = useTransform(x, (v) => `${Math.round(v * 100)}%`);
@@ -21,22 +17,19 @@ export default function HeroAutoCompare() {
     setDividerValue(Math.round(latest * 100));
   });
 
-  useEffect(() => {
-    if (prefersReduced) {
-      x.set(0.5);
-      return;
-    }
+  // Handle manual slider control
+  const handleSliderChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(event.target.value) / 100;
+    x.set(value);
+  }, [x]);
 
-    // חלק, מהיר, והולך וחוזר
-    const controls = animate(x, [0, 1], {
-      duration: 6, // קצר יותר = מהיר יותר
-      ease: 'easeInOut',
-      repeat: Infinity,
-      repeatType: 'mirror', // הלוך ושוב חלק
-    });
+  const handleMouseDown = useCallback(() => {
+    setIsDragging(true);
+  }, []);
 
-    return () => controls.stop();
-  }, [x, prefersReduced]);
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
 
   return (
     <section
@@ -46,7 +39,7 @@ export default function HeroAutoCompare() {
       style={{ '--divider': `${dividerValue}%` } as React.CSSProperties}
     >
       {/* SR/SEO H1 */}
-      <h1 className="sr-only">חופש ושקיפות – עבודות אלומיניום בסטנדרטים הגבוהים ביותר</h1>
+      <h1 className="sr-only">סגירות מרפסות – השוואה לפני ואחרי</h1>
 
       {/* Background layer (closed) */}
       <div className="absolute inset-0">
@@ -108,10 +101,10 @@ export default function HeroAutoCompare() {
               filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.7)) drop-shadow(0 0 10px rgba(255,255,255,0.3))'
             }}
           >
-            Crystal View
+            סגירות מרפסות
           </h2>
           <p 
-            className="text-[clamp(1.5rem,4vw,3rem)] font-bold leading-tight"
+            className="text-[clamp(1.2rem,3vw,2rem)] font-bold leading-tight"
             style={{
               background: 'linear-gradient(135deg, #ffffff 0%, #f8bbd9 50%, #ffffff 100%)',
               WebkitBackgroundClip: 'text',
@@ -120,8 +113,34 @@ export default function HeroAutoCompare() {
               filter: 'drop-shadow(1px 1px 3px rgba(0,0,0,0.8)) drop-shadow(0 0 8px rgba(255,255,255,0.4))'
             }}
           >
-            החלום שלכם במציאות
+            לפני ואחרי
           </p>
+        </div>
+      </div>
+
+      {/* Manual slider control */}
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-full max-w-md px-6">
+        <div className="bg-black/20 backdrop-blur-md rounded-full p-4 border border-white/30">
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={dividerValue}
+            onChange={handleSliderChange}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onTouchStart={handleMouseDown}
+            onTouchEnd={handleMouseUp}
+            className="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
+            aria-label="שלט בסליידר השוואה - גרור להצגת לפני ואחרי"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={dividerValue}
+          />
+          <div className="flex justify-between text-white/80 text-sm mt-2">
+            <span>לפני</span>
+            <span>אחרי</span>
+          </div>
         </div>
       </div>
 
