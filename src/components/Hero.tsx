@@ -1,11 +1,34 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ComponentType } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-const ReactCompareImage = dynamic(() => import('react-compare-image'), { ssr: false });
+type CompareImageProps = {
+  leftImage: string;
+  rightImage: string;
+  leftImageAlt?: string;
+  rightImageAlt?: string;
+  leftImageCss?: object;
+  rightImageCss?: object;
+  leftImageLabel?: string | null;
+  rightImageLabel?: string | null;
+  sliderPositionPercentage?: number;
+  onSliderPositionChange?: (position: number) => void;
+  handleSize?: number;
+  hover?: boolean;
+  vertical?: boolean;
+  sliderLineColor?: string;
+  sliderLineWidth?: number;
+  skeleton?: React.ReactNode;
+  aspectRatio?: 'taller' | 'wider';
+};
+
+const ReactCompareImage = dynamic<CompareImageProps>(
+  () => import('react-compare-image').then((mod: any) => mod.default ?? mod),
+  { ssr: false }
+);
 
 export default function Hero() {
   const [position, setPosition] = useState<number>(0.5);
