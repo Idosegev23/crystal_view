@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Hero from '@/components/Hero';
+import HeroAutoCompare from '@/components/hero/HeroAutoCompare';
+import GlassBarsSection from '@/components/sections/GlassBarsSection';
 import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations';
 import { services } from '@/lib/services';
 import { projects } from '@/lib/projects';
@@ -13,12 +14,12 @@ export default function Home() {
   return (
     <>
       <div className="min-h-screen" role="main">
-        <Hero />
+        <HeroAutoCompare />
       
-      {/* Process Steps - Glass Morphism Background */}
+      {/* Text Section */}
       <section 
         className="py-20 lg:py-32 relative" 
-        aria-labelledby="process-heading"
+        aria-labelledby="text-heading"
         role="region"
       >
         {/* Glass Background */}
@@ -34,7 +35,7 @@ export default function Home() {
               className="text-center mb-16 lg:mb-20"
             >
               <motion.h2
-                id="process-heading"
+                id="text-heading"
                 variants={fadeInUp}
                 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-6 leading-tight"
               >
@@ -61,6 +62,38 @@ export default function Home() {
               >
                 כל פרויקט מלווה באחריות מלאה ושירות אישי, כדי להבטיח לכם שקט וביטחון לאורך זמן.
               </motion.p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <GlassBarsSection />
+
+      {/* Process Steps */}
+      <section 
+        className="py-20 lg:py-32 relative" 
+        aria-labelledby="process-heading"
+        role="region"
+      >
+        {/* Glass Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white/20 to-blue-100/30 backdrop-blur-sm"></div>
+        <div className="section-padding relative z-10">
+          <div className="container-max">
+
+            {/* Section Header */}
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, amount: 0.3 }}
+              className="text-center mb-16 lg:mb-20"
+            >
+              <motion.h2
+                id="process-heading"
+                variants={fadeInUp}
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-6 leading-tight"
+              >
+                שלבי העבודה
+              </motion.h2>
             </motion.div>
 
             {/* Process Steps */}
@@ -149,7 +182,7 @@ export default function Home() {
               whileInView="animate"
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInUp}
-              className="text-center mb-20"
+              className="text-center"
             >
               <div className="glass-card p-8 lg:p-12 relative overflow-hidden">
                 {/* Animated glass effect */}
@@ -176,7 +209,17 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
 
+      <GlassBarsSection />
+
+      {/* Featured Projects Preview */}
+      <section className="py-20 lg:py-32 relative" aria-labelledby="projects-heading" role="region">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white/20 to-blue-100/30 backdrop-blur-sm"></div>
+        <div className="section-padding relative z-10">
+          <div className="container-max">
             {/* Featured Projects Preview */}
             <motion.div
               initial="initial"
@@ -186,6 +229,7 @@ export default function Home() {
             >
               <div className="glass-card p-8 mb-12">
                 <motion.h2
+                  id="projects-heading"
                   variants={fadeInUp}
                   className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6"
                 >

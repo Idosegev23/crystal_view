@@ -1159,6 +1159,10 @@
     top: 6px;
   }
 
+  /* Text clipping bound to --divider (percentage) */
+  .clip-left { clip-path: inset(0 calc(100% - var(--divider,50%)) 0 0); }
+  .clip-right { clip-path: inset(0 0 0 var(--divider,50%)); }
+
 
   /* Better Link Styling for Accessibility - WCAG AA Compliant */
   a:not(.glass-button):not(.no-underline):not(#accessibility-panel a):not(#accessibility-panel *):not(.accessibility-widget-trigger) {

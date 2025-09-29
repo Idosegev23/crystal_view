@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, type ComponentType } from 'react';
+import { useEffect, useMemo, useState, type ComponentType } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -33,6 +33,11 @@ const ReactCompareImage = dynamic<CompareImageProps>(
 export default function Hero() {
   const [position, setPosition] = useState<number>(0.5);
   const [rangeFocused, setRangeFocused] = useState<boolean>(false);
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const normalized = useMemo(() => {
     if (position > 1) return Math.min(1, Math.max(0, position / 100));
@@ -56,40 +61,69 @@ export default function Hero() {
         <h1 id="hero-heading" className="sr-only">השוואה בין מרפסת פתוחה לסגורה – Crystal View</h1>
 
         <div
-          className={`relative w-full mx-auto max-w-6xl rounded-2xl overflow-hidden select-none ${
+          className={`relative w-full mx-auto max-w-6xl rounded-2xl overflow-hidden select-none min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] bg-neutral-900 ${
             rangeFocused ? 'ring-2 ring-blue-400 ring-offset-2 ring-offset-transparent' : ''
           }`}
           aria-label="סליידר השוואה לפני ואחרי"
         >
-          <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-black/20 to-black/40" aria-hidden="true" />
+          <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-black/20 to-black/40 pointer-events-none" aria-hidden="true" />
 
-          <ReactCompareImage
-            leftImage="/open.png"
-            rightImage="/close.png"
-            leftImageAlt="מרפסת פתוחה – נוף חיצוני טבעי"
-            rightImageAlt="מרפסת סגורה עם זכוכית – חלל מוגן ואיכותי"
-            sliderPositionPercentage={normalized}
-            onSliderPositionChange={(p: number) => setPosition(p)}
-            handleSize={36}
-            hover={false}
-          />
+          {mounted ? (
+            <ReactCompareImage
+              leftImage="/open.png"
+              rightImage="/close.png"
+              leftImageAlt="מרפסת פתוחה – נוף חיצוני טבעי"
+              rightImageAlt="מרפסת סגורה עם זכוכית – חלל מוגן ואיכותי"
+              sliderPositionPercentage={normalized}
+              onSliderPositionChange={(p: number) => setPosition(p)}
+              handleSize={36}
+              hover={false}
+              aspectRatio="wider"
+              skeleton={<div className="w-full h-full bg-gray-200" aria-hidden="true" />}
+              sliderLineColor="#ffffff"
+              sliderLineWidth={2}
+            />
+          ) : (
+            <div className="absolute inset-0">
+              <img
+                src="/close.png"
+                alt="מרפסת סגורה עם זכוכית – חלל מוגן ואיכותי"
+                className="w-full h-full object-cover"
+              />
+              <div
+                className="absolute inset-y-0 left-0 overflow-hidden"
+                style={{ width: `${Math.round(normalized * 100)}%` }}
+                aria-hidden="true"
+              >
+                <img
+                  src="/open.png"
+                  alt="מרפסת פתוחה – נוף חיצוני טבעי"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          )}
 
-          {/* Keyboard-accessible controller overlay */}
-          <input
-            type="range"
-            min={0}
-            max={100}
-            step={1}
-            value={Math.round(normalized * 100)}
-            onChange={(e) => setPosition(Number(e.target.value) / 100)}
-            onFocus={() => setRangeFocused(true)}
-            onBlur={() => setRangeFocused(false)}
-            aria-label="השוואה בין לפני לאחרי של סגירת מרפסת בזכוכית"
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-valuenow={Math.round(normalized * 100)}
-            className="absolute inset-0 z-[2] w-full h-full opacity-0 cursor-col-resize"
-          />
+          {/* Keyboard slider control (focus to reveal) */}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-[3] w-3/4 max-w-md">
+            <label htmlFor="hero-compare-range" className="sr-only">השוואה בין לפני לאחרי של סגירת מרפסת בזכוכית</label>
+            <input
+              id="hero-compare-range"
+              type="range"
+              min={0}
+              max={100}
+              step={1}
+              value={Math.round(normalized * 100)}
+              onChange={(e) => setPosition(Number(e.target.value) / 100)}
+              onFocus={() => setRangeFocused(true)}
+              onBlur={() => setRangeFocused(false)}
+              aria-label="השוואה בין לפני לאחרי של סגירת מרפסת בזכוכית"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={Math.round(normalized * 100)}
+              className="sr-only focus:not-sr-only w-full h-2 rounded-full bg-white/30 focus:outline-none focus:ring-4 focus:ring-blue-300 cursor-col-resize"
+            />
+          </div>
 
           {/* Dynamic texts */}
           <div className="pointer-events-none absolute inset-0 z-[3]">
