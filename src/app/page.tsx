@@ -14,7 +14,9 @@ export default function Home() {
   return (
     <>
       <div className="min-h-screen" role="main">
-        <HeroAutoCompare />
+        <GlassBarsSection />
+      
+      <HeroAutoCompare />
       
       {/* Text Section */}
       <section 
@@ -66,154 +68,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <GlassBarsSection />
-
-      {/* Process Steps */}
-      <section 
-        className="py-20 lg:py-32 relative" 
-        aria-labelledby="process-heading"
-        role="region"
-      >
-        {/* Glass Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white/20 to-blue-100/30 backdrop-blur-sm"></div>
-        <div className="section-padding relative z-10">
-          <div className="container-max">
-
-            {/* Section Header */}
-            <motion.div
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-center mb-16 lg:mb-20"
-            >
-              <motion.h2
-                id="process-heading"
-                variants={fadeInUp}
-                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-6 leading-tight"
-              >
-                שלבי העבודה
-              </motion.h2>
-            </motion.div>
-
-            {/* Process Steps */}
-            <motion.div
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={staggerContainer}
-              className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-20"
-            >
-              {[
-                {
-                  step: "01",
-                  title: "השקיפות מתחילה כאן",
-                  description: "בפגישה הראשונית נקדיש זמן להכיר אתכם, להבין לעומק את הצרכים והחזון שלכם, ולבצע מדידות מדויקות בשטח. בסיום התהליך תקבלו הצעת מחיר ברורה ושקופה לפרויקט עם ליווי אישי וצמוד מהרגע הראשון.",
-                  icon: (
-                    <svg className="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  )
-                },
-                {
-                  step: "02", 
-                  title: "ייצור מדויק – איכות ללא פשרות",
-                  description: "לאחר תכנון מדוקדק, הפרויקט עובר לידי הצוות המקצועי שלנו בבית המלאכה. אנו מבצעים ייצור וחיתוך אלומיניום איכותי, תוך שימוש בציוד מתקדם ותהליכי עיבוד בטיחותיים. כל פרופיל עובר בקרת איכות קפדנית, כדי להבטיח שכל חלון, פרגולה ומרפסת יעמדו בסטנדרטים הגבוהים ביותר.",
-                  icon: (
-                    <svg className="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  )
-                },
-                {
-                  step: "03",
-                  title: "התקנה מקצועית – אחריות עד הסוף",
-                  description: "צוות המתקינים המיומן שלנו מבצע את ההתקנה בשטח בדיוק ובמסירות. כל פרויקט מסתיים בבדיקות סופיות קפדניות, ומלווה באחריות מלאה ושירות אישי גם לאחר המסירה – כי מבחינתנו, שביעות הרצון שלכם היא חלק בלתי נפרד מהעבודה.",
-                  icon: (
-                    <svg className="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  )
-                }
-              ].map((process, index) => (
-                    <motion.div
-                  key={index}
-                      variants={staggerItem}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className="relative group"
-                >
-                  {/* Step Number */}
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
-                    className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-crystal-blue to-crystal-silver rounded-full flex items-center justify-center text-crystal-dark font-bold text-lg z-10"
-                  >
-                    {process.step}
-                  </motion.div>
-
-                  {/* Glass Card */}
-                  <div className="glass-card h-full p-8 hover:shadow-2xl transition-all duration-500">
-                    <div className="mb-6 p-4 bg-white/20 rounded-xl w-fit backdrop-blur-sm border border-white/30">
-                      {process.icon}
-                    </div>
-
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                      {process.title}
-                    </h3>
-                    
-                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                      {process.description}
-                    </p>
-                  </div>
-
-                  {/* Connecting Line */}
-                  {index < 2 && (
-                    <div className="hidden md:block absolute top-1/2 -left-6 w-12 h-0.5 bg-gradient-to-r from-crystal-blue to-crystal-silver opacity-60 transform -translate-y-1/2 z-0"></div>
-                  )}
-                </motion.div>
-              ))}
-                    </motion.div>
-
-            {/* CTA Section */}
-            <motion.div
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-              className="text-center"
-            >
-              <div className="glass-card p-8 lg:p-12 relative overflow-hidden">
-                {/* Animated glass effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-transparent to-blue-500/10 animate-pulse"></div>
-                
-                <div className="relative z-10">
-                  <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
-                    מוכנים להתחיל?
-                  </h3>
-                  <p className="text-gray-700 mb-8 max-w-2xl mx-auto">
-                    השאירו פרטים ונחזור אליכם עם הצעת מחיר מותאמת אישית לאחר מדידות במקום
-                  </p>
-                  <div className="flex justify-center">
-                    <Link href="/contact">
-                      <motion.button
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="glass-button text-gray-800 px-8 py-4 font-bold text-lg"
-                      >
-                        יצירת קשר
-                      </motion.button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <GlassBarsSection />
 
       {/* Featured Projects Preview */}
       <section className="py-20 lg:py-32 relative" aria-labelledby="projects-heading" role="region">

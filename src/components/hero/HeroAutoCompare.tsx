@@ -55,11 +55,11 @@ export default function HeroAutoCompare() {
           alt="מרפסת סגורה עם זכוכית – חלל מוגן ואיכותי"
           fill
           priority
-          className="object-cover object-center opacity-80"
+          className="object-cover object-center"
           sizes="100vw"
           style={{ 
-            objectPosition: 'center 40%',
-            transform: 'scale(1.001)'
+            objectPosition: 'center center',
+            transform: 'scale(1.0)'
           }}
         />
       </div>
@@ -74,15 +74,15 @@ export default function HeroAutoCompare() {
         aria-hidden="true"
       >
         <Image
-          src="/open.png"
+          src="/open1.png"
           alt="מרפסת פתוחה – נוף חיצוני טבעי"
           fill
           priority
-          className="object-cover object-center opacity-80"
+          className="object-cover object-center"
           sizes="100vw"
           style={{ 
             objectPosition: 'center center',
-            transform: 'scale(1.001)'
+            transform: 'scale(1.0)'
           }}
         />
       </div>
