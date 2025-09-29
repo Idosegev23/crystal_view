@@ -61,7 +61,7 @@ export default function HeroAutoCompare() {
       <div
         className="absolute inset-0"
         style={{
-          clipPath: `inset(0 ${100 - dividerValue}% 0 0)`,
+          clipPath: `inset(0 ${dividerValue}% 0 0)`,
           transition: 'none',
         }}
         aria-hidden="true"
@@ -138,8 +138,8 @@ export default function HeroAutoCompare() {
             aria-valuenow={dividerValue}
           />
           <div className="flex justify-between text-white/80 text-sm mt-2">
-            <span>אחרי</span>
             <span>לפני</span>
+            <span>אחרי</span>
           </div>
         </div>
       </div>
