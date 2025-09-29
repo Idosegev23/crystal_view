@@ -41,11 +41,11 @@ export default function HeroAutoCompare() {
       {/* SR/SEO H1 */}
       <h1 className="sr-only">סגירות מרפסות – השוואה לפני ואחרי</h1>
 
-      {/* Background layer (closed) */}
+      {/* Background layer (open) */}
       <div className="absolute inset-0">
         <Image
-          src="/close.png"
-          alt="מרפסת סגורה עם זכוכית – חלל מוגן ואיכותי"
+          src="/open1.png"
+          alt="מרפסת פתוחה – נוף חיצוני טבעי"
           fill
           priority
           className="object-cover object-center"
@@ -57,7 +57,7 @@ export default function HeroAutoCompare() {
         />
       </div>
 
-      {/* Foreground layer (open) */}
+      {/* Foreground layer (closed) */}
       <div
         className="absolute inset-0"
         style={{
@@ -67,8 +67,8 @@ export default function HeroAutoCompare() {
         aria-hidden="true"
       >
         <Image
-          src="/open1.png"
-          alt="מרפסת פתוחה – נוף חיצוני טבעי"
+          src="/close.png"
+          alt="מרפסת סגורה עם זכוכית – חלל מוגן ואיכותי"
           fill
           priority
           className="object-cover object-center"
@@ -138,8 +138,8 @@ export default function HeroAutoCompare() {
             aria-valuenow={dividerValue}
           />
           <div className="flex justify-between text-white/80 text-sm mt-2">
-            <span>לפני</span>
             <span>אחרי</span>
+            <span>לפני</span>
           </div>
         </div>
       </div>

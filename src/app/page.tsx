@@ -16,8 +16,6 @@ export default function Home() {
       <div className="min-h-screen" role="main">
         <GlassBarsSection />
       
-      <HeroAutoCompare />
-      
       {/* Text Section */}
       <section 
         className="py-20 lg:py-32 relative" 
@@ -68,6 +66,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <HeroAutoCompare />
 
       {/* Featured Projects Preview */}
       <section className="py-20 lg:py-32 relative" aria-labelledby="projects-heading" role="region">
