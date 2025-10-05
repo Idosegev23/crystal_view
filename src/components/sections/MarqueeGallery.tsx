@@ -97,18 +97,18 @@ export default function MarqueeGallery() {
 
         {/* Marquee Gallery */}
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          <Marquee pauseOnHover className="[--duration:20s]">
+          <Marquee pauseOnHover className="[--duration:40s] [--gap:1rem]" repeat={5}>
             {firstRow.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={`first-${project.id}`} project={project} />
             ))}
           </Marquee>
-          <Marquee reverse pauseOnHover className="[--duration:20s]">
+          <Marquee reverse pauseOnHover className="[--duration:40s] [--gap:1rem]" repeat={5}>
             {secondRow.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={`second-${project.id}`} project={project} />
             ))}
           </Marquee>
-          <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
-          <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white via-white/50 to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white via-white/50 to-transparent z-10"></div>
         </div>
 
         {/* CTA Button */}
