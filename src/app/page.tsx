@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import HeroAutoCompare from '@/components/hero/HeroAutoCompare';
 import GlassBarsSection from '@/components/sections/GlassBarsSection';
-import MagicBento from '@/components/gallery/MagicBento';
+import MarqueeGallery from '@/components/sections/MarqueeGallery';
 import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations';
 import { services } from '@/lib/services';
 import { projects } from '@/lib/projects';
@@ -33,19 +33,8 @@ export default function Home() {
         {/* Hero Section 2: Auto Compare */}
         <HeroAutoCompare />
 
-        {/* Gallery Section - Magic Bento Grid */}
-        <MagicBento 
-          textAutoHide={true}
-          enableStars={true}
-          enableSpotlight={true}
-          enableBorderGlow={true}
-          enableTilt={true}
-          enableMagnetism={true}
-          clickEffect={true}
-          spotlightRadius={300}
-          particleCount={12}
-          glowColor="132, 0, 255"
-        />
+        {/* Gallery Section - Marquee */}
+        <MarqueeGallery />
       </div>
     </>
   );
