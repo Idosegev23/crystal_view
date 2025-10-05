@@ -209,7 +209,7 @@ export default function MagicBento({
               {/* Background Image */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src={project.image}
+                  src={project.images[0]}
                   alt={project.title}
                   fill
                   className="object-cover opacity-40"
