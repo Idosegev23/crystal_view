@@ -10,18 +10,13 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  // חזיתות זכוכית יוקרתיות
   {
     id: 1,
     title: "מגדל רימונים – חזית זכוכית כפולה",
     location: "תל אביב",
     category: "חזיתות זכוכית יוקרתיות",
     description: "מערכת קיר מסך (Curtain Wall) עם בידוד תרמי ואקוסטי, שילוב זכוכית Low-E ופתרונות הצללה אינטגרליים.",
-    images: [
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800",
-      "https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=800",
-      "https://images.unsplash.com/photo-1545058422-689e65f0c6b3?w=800"
-    ],
+    images: ["/images/04cbc3da-c594-4208-a939-8ad817b047e8.png"],
     year: 2024,
     client: 'יזמות אורבנית בע"מ'
   },
@@ -31,27 +26,17 @@ export const projects: Project[] = [
     location: "ירושלים",
     category: "חזיתות זכוכית יוקרתיות",
     description: "שדרוג חזית קיימת: החלפת פרופילי אלומיניום, זכוכית חכמה ומעברי אוויר נסתרים לשיפור נוחות המבקרים.",
-    images: [
-      "https://images.unsplash.com/photo-1448630360428-65456885c650?w=800",
-      "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?w=800",
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800"
-    ],
+    images: ["/images/260bb74b-a085-4b4c-800a-58d3b10aab9f.png"],
     year: 2023,
     client: "חברת ניהול קניונים"
   },
-
-  // חלונות ודלתות אלומיניום
   {
     id: 3,
     title: "וילה חופים – חלונות בלגיים",
     location: "הרצליה פיתוח",
     category: "חלונות ודלתות אלומיניום",
     description: "מערכת חלונות ודלתות פרימיום בפרופיל דק במיוחד, פתיחות הזזה וקיפ, זכוכית בידודית נגד רעש ים.",
-    images: [
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800"
-    ],
+    images: ["/images/713825341901573.jpg"],
     year: 2024,
     client: "לקוח פרטי"
   },
@@ -61,27 +46,17 @@ export const projects: Project[] = [
     location: "תל אביב",
     category: "חלונות ודלתות אלומיניום",
     description: "דלתות הזזה באורך 6 מטרים על מסילה שקועה, פרזול איטלקי שקט ועגינות נסתרות לזרימה בין פנים לחוץ.",
-    images: [
-      "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800",
-      "https://images.unsplash.com/photo-1600607687352-460c4f04f73a?w=800",
-      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800"
-    ],
+    images: ["/images/hero.jpg"],
     year: 2023,
     client: "לקוח פרטי"
   },
-
-  // מעקות זכוכית ובטיחות
   {
     id: 5,
     title: "פארק העסקים – מעקות טריפלקס",
     location: "רמת גן",
     category: "מעקות זכוכית ובטיחות",
     description: "מערך מעקות זכוכית טריפלקס מחוסמת עם נקודות חיבור מנירוסטה 316, תקן עומסים מלא לחללים ציבוריים.",
-    images: [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800",
-      "https://images.unsplash.com/photo-1567367899726-2e2b2f6a7ad9?w=800",
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800"
-    ],
+    images: ["/images/04cbc3da-c594-4208-a939-8ad817b047e8.png"],
     year: 2022,
     client: 'חברת נדל"ן מסחרי'
   },
@@ -91,27 +66,17 @@ export const projects: Project[] = [
     location: "כפר סבא",
     category: "מעקות זכוכית ובטיחות",
     description: "פתרון בטיחותי שלא מסתיר נוף: מעקה זכוכית שקופה עם פרופיל תחתון נסתר וגמר מינימליסטי.",
-    images: [
-      "https://images.unsplash.com/photo-1526546334624-2afe5b01088a?w=800",
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800",
-      "https://images.unsplash.com/photo-1523419409543-8f0f141e1d99?w=800"
-    ],
+    images: ["/images/260bb74b-a085-4b4c-800a-58d3b10aab9f.png"],
     year: 2024,
     client: "יזם פרטי"
   },
-
-  // מקלחונים בהתאמה אישית
   {
     id: 7,
     title: "דירת בוטיק – מקלחון ללא מסגרת",
     location: "מודיעין",
     category: "מקלחונים בהתאמה אישית",
     description: 'מקלחון Walk-In זכוכית 10 מ"מ עם צירים נסתרים, ציפוי ננו קל ניקוי ואטימה מלאה.',
-    images: [
-      "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800",
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800",
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800"
-    ],
+    images: ["/images/713825341901573.jpg"],
     year: 2025,
     client: "לקוח פרטי"
   },
@@ -121,11 +86,7 @@ export const projects: Project[] = [
     location: "נתניה",
     category: "מקלחונים בהתאמה אישית",
     description: "מקלחון פינתי עם זכוכית מעושנת, פרופיל שחור מט ותעלות ניקוז נסתרות למראה אלגנטי.",
-    images: [
-      "https://images.unsplash.com/photo-1558222217-8043f4f79f85?w=800",
-      "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800",
-      "https://images.unsplash.com/photo-1616597097379-7e97b7c9ab66?w=800"
-    ],
+    images: ["/images/hero.jpg"],
     year: 2024,
     client: "רשת מלונות"
   },

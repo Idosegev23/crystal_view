@@ -101,7 +101,7 @@ export default function Hero() {
                   className="w-full h-full object-cover"
                 />
               </div>
-            </div>
+      </div>
           )}
 
           {/* Keyboard slider control (focus to reveal) */}
@@ -123,11 +123,11 @@ export default function Hero() {
               aria-valuenow={Math.round(normalized * 100)}
               className="sr-only focus:not-sr-only w-full h-2 rounded-full bg-white/30 focus:outline-none focus:ring-4 focus:ring-blue-300 cursor-col-resize"
             />
-          </div>
+      </div>
 
           {/* Dynamic texts */}
           <div className="pointer-events-none absolute inset-0 z-[3]">
-            <motion.div
+          <motion.div
               initial={false}
               animate={{ opacity: leftOpacity }}
               className="absolute top-6 left-6 md:top-10 md:left-10 text-white drop-shadow-lg"

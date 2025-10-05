@@ -1,14 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { useMemo } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export default function GlassBarsSection() {
-  const prefersReduced = useMemo(() => {
-    if (typeof window === 'undefined') return false;
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }, []);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section
@@ -44,7 +40,7 @@ export default function GlassBarsSection() {
 
       {/* --- Glass bars (horizontal rows) --- */}
       {/* סורגים שקופים שנסגרים אוטומטית */}
-      <div className="absolute inset-8 sm:inset-12 lg:inset-16" aria-hidden>
+      <div className="absolute inset-8 sm:inset-12 lg:inset-16" aria-hidden="true">
         <div className="relative w-full h-full p-3">
           <div className="relative w-full h-full p-2">
             <div className="relative w-full h-full p-1">
@@ -56,10 +52,9 @@ export default function GlassBarsSection() {
                     initial={{ x: '-100%' }}
                     animate={{ x: '0%' }}
                     transition={{ 
-                      duration: 2, 
-                      delay: 1,
-                      ease: 'easeOut',
-                      ...(prefersReduced ? { duration: 0, delay: 0 } : {})
+                      duration: shouldReduceMotion ? 0 : 2, 
+                      delay: shouldReduceMotion ? 0 : 1,
+                      ease: 'easeOut'
                     }}
                     className="absolute inset-y-0 left-0 w-1/2 bg-white/15 backdrop-blur-md border-y border-l border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.15)] bg-gradient-to-b from-white/20 to-white/5"
                   />
@@ -67,10 +62,9 @@ export default function GlassBarsSection() {
                     initial={{ x: '100%' }}
                     animate={{ x: '0%' }}
                     transition={{ 
-                      duration: 2, 
-                      delay: 1,
-                      ease: 'easeOut',
-                      ...(prefersReduced ? { duration: 0, delay: 0 } : {})
+                      duration: shouldReduceMotion ? 0 : 2, 
+                      delay: shouldReduceMotion ? 0 : 1,
+                      ease: 'easeOut'
                     }}
                     className="absolute inset-y-0 right-0 w-1/2 bg-white/15 backdrop-blur-md border-y border-r border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.15)] bg-gradient-to-b from-white/20 to-white/5"
                   />
@@ -82,10 +76,9 @@ export default function GlassBarsSection() {
                     initial={{ x: '-100%' }}
                     animate={{ x: '0%' }}
                     transition={{ 
-                      duration: 2.2, 
-                      delay: 1.5,
-                      ease: 'easeOut',
-                      ...(prefersReduced ? { duration: 0, delay: 0 } : {})
+                      duration: shouldReduceMotion ? 0 : 2.2, 
+                      delay: shouldReduceMotion ? 0 : 1.5,
+                      ease: 'easeOut'
                     }}
                     className="absolute inset-y-0 left-0 w-1/2 bg-white/15 backdrop-blur-md border-y border-l border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.15)] bg-gradient-to-b from-white/20 to-white/5"
                   />
@@ -93,10 +86,9 @@ export default function GlassBarsSection() {
                     initial={{ x: '100%' }}
                     animate={{ x: '0%' }}
                     transition={{ 
-                      duration: 2.2, 
-                      delay: 1.5,
-                      ease: 'easeOut',
-                      ...(prefersReduced ? { duration: 0, delay: 0 } : {})
+                      duration: shouldReduceMotion ? 0 : 2.2, 
+                      delay: shouldReduceMotion ? 0 : 1.5,
+                      ease: 'easeOut'
                     }}
                     className="absolute inset-y-0 right-0 w-1/2 bg-white/15 backdrop-blur-md border-y border-r border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.15)] bg-gradient-to-b from-white/20 to-white/5"
                   />
@@ -108,10 +100,9 @@ export default function GlassBarsSection() {
                     initial={{ x: '-100%', opacity: 0 }}
                     animate={{ x: '0%', opacity: 1 }}
                     transition={{ 
-                      duration: 2.4, 
-                      delay: 2,
-                      ease: 'easeOut',
-                      ...(prefersReduced ? { duration: 0, delay: 0 } : {})
+                      duration: shouldReduceMotion ? 0 : 2.4, 
+                      delay: shouldReduceMotion ? 0 : 2,
+                      ease: 'easeOut'
                     }}
                     className="absolute inset-y-0 left-0 w-1/2 bg-white/15 backdrop-blur-md border-y border-l border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.15)] bg-gradient-to-b from-white/20 to-white/5"
                   />
@@ -119,10 +110,9 @@ export default function GlassBarsSection() {
                     initial={{ x: '100%', opacity: 0 }}
                     animate={{ x: '0%', opacity: 1 }}
                     transition={{ 
-                      duration: 2.4, 
-                      delay: 2,
-                      ease: 'easeOut',
-                      ...(prefersReduced ? { duration: 0, delay: 0 } : {})
+                      duration: shouldReduceMotion ? 0 : 2.4, 
+                      delay: shouldReduceMotion ? 0 : 2,
+                      ease: 'easeOut'
                     }}
                     className="absolute inset-y-0 right-0 w-1/2 bg-white/15 backdrop-blur-md border-y border-r border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.15)] bg-gradient-to-b from-white/20 to-white/5"
                   />
@@ -134,10 +124,9 @@ export default function GlassBarsSection() {
                     initial={{ x: '-100%' }}
                     animate={{ x: '0%' }}
                     transition={{ 
-                      duration: 2.2, 
-                      delay: 2.5,
-                      ease: 'easeOut',
-                      ...(prefersReduced ? { duration: 0, delay: 0 } : {})
+                      duration: shouldReduceMotion ? 0 : 2.2, 
+                      delay: shouldReduceMotion ? 0 : 2.5,
+                      ease: 'easeOut'
                     }}
                     className="absolute inset-y-0 left-0 w-1/2 bg-white/15 backdrop-blur-md border-y border-l border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.15)] bg-gradient-to-b from-white/20 to-white/5"
                   />
@@ -145,10 +134,9 @@ export default function GlassBarsSection() {
                     initial={{ x: '100%' }}
                     animate={{ x: '0%' }}
                     transition={{ 
-                      duration: 2.2, 
-                      delay: 2.5,
-                      ease: 'easeOut',
-                      ...(prefersReduced ? { duration: 0, delay: 0 } : {})
+                      duration: shouldReduceMotion ? 0 : 2.2, 
+                      delay: shouldReduceMotion ? 0 : 2.5,
+                      ease: 'easeOut'
                     }}
                     className="absolute inset-y-0 right-0 w-1/2 bg-white/15 backdrop-blur-md border-y border-r border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.15)] bg-gradient-to-b from-white/20 to-white/5"
                   />
@@ -160,10 +148,9 @@ export default function GlassBarsSection() {
                     initial={{ x: '-100%' }}
                     animate={{ x: '0%' }}
                     transition={{ 
-                      duration: 2, 
-                      delay: 3,
-                      ease: 'easeOut',
-                      ...(prefersReduced ? { duration: 0, delay: 0 } : {})
+                      duration: shouldReduceMotion ? 0 : 2, 
+                      delay: shouldReduceMotion ? 0 : 3,
+                      ease: 'easeOut'
                     }}
                     className="absolute inset-y-0 left-0 w-1/2 bg-white/15 backdrop-blur-md border-y border-l border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.15)] bg-gradient-to-b from-white/20 to-white/5"
                   />
@@ -171,10 +158,9 @@ export default function GlassBarsSection() {
                     initial={{ x: '100%' }}
                     animate={{ x: '0%' }}
                     transition={{ 
-                      duration: 2, 
-                      delay: 3,
-                      ease: 'easeOut',
-                      ...(prefersReduced ? { duration: 0, delay: 0 } : {})
+                      duration: shouldReduceMotion ? 0 : 2, 
+                      delay: shouldReduceMotion ? 0 : 3,
+                      ease: 'easeOut'
                     }}
                     className="absolute inset-y-0 right-0 w-1/2 bg-white/15 backdrop-blur-md border-y border-r border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.15)] bg-gradient-to-b from-white/20 to-white/5"
                   />
@@ -195,30 +181,32 @@ export default function GlassBarsSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 
-                  duration: 1, 
-                  delay: 4,
-                  ease: 'easeOut',
-                  ...(prefersReduced ? { duration: 0, delay: 0 } : {})
+                  duration: shouldReduceMotion ? 0 : 1, 
+                  delay: shouldReduceMotion ? 0 : 4,
+                  ease: 'easeOut'
                 }}
                 className="absolute inset-0 flex flex-col items-center justify-center text-center text-white drop-shadow-lg px-4"
               >
-        {/* Logo */}
-        <div className="mb-4 sm:mb-6">
-          <Image
-            src="/logowtext.png"
-            alt="Crystal View לוגו"
-            width={80}
-            height={40}
-            className="object-contain filter brightness-0 invert sm:w-[120px] sm:h-[60px]"
-          />
-        </div>
-        
-        <h2 className="text-[clamp(2rem,6vw,5rem)] font-extrabold tracking-tight text-shadow-[2px_2px_4px_rgba(0,0,0,0.8)]">
-          השקיפות מתחילה כאן
-        </h2>
-        <p className="mt-4 text-base sm:text-lg md:text-xl text-shadow-[1px_1px_2px_rgba(0,0,0,0.7)]">
-          דיוק. איכות. יוקרה.
-        </p>
+                {/* Logo */}
+                <div className="mb-4 sm:mb-6">
+                  <Image
+                    src="/logowtext.png"
+                    alt="Crystal View לוגו"
+                    width={80}
+                    height={40}
+                    className="object-contain filter brightness-0 invert sm:w-[120px] sm:h-[60px]"
+                  />
+                </div>
+                
+                <div className="flex flex-col items-center justify-center gap-4">
+                  <h2 className="text-[clamp(2rem,6vw,5rem)] font-extrabold tracking-tight text-shadow-[2px_2px_4px_rgba(0,0,0,0.8)]">
+                    השקיפות מתחילה כאן
+                  </h2>
+                  
+                  <p className="text-[clamp(1rem,2.5vw,1.5rem)] text-white/90 font-medium text-shadow-[1px_1px_2px_rgba(0,0,0,0.7)] text-center max-w-3xl px-4">
+                    פרגולות • סגירת מרפסות • רשתות יתושים • סורגים שקופים
+                  </p>
+                </div>
               </motion.div>
             </div>
           </div>
