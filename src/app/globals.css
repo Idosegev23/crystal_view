@@ -1483,6 +1483,31 @@
 }
 
 /* Marquee animations */
+.animate-marquee {
+  animation: marquee var(--duration, 40s) linear infinite !important;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 40s) linear infinite !important;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap, 1rem)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap, 1rem)));
+  }
+}
 
 /* נגישות - Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
