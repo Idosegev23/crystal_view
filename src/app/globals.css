@@ -1485,10 +1485,17 @@
 /* Marquee animations */
 .animate-marquee {
   animation: marquee var(--duration, 40s) linear infinite !important;
+  will-change: transform;
 }
 
 .animate-marquee-vertical {
   animation: marquee-vertical var(--duration, 40s) linear infinite !important;
+  will-change: transform;
+}
+
+.animate-marquee:hover,
+.animate-marquee-vertical:hover {
+  animation-play-state: running !important;
 }
 
 @keyframes marquee {
