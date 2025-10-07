@@ -981,6 +981,11 @@
     transform: none !important;
   }
 
+  /* Exception for Marquee - keep animation even with reduce animations */
+  .accessibility-reduce-animations [class*="animate-marquee"] {
+    animation: marquee var(--duration) linear infinite !important;
+  }
+
   /* Stop Autoplay */
   .accessibility-stop-autoplay video {
     animation: none !important;
@@ -1124,6 +1129,13 @@
 
     .accessibility-reduce-animations {
       scroll-behavior: auto !important;
+    }
+
+    /* Exception for Marquee */
+    [class*="animate-marquee"] {
+      animation-duration: var(--duration) !important;
+      animation-iteration-count: infinite !important;
+      transform: translateX(0) !important;
     }
   }
 
@@ -1388,6 +1400,13 @@
       transform: none !important;
       animation: none !important;
     }
+
+    /* Exception for Marquee */
+    [class*="animate-marquee"] {
+      animation-duration: var(--duration) !important;
+      animation-iteration-count: infinite !important;
+      animation: marquee var(--duration) linear infinite !important;
+    }
   }
 
   /* Enhanced text selection for better readability */
@@ -1474,6 +1493,13 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Exception for Marquee - always animate */
+  [class*="animate-marquee"] {
+    animation-duration: var(--duration) !important;
+    animation-iteration-count: infinite !important;
+    animation: marquee var(--duration) linear infinite !important;
   }
 }
 
