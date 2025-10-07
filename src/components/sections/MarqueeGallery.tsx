@@ -20,27 +20,34 @@ const ProjectCard = ({
     <Link href="/gallery" className="group">
       <figure
         className={cn(
-          "relative h-full w-fit cursor-pointer overflow-hidden rounded-xl border p-4 sm:w-72",
-          // light styles
-          "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-          // dark styles
-          "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
+          "relative h-64 w-80 cursor-pointer overflow-hidden rounded-xl border",
+          // glass effect with better visibility
+          "border-white/20 bg-white/10 hover:bg-white/20 backdrop-blur-md",
+          "shadow-[0_8px_32px_rgba(255,255,255,0.1)] hover:shadow-[0_12px_40px_rgba(255,255,255,0.2)]",
+          "transition-all duration-500"
         )}
       >
-        <div className="relative h-48 w-full mb-2">
+        <div className="relative h-full w-full">
           <Image
             src={project.images[0]}
             alt={`פרויקט ${project.title}`}
             fill
-            className="object-cover rounded-lg"
-            sizes="288px"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="320px"
           />
-        </div>
-        <div className="flex flex-col">
-          <figcaption className="text-sm font-medium dark:text-white line-clamp-2">
-            {project.title}
-          </figcaption>
-          <p className="text-xs font-medium dark:text-white/40 mt-1">{project.location}</p>
+          
+          {/* Gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          
+          {/* Text overlay */}
+          <div className="absolute inset-0 flex flex-col justify-end p-6">
+            <h3 className="text-white font-bold text-lg mb-2 line-clamp-2">
+              {project.title}
+            </h3>
+            <p className="text-white/80 text-sm">
+              {project.location}
+            </p>
+          </div>
         </div>
       </figure>
     </Link>

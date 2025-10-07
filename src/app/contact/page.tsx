@@ -95,7 +95,7 @@ export default function ContactPage() {
                 variants={fadeInLeft}
                 className="bg-gradient-to-br from-crystal-dark to-gray-900 p-6 sm:p-8 lg:p-12 rounded-2xl glass-effect"
               >
-                <h3 className="text-3xl font-bold text-gray-800 mb-8">
+                <h3 className="text-3xl font-bold text-white mb-8">
                   שלחו לנו הודעה
                 </h3>
 
@@ -208,7 +208,7 @@ export default function ContactPage() {
                 className="space-y-8"
               >
                 <div className="bg-gradient-to-br from-crystal-dark to-gray-900 p-8 rounded-2xl glass-effect">
-                  <h3 className="text-3xl font-bold text-gray-800 mb-8">
+                  <h3 className="text-3xl font-bold text-white mb-8">
                     פרטי קשר
                   </h3>
 
