@@ -8,10 +8,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const firstRow = projects.slice(0, Math.ceil(projects.length / 4));
-const secondRow = projects.slice(Math.ceil(projects.length / 4), Math.ceil(projects.length / 2));
-const thirdRow = projects.slice(Math.ceil(projects.length / 2), Math.ceil(projects.length * 3 / 4));
-const fourthRow = projects.slice(Math.ceil(projects.length * 3 / 4));
+const firstRow = projects.slice(0, Math.ceil(projects.length / 2));
+const secondRow = projects.slice(Math.ceil(projects.length / 2));
 
 const ProjectCard = ({
   project,
@@ -75,39 +73,18 @@ export default function MarqueeGallery() {
           </div>
         </motion.div>
 
-        {/* 3D Marquee Gallery */}
-        <div className="relative flex h-96 w-full flex-row items-center justify-center gap-4 overflow-hidden [perspective:300px]">
-          <div
-            className="flex flex-row items-center gap-4"
-            style={{
-              transform:
-                "translateX(-100px) translateY(0px) translateZ(-100px) rotateX(20deg) rotateY(-10deg) rotateZ(20deg)",
-            }}
-          >
-            <Marquee pauseOnHover vertical className="[--duration:20s]">
-              {firstRow.map((project) => (
-                <ProjectCard key={`first-${project.id}`} project={project} />
-              ))}
-            </Marquee>
-            <Marquee reverse pauseOnHover className="[--duration:20s]" vertical>
-              {secondRow.map((project) => (
-                <ProjectCard key={`second-${project.id}`} project={project} />
-              ))}
-            </Marquee>
-            <Marquee reverse pauseOnHover className="[--duration:20s]" vertical>
-              {thirdRow.map((project) => (
-                <ProjectCard key={`third-${project.id}`} project={project} />
-              ))}
-            </Marquee>
-            <Marquee pauseOnHover className="[--duration:20s]" vertical>
-              {fourthRow.map((project) => (
-                <ProjectCard key={`fourth-${project.id}`} project={project} />
-              ))}
-            </Marquee>
-          </div>
-
-          <div className="from-background pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b"></div>
-          <div className="from-background pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t"></div>
+        {/* Marquee Gallery */}
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+          <Marquee pauseOnHover className="[--duration:20s]">
+            {firstRow.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover className="[--duration:20s]">
+            {secondRow.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </Marquee>
           <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
           <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
         </div>

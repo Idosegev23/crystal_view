@@ -978,12 +978,16 @@
   .accessibility-reduce-animations * {
     animation: none !important;
     transition: none !important;
-    transform: none !important;
   }
 
   /* Exception for Marquee - keep animation even with reduce animations */
-  .accessibility-reduce-animations [class*="animate-marquee"] {
-    animation: marquee var(--duration) linear infinite !important;
+  .accessibility-reduce-animations .animate-marquee,
+  .accessibility-reduce-animations .animate-marquee-vertical {
+    animation: marquee var(--duration, 40s) linear infinite !important;
+  }
+  
+  .accessibility-reduce-animations .animate-marquee-vertical {
+    animation: marquee-vertical var(--duration, 40s) linear infinite !important;
   }
 
   /* Stop Autoplay */
