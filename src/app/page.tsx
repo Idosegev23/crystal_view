@@ -19,9 +19,9 @@ export default function Home() {
         <GlassBarsSection />
 
         {/* Text Section */}
-        <section className="py-16 sm:py-20 lg:py-24 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed">
+        <section className="py-12 sm:py-16 lg:py-24 bg-gray-50">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed">
               ב<strong className="text-gray-900">קריסטל ויו</strong> אנחנו מתמחים בייצור והתקנה של מוצרי אלומיניום איכותיים.
               עם <strong className="text-gray-900">מעל 20 שנות ניסיון</strong>, אנו מספקים פתרונות מותאמים אישית
               לכל לקוח - החל מפרגולות מעוצבות, דרך סגירות מרפסות מתקדמות, ועד רשתות יתושים וסורגים שקופים.

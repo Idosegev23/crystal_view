@@ -188,22 +188,22 @@ export default function GlassBarsSection() {
                 className="absolute inset-0 flex flex-col items-center justify-center text-center text-white drop-shadow-lg px-4"
               >
                 {/* Logo */}
-                <div className="mb-4 sm:mb-6">
+                <div className="mb-3 sm:mb-4 md:mb-6">
                   <Image
                     src="/logowtext.png"
                     alt="Crystal View לוגו"
-                    width={80}
-                    height={40}
-                    className="object-contain filter brightness-0 invert sm:w-[120px] sm:h-[60px]"
+                    width={60}
+                    height={30}
+                    className="object-contain filter brightness-0 invert w-[60px] h-[30px] sm:w-[100px] sm:h-[50px] lg:w-[120px] lg:h-[60px]"
                   />
                 </div>
                 
-                <div className="flex flex-col items-center justify-center gap-4">
-                  <h2 className="text-[clamp(2rem,6vw,5rem)] font-extrabold tracking-tight text-shadow-[2px_2px_4px_rgba(0,0,0,0.8)]">
+                <div className="flex flex-col items-center justify-center gap-2 sm:gap-3 md:gap-4">
+                  <h2 className="text-[clamp(1.5rem,5vw,5rem)] font-extrabold tracking-tight text-shadow-[2px_2px_4px_rgba(0,0,0,0.8)] leading-tight">
                     השקיפות מתחילה כאן
                   </h2>
                   
-                  <p className="text-[clamp(1rem,2.5vw,1.5rem)] text-white/90 font-medium text-shadow-[1px_1px_2px_rgba(0,0,0,0.7)] text-center max-w-3xl px-4">
+                  <p className="text-[clamp(0.875rem,2vw,1.5rem)] text-white/90 font-medium text-shadow-[1px_1px_2px_rgba(0,0,0,0.7)] text-center max-w-3xl px-2 sm:px-4 leading-tight">
                     פרגולות • סגירת מרפסות • רשתות יתושים • סורגים שקופים
                   </p>
                 </div>

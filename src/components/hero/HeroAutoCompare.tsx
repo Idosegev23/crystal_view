@@ -100,9 +100,9 @@ export default function HeroAutoCompare() {
           <div className="w-full h-full p-2">
             <div className="w-full h-full p-1">
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                <div className="relative text-center px-6">
+                <div className="relative text-center px-4 sm:px-6">
                   <h2 
-                    className="font-extrabold tracking-tight text-[clamp(2.5rem,6vw,6rem)] leading-tight mb-4"
+                    className="font-extrabold tracking-tight text-[clamp(1.75rem,5vw,6rem)] leading-tight mb-2 sm:mb-4"
                     style={{
                       background: 'linear-gradient(135deg, #ffffff 0%, #e0f2fe 25%, #b3e5fc 50%, #81d4fa 75%, #ffffff 100%)',
                       WebkitBackgroundClip: 'text',
@@ -115,7 +115,7 @@ export default function HeroAutoCompare() {
                     סגירות מרפסות
                   </h2>
                   <p 
-                    className="text-[clamp(1.2rem,3vw,2rem)] font-bold leading-tight"
+                    className="text-[clamp(1rem,2.5vw,2rem)] font-bold leading-tight"
                     style={{
                       background: 'linear-gradient(135deg, #ffffff 0%, #f8bbd9 50%, #ffffff 100%)',
                       WebkitBackgroundClip: 'text',

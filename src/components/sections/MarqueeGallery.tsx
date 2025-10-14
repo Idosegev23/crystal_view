@@ -20,7 +20,7 @@ const ProjectCard = ({
     <Link href="/gallery" className="group">
       <figure
         className={cn(
-          "relative h-64 w-80 cursor-pointer overflow-hidden rounded-xl border",
+          "relative h-56 w-72 sm:h-64 sm:w-80 cursor-pointer overflow-hidden rounded-xl border",
           // glass effect with better visibility
           "border-white/20 bg-white/10 hover:bg-white/20 backdrop-blur-md",
           "shadow-[0_8px_32px_rgba(255,255,255,0.1)] hover:shadow-[0_12px_40px_rgba(255,255,255,0.2)]",
@@ -33,18 +33,18 @@ const ProjectCard = ({
             alt={`פרויקט ${project.title}`}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="320px"
+            sizes="(max-width: 640px) 288px, 320px"
           />
           
           {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
           
           {/* Text overlay */}
-          <div className="absolute inset-0 flex flex-col justify-end p-6">
-            <h3 className="text-white font-bold text-lg mb-2 line-clamp-2">
+          <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6">
+            <h3 className="text-white font-bold text-base sm:text-lg mb-1 sm:mb-2 line-clamp-2">
               {project.title}
             </h3>
-            <p className="text-white/80 text-sm">
+            <p className="text-white/80 text-xs sm:text-sm">
               {project.location}
             </p>
           </div>
@@ -65,16 +65,16 @@ export default function MarqueeGallery() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="text-center mb-16 lg:mb-20 px-6"
+          className="text-center mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6"
         >
-          <div className="glass-card p-8 mb-12 max-w-4xl mx-auto">
+          <div className="glass-card p-6 sm:p-8 mb-8 sm:mb-12 max-w-4xl mx-auto">
             <h2
               id="gallery-heading"
-              className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 sm:mb-6"
             >
               פרויקטים נבחרים
             </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
               כל פרויקט הוא הזדמנות להראות מהי שלמות
             </p>
           </div>
@@ -97,12 +97,12 @@ export default function MarqueeGallery() {
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-12 sm:mt-16 px-4">
           <Link href="/gallery">
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="glass-button text-gray-800 px-12 py-4 font-bold text-lg hover:shadow-2xl transition-all duration-300"
+              className="glass-button text-gray-800 px-8 sm:px-12 py-3 sm:py-4 font-bold text-base sm:text-lg hover:shadow-2xl transition-all duration-300"
             >
               צפו בכל הפרויקטים
             </motion.button>
