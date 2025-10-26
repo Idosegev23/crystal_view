@@ -48,16 +48,16 @@ export default function Header() {
       role="banner"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? ''
-          : 'bg-transparent'
+          ? 'bg-white shadow-clean-md'
+          : 'bg-white/95 backdrop-blur-sm'
       }`}
       aria-label="ניווט ראשי של Crystal View"
     >
       <div className="section-padding">
         <div className="container-max">
-          <div className="flex items-center justify-between h-16 lg:h-20 glass-nav px-6">
+          <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link href="/" aria-label="Crystal View - עמוד הבית">
               <motion.div
@@ -72,7 +72,7 @@ export default function Header() {
                     alt="Crystal View - זכוכית ואלומיניום יוקרתי"
                     width={200}
                     height={60}
-                    className="h-12 lg:h-14 w-auto group-hover:brightness-110 transition-all duration-300"
+                    className="h-12 lg:h-14 w-auto transition-opacity duration-300 group-hover:opacity-80"
                     priority
                   />
                 </div>
@@ -84,7 +84,7 @@ export default function Header() {
                     alt="Crystal View"
                     width={48}
                     height={48}
-                    className="h-10 w-10 group-hover:brightness-110 transition-all duration-300"
+                    className="h-10 w-10 transition-opacity duration-300 group-hover:opacity-80"
                     priority
                   />
                 </div>
@@ -93,7 +93,7 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav 
-              className="hidden lg:flex items-center space-x-8 space-x-reverse" 
+              className="hidden lg:flex items-center gap-1" 
               role="navigation" 
               aria-label="תפריט ניווט ראשי"
             >
@@ -106,38 +106,20 @@ export default function Header() {
                 >
                   <Link href={item.href}>
                     <motion.div
-                      className="relative group px-4 py-2 focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 rounded-lg"
-                      whileHover={{ y: -2 }}
+                      className={`relative px-4 py-2 rounded-lg transition-colors duration-200 ${
+                        pathname === item.href 
+                          ? 'bg-clean-blue text-white font-semibold' 
+                          : 'text-clean-gray-800 hover:bg-clean-gray-100 font-medium'
+                      }`}
+                      whileHover={{ scale: pathname === item.href ? 1 : 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       role="button"
                       tabIndex={0}
                       aria-current={pathname === item.href ? 'page' : undefined}
                     >
-                      {/* Active indicator */}
-                      {pathname === item.href && (
-                        <motion.div
-                          layoutId="activeTab"
-                          className="absolute inset-0 bg-gradient-to-r from-crystal-blue/20 to-crystal-silver/20 rounded-lg border border-crystal-blue/30"
-                          initial={false}
-                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        />
-                      )}
-                      
-                      
-                      {/* Text */}
-                      <span className={`relative z-10 text-sm font-medium transition-all duration-300 ${
-                        pathname === item.href 
-                          ? 'text-blue-600 font-bold' 
-                          : 'text-gray-800'
-                      }`}>
+                      <span className="text-sm">
                         {item.label}
                       </span>
-                      
-                      {/* Underline effect */}
-                      <motion.div
-                        className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-crystal-blue to-crystal-silver group-hover:w-full group-hover:left-0 transition-all duration-300"
-                        initial={false}
-                      />
                     </motion.div>
                   </Link>
                 </motion.div>
@@ -152,31 +134,20 @@ export default function Header() {
                   y: -2
                 }}
                 whileTap={{ scale: 0.98 }}
-                className="hidden lg:block glass-button text-gray-800 px-8 py-3 font-bold transition-all duration-300 group focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
+                className="hidden lg:flex items-center gap-2 bg-clean-blue text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:bg-clean-blue-700 shadow-clean hover:shadow-clean-md touch-target"
                 aria-label="עבור לעמוד צור קשר לקבלת הצעת מחיר"
               >
-                {/* Animated background */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.6 }}
-                />
-                
-                {/* Button text */}
-                <span className="relative z-10 flex items-center gap-2">
-                  <svg className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                  </svg>
-                  קבל הצעת מחיר
-                </span>
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                </svg>
+                קבל הצעת מחיר
               </motion.button>
             </Link>
 
             {/* Mobile Menu Button */}
             <motion.button
-              className="lg:hidden relative w-10 h-10 flex flex-col justify-center items-center glass-button group"
+              className="lg:hidden relative w-11 h-11 flex flex-col justify-center items-center bg-clean-gray-100 rounded-lg hover:bg-clean-gray-200 transition-colors touch-target"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -193,7 +164,7 @@ export default function Header() {
             >
               <motion.div
                 animate={isMobileMenuOpen ? "open" : "closed"}
-                className="w-5 h-5 text-gray-800 transition-colors duration-300"
+                className="w-5 h-5 text-clean-gray-800 transition-colors duration-300"
               >
                 {isMobileMenuOpen ? (
                   <motion.div
@@ -230,13 +201,13 @@ export default function Header() {
           height: isMobileMenuOpen ? 'auto' : 0,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="lg:hidden glass-nav overflow-hidden border-t border-crystal-glass-border mt-2"
+        className="lg:hidden bg-white border-t border-clean-gray-200 overflow-hidden"
         role="navigation"
         aria-label="תפריט ניווט נייד"
         aria-hidden={!isMobileMenuOpen}
       >
         <div className="section-padding py-6">
-          <nav className="flex flex-col space-y-2" role="list">
+          <nav className="flex flex-col gap-2" role="list">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.href}
@@ -250,42 +221,31 @@ export default function Header() {
               >
                 <Link href={item.href}>
                   <motion.div
-                    whileTap={{ scale: 0.95, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`relative group flex items-center justify-between p-4 rounded-xl border transition-all duration-300 focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 ${
+                    className={`flex items-center justify-between p-4 rounded-lg border-2 transition-all duration-200 touch-target ${
                       pathname === item.href 
-                        ? 'bg-gradient-to-r from-blue-100/50 to-blue-50/50 border-blue-300/50 text-blue-600' 
-                        : 'border-gray-200/30 text-gray-800'
+                        ? 'bg-clean-blue border-clean-blue text-white font-semibold' 
+                        : 'border-clean-gray-200 text-clean-gray-800 hover:border-clean-blue hover:bg-clean-blue-50 font-medium'
                     }`}
                     role="button"
                     tabIndex={0}
                     aria-current={pathname === item.href ? 'page' : undefined}
                   >
-                    <span className="font-medium text-lg">{item.label}</span>
+                    <span className="text-lg">{item.label}</span>
                     
                     {/* Arrow indicator */}
-                    <motion.svg
-                      className={`w-5 h-5 transition-colors duration-300 ${
-                        pathname === item.href ? 'text-blue-600' : 'text-gray-600'
+                    <svg
+                      className={`w-5 h-5 transition-colors duration-200 ${
+                        pathname === item.href ? 'text-white' : 'text-clean-gray-600'
                       }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
-                      whileHover={{ x: 3 }}
                       aria-hidden="true"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </motion.svg>
-                    
-                    {/* Active indicator dot */}
-                    {pathname === item.href && (
-                      <motion.div
-                        layoutId="mobileDot"
-                        className="absolute left-2 top-1/2 w-2 h-2 bg-blue-600 rounded-full"
-                        initial={false}
-                        style={{ y: "-50%" }}
-                      />
-                    )}
+                    </svg>
                   </motion.div>
                 </Link>
               </motion.div>
@@ -305,24 +265,14 @@ export default function Header() {
                 <motion.button
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="relative overflow-hidden glass-button text-gray-800 px-8 py-4 rounded-xl font-bold text-center w-full shadow-lg hover:shadow-xl transition-all duration-300 group focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2"
+                  className="flex items-center justify-center gap-2 bg-clean-blue text-white px-8 py-4 rounded-lg font-semibold text-center w-full shadow-clean hover:shadow-clean-md hover:bg-clean-blue-700 transition-all duration-200 touch-target"
                   aria-label="עבור לעמוד צור קשר לקבלת הצעת מחיר"
                 >
-                  {/* Animated background */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "100%" }}
-                    transition={{ duration: 0.6 }}
-                  />
-                  
-                  <span className="relative z-10 flex items-center justify-center gap-2 text-lg">
-                    <svg className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                    </svg>
-                    קבל הצעת מחיר
-                  </span>
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                  </svg>
+                  קבל הצעת מחיר
                 </motion.button>
               </Link>
             </motion.div>

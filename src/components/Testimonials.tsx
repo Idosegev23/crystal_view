@@ -1,12 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations';
+import { fadeInUp } from '@/lib/animations';
 
 const testimonials = [
   {
     id: 1,
-    name: "אדר׳ דני כהן",
+    name: "אדר' דני כהן",
     title: "אדריכל ראשי, כהן אדריכלות",
     content: "עבודה עם Crystal View היא לא רק תוצאה מושלמת – זו חוויית עבודה חלקה ובטוחה.",
     rating: 5,
@@ -30,157 +30,96 @@ const testimonials = [
   }
 ];
 
-const partners = [
-  { name: "כהן אדריכלות", logo: "🏛️" },
-  { name: "אדריכל ברק", logo: "🏗️" },
-  { name: "נדל״ן יוקרה", logo: "🏢" },
-  { name: "בינוי מודרני", logo: "🏭" },
-  { name: "עיצוב פלוס", logo: "🎨" },
-  { name: "אלומיניום פרמיום", logo: "⚡" }
-];
-
 export default function Testimonials() {
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-br from-gray-900 via-crystal-dark to-gray-900">
-      <div className="section-padding">
-        <div className="container-max">
-          {/* Section Header */}
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, amount: 0.3 }}
-            className="text-center mb-20"
-          >
-            <motion.h2
-              variants={fadeInUp}
-              className="text-4xl lg:text-6xl font-bold text-crystal-white mb-6"
+    <section className="clean-section bg-clean-gray-50" id="testimonials" aria-labelledby="testimonials-heading">
+      <div className="container-max">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 id="testimonials-heading" className="heading-lg mb-6">
+            לקוחות מספרים
+          </h2>
+          <p className="text-body max-w-3xl mx-auto">
+            אנחנו גאים להיות הבחירה של האדריכלים, המעצבים והיזמים המובילים בישראל
+          </p>
+        </motion.div>
+
+        {/* Testimonials Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <motion.article
+              key={testimonial.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="clean-card p-8"
             >
-              נבחרי האדריכלים והחברות שעובדים איתנו
-            </motion.h2>
-            <motion.p
-              variants={fadeInUp}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-crystal-silver max-w-3xl mx-auto leading-relaxed"
-            >
-              אנחנו גאים להיות הבחירה של האדריכלים, המעצבים והיזמים המובילים בישראל.
-            </motion.p>
-          </motion.div>
-
-          {/* Testimonials Grid */}
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
-          >
-            {testimonials.map((testimonial) => (
-              <motion.div
-                key={testimonial.id}
-                variants={staggerItem}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="bg-gradient-to-br from-crystal-dark to-gray-900 p-8 rounded-2xl glass-effect hover-lift"
-              >
-                {/* Stars Rating */}
-                <div className="flex justify-center mb-6">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <motion.span
-                      key={i}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.1 }}
-                      className="text-yellow-400 text-xl"
-                    >
-                      ⭐
-                    </motion.span>
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <blockquote className="text-crystal-silver text-center mb-6 leading-relaxed relative">
-                  <span className="text-6xl text-crystal-blue/30 absolute -top-4 -right-2">&ldquo;</span>
-                  {testimonial.content}
-                  <span className="text-6xl text-crystal-blue/30 absolute -bottom-8 -left-2">&rdquo;</span>
-                </blockquote>
-
-                {/* Author Info */}
-                <div className="text-center">
-                  <h4 className="text-crystal-silver font-bold text-lg mb-1">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-crystal-blue text-sm mb-2">
-                    {testimonial.title}
-                  </p>
-                  <p className="text-crystal-silver text-xs">
-                    פרויקט: {testimonial.project}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Partners Section */}
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeInUp}
-            className="text-center"
-          >
-            <h3 className="text-3xl lg:text-4xl font-bold text-crystal-silver mb-12">
-              הפרטנרים שלנו
-            </h3>
-            
-            <motion.div
-              variants={staggerContainer}
-              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8"
-            >
-              {partners.map((partner, index) => (
-                <motion.div
-                  key={index}
-                  variants={staggerItem}
-                  whileHover={{ scale: 1.1 }}
-                  className="flex flex-col items-center p-6 bg-crystal-dark/50 rounded-xl glass-effect hover-lift"
-                >
-                  <div className="text-4xl mb-3">{partner.logo}</div>
-                  <span className="text-crystal-silver text-sm font-medium text-center">
-                    {partner.name}
+              {/* Stars Rating */}
+              <div className="flex justify-center mb-6" role="img" aria-label={`דירוג ${testimonial.rating} כוכבים מתוך 5`}>
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <span
+                    key={i}
+                    className="text-yellow-400 text-2xl"
+                    aria-hidden="true"
+                  >
+                    ★
                   </span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+                ))}
+              </div>
 
-          {/* Trust Indicators */}
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeInUp}
-            className="mt-20 grid md:grid-cols-4 gap-8 text-center"
-          >
-            {[
-              { number: "500+", label: "פרויקטים הושלמו", icon: "✅" },
-              { number: "100%", label: "שביעות רצון לקוחות", icon: "😊" },
-              { number: "15+", label: "שנות ניסיון", icon: "📅" },
-              { number: "24/7", label: "זמינות ושירות", icon: "🔧" },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                className="p-6 bg-gradient-to-br from-crystal-dark to-gray-900 rounded-xl glass-effect"
-              >
-                <div className="text-4xl mb-3">{stat.icon}</div>
-                <div className="text-3xl lg:text-4xl font-bold text-crystal-blue mb-2">
-                  {stat.number}
+              {/* Quote */}
+              <blockquote className="text-clean-gray-700 text-center mb-6 leading-relaxed">
+                <svg 
+                  className="w-8 h-8 text-clean-blue opacity-20 mx-auto mb-4" 
+                  fill="currentColor" 
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <p className="text-lg">{testimonial.content}</p>
+              </blockquote>
+
+              {/* Author Info */}
+              <div className="text-center pt-6 border-t border-clean-gray-200">
+                <div className="font-bold text-clean-gray-900 mb-1">
+                  {testimonial.name}
                 </div>
-                <div className="text-crystal-silver text-sm">
-                  {stat.label}
+                <div className="text-sm text-clean-gray-600 mb-2">
+                  {testimonial.title}
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
+                <div className="text-xs text-clean-blue font-medium">
+                  {testimonial.project}
+                </div>
+              </div>
+            </motion.article>
+          ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center mt-16"
+        >
+          <p className="text-body mb-8">
+            רוצים להצטרף למעגל הלקוחות המרוצים שלנו?
+          </p>
+          <a href="/contact">
+            <button className="clean-btn text-lg px-12 py-4" aria-label="צור קשר עם Crystal View">
+              בואו נדבר
+            </button>
+          </a>
+        </motion.div>
       </div>
     </section>
   );

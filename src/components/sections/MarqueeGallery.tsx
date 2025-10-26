@@ -20,31 +20,29 @@ const ProjectCard = ({
     <Link href="/gallery" className="group">
       <figure
         className={cn(
-          "relative h-56 w-72 sm:h-64 sm:w-80 cursor-pointer overflow-hidden rounded-xl border",
-          // glass effect with better visibility
-          "border-white/20 bg-white/10 hover:bg-white/20 backdrop-blur-md",
-          "shadow-[0_8px_32px_rgba(255,255,255,0.1)] hover:shadow-[0_12px_40px_rgba(255,255,255,0.2)]",
-          "transition-all duration-500"
+          "relative h-64 w-80 cursor-pointer overflow-hidden rounded-xl",
+          "clean-card shadow-clean hover:shadow-clean-md",
+          "transition-all duration-300"
         )}
       >
         <div className="relative h-full w-full">
           <Image
             src={project.images[0]}
-            alt={`פרויקט ${project.title}`}
+            alt={`פרויקט ${project.title} - ${project.location}`}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 640px) 288px, 320px"
+            sizes="320px"
           />
           
           {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           
           {/* Text overlay */}
-          <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6">
-            <h3 className="text-white font-bold text-base sm:text-lg mb-1 sm:mb-2 line-clamp-2">
+          <div className="absolute inset-0 flex flex-col justify-end p-6">
+            <h3 className="text-white font-bold text-lg mb-2 line-clamp-2 text-shadow-light">
               {project.title}
             </h3>
-            <p className="text-white/80 text-xs sm:text-sm">
+            <p className="text-white/90 text-sm font-medium text-shadow-light">
               {project.location}
             </p>
           </div>
@@ -56,54 +54,74 @@ const ProjectCard = ({
 
 export default function MarqueeGallery() {
   return (
-    <section className="py-20 lg:py-32 relative" aria-labelledby="gallery-heading" role="region">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white/20 to-blue-100/30 backdrop-blur-sm"></div>
-      
-      <div className="relative z-10">
+    <section 
+      className="clean-section bg-white" 
+      aria-labelledby="gallery-heading" 
+      role="region"
+    >
+      <div className="container-max">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="text-center mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <div className="glass-card p-6 sm:p-8 mb-8 sm:mb-12 max-w-4xl mx-auto">
-            <h2
-              id="gallery-heading"
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 sm:mb-6"
-            >
-              פרויקטים נבחרים
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-              כל פרויקט הוא הזדמנות להראות מהי שלמות
-            </p>
-          </div>
+          <h2
+            id="gallery-heading"
+            className="heading-lg mb-6"
+          >
+            פרויקטים נבחרים
+          </h2>
+          <p className="text-body max-w-3xl mx-auto">
+            כל פרויקט הוא הזדמנות להראות מהי שלמות
+          </p>
         </motion.div>
+      </div>
 
-        {/* Marquee Gallery */}
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          <Marquee pauseOnHover className="[--duration:20s]">
-            {firstRow.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </Marquee>
-          <Marquee reverse pauseOnHover className="[--duration:20s]">
-            {secondRow.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </Marquee>
-          <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
-          <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
-        </div>
+      {/* Marquee Gallery */}
+      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden gap-4">
+        <Marquee pauseOnHover className="[--duration:25s]">
+          {firstRow.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </Marquee>
+        <Marquee reverse pauseOnHover className="[--duration:25s]">
+          {secondRow.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </Marquee>
+        
+        {/* Fade edges */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white" aria-hidden="true" />
+      </div>
 
-        {/* CTA Button */}
-        <div className="text-center mt-12 sm:mt-16 px-4">
+      {/* CTA Button */}
+      <div className="container-max">
+        <div className="text-center mt-16">
           <Link href="/gallery">
             <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="glass-button text-gray-800 px-8 sm:px-12 py-3 sm:py-4 font-bold text-base sm:text-lg hover:shadow-2xl transition-all duration-300"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="clean-btn text-lg px-12 py-4"
+              aria-label="צפה בכל הפרויקטים בגלריה המלאה"
             >
+              <svg 
+                className="w-5 h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" 
+                />
+              </svg>
               צפו בכל הפרויקטים
             </motion.button>
           </Link>

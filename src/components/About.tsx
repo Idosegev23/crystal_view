@@ -2,160 +2,165 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { fadeInLeft, fadeInRight, staggerContainer, staggerItem } from '@/lib/animations';
+import { fadeInLeft, fadeInRight } from '@/lib/animations';
 import { companyValues } from '@/lib/services';
 import { PrecisionIcon, LuxuryIcon, TransparencyIcon } from '@/lib/icons';
 
 export default function About() {
   return (
-    <section id="about" className="py-20 lg:py-32 relative">
-      {/* Glass Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-gray-800/60 to-black/80 backdrop-blur-sm"></div>
-      
-      <div className="section-padding relative z-10">
-        <div className="container-max">
-          {/* Section Header */}
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, amount: 0.3 }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-0"
+    <section id="about" className="clean-section bg-white" role="region" aria-labelledby="about-heading">
+      <div className="container-max">
+        {/* Section Header */}
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-center mb-16"
+        >
+          <motion.h2
+            id="about-heading"
+            variants={fadeInLeft}
+            className="heading-lg mb-6"
           >
-            <div className="glass-card-dark p-8 lg:p-12">
-              <motion.h2
-                variants={fadeInLeft}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight"
-              >
-                החזון שלנו ברור – שקיפות מושלמת
-              </motion.h2>
-              <motion.p
-                variants={fadeInRight}
-                transition={{ delay: 0.2 }}
-                className="text-base sm:text-lg md:text-xl text-blue-200 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0"
-              >
-                ב־Crystal View אנחנו מאמינים שכל פרויקט צריך לספר סיפור
-              </motion.p>
+            החזון שלנו ברור – שקיפות מושלמת
+          </motion.h2>
+          <motion.p
+            variants={fadeInRight}
+            transition={{ delay: 0.2 }}
+            className="text-body max-w-3xl mx-auto"
+          >
+            ב־Crystal View אנחנו מאמינים שכל פרויקט צריך לספר סיפור
+          </motion.p>
+        </motion.div>
+
+        {/* Main Content Split */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
+          {/* Image Side */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-clean-lg">
+              <Image
+                src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&q=80"
+                alt="עבודה מקצועית של Crystal View - פרויקט אלומיניום וזכוכית"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
+
+            {/* Floating stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-clean-lg border border-clean-gray-200"
+            >
+              <div className="text-4xl font-bold text-clean-blue mb-1">20+</div>
+              <div className="text-clean-gray-700 text-sm font-medium">שנות מומחיות</div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="absolute -top-6 -right-6 bg-white p-6 rounded-xl shadow-clean-lg border border-clean-gray-200"
+            >
+              <div className="text-4xl font-bold text-clean-blue mb-1">500+</div>
+              <div className="text-clean-gray-700 text-sm font-medium">פרויקטים</div>
+            </motion.div>
           </motion.div>
 
-          {/* Main Content Split */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-0">
-            {/* Image Side */}
-            <motion.div
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInLeft}
-              className="relative"
-            >
-              <div className="glass-card p-4 relative overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=600&q=80"
-                  alt="Crystal View - עבודה מקצועית"
-                  width={600}
-                  height={400}
-                  className="object-cover rounded-xl hover-lift w-full h-80"
-                />
-                {/* Glass overlay effect */}
-                <div className="absolute inset-4 bg-gradient-to-tr from-blue-500/20 via-transparent to-transparent rounded-xl pointer-events-none"></div>
-              </div>
-
-              {/* Floating stats - Enhanced Glass - Mobile Responsive */}
-              <motion.div
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="absolute -bottom-3 sm:-bottom-4 lg:-bottom-6 -left-3 sm:-left-4 lg:-left-6 glass-card-dark p-3 sm:p-4 lg:p-6 shadow-xl"
-              >
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-400 mb-1">15+</div>
-                <div className="text-blue-200 text-xs sm:text-sm">שנות מומחיות</div>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="absolute -top-3 sm:-top-4 lg:-top-6 -right-3 sm:-right-4 lg:-right-6 glass-card-dark p-3 sm:p-4 lg:p-6 shadow-xl"
-              >
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-400 mb-1">500+</div>
-                <div className="text-blue-200 text-xs sm:text-sm">פרויקטים</div>
-              </motion.div>
-            </motion.div>
-
-            {/* Content Side */}
-            <motion.div
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInRight}
-            >
-              <div className="glass-card-dark p-8 space-y-8">
-                <h3 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
-                  פתרונות זכוכית ואלומיניום ברמה הגבוהה ביותר
-                </h3>
-
-                <p className="text-lg text-blue-200 leading-relaxed">
-                  עם שילוב ייחודי של טכנולוגיה מתקדמת, חומרים איכותיים וצוות מקצועי מנוסה – 
-                  אנחנו יוצרים חללים שמשלבים יוקרה, פונקציונליות ועמידות לשנים.
-                </p>
-
-                <p className="text-lg text-blue-200 leading-relaxed">
-                  כל פרויקט מתוכנן ומיוצר בדיוק מקסימלי, תוך הקפדה על הפרטים הקטנים ביותר ושמירה על לוחות זמנים מדויקים.
-                </p>
-
-                {/* Expertise Areas */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
-                  {[
-                    "חזיתות זכוכית חכמות",
-                    "מערכות אלומיניום יוקרתיות", 
-                    "פתרונות בידוד מתקדמים",
-                    "עיצוב ארכיטקטוני מותאם"
-                  ].map((item, index) => (
-                    <motion.div
-                      key={index}
-                      whileHover={{ scale: 1.05, x: 5 }}
-                      className="glass-card p-4 flex items-center space-x-3"
-                    >
-                      <div className="w-3 h-3 bg-blue-400 rounded-full shadow-sm"></div>
-                      <span className="text-gray-800 font-medium flex-1">{item}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Company Values */}
+          {/* Content Side */}
           <motion.div
-            initial="initial"
-            whileInView="animate"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
           >
-            {companyValues.map((value, index) => {
-              const IconComponent = value.icon === 'precision' ? PrecisionIcon : 
-                                   value.icon === 'luxury' ? LuxuryIcon : 
-                                   TransparencyIcon;
-              
-              return (
+            <h3 className="heading-md leading-tight">
+              פתרונות זכוכית ואלומיניום ברמה הגבוהה ביותר
+            </h3>
+
+            <p className="text-body">
+              עם שילוב ייחודי של טכנולוגיה מתקדמת, חומרים איכותיים וצוות מקצועי מנוסה – 
+              אנחנו יוצרים חללים שמשלבים יוקרה, פונקציונליות ועמידות לשנים.
+            </p>
+
+            <p className="text-body">
+              כל פרויקט מתוכנן ומיוצר בדיוק מקסימלי, תוך הקפדה על הפרטים הקטנים ביותר ושמירה על לוחות זמנים מדויקים.
+            </p>
+
+            {/* Expertise Areas */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+              {[
+                "חזיתות זכוכית חכמות",
+                "מערכות אלומיניום יוקרתיות", 
+                "פתרונות בידוד מתקדמים",
+                "עיצוב ארכיטקטוני מותאם"
+              ].map((item, index) => (
                 <motion.div
                   key={index}
-                  variants={staggerItem}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="text-center hover-lift"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="flex items-center gap-3 p-3 bg-clean-gray-50 rounded-lg"
                 >
-                  <div className="glass-card-dark p-8 h-full">
-                    <div className="text-blue-400 mb-6 flex justify-center">
-                      <IconComponent />
-                    </div>
-                    <h4 className="text-2xl font-bold text-white mb-4">
-                      {value.title}
-                    </h4>
-                    <p className="text-blue-200 leading-relaxed">
-                      {value.description}
-                    </p>
-                  </div>
+                  <svg 
+                    className="w-5 h-5 text-clean-blue flex-shrink-0" 
+                    fill="currentColor" 
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                  >
+                    <path 
+                      fillRule="evenodd" 
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
+                      clipRule="evenodd" 
+                    />
+                  </svg>
+                  <span className="text-clean-gray-800 font-medium">{item}</span>
                 </motion.div>
-              );
-            })}
+              ))}
+            </div>
           </motion.div>
+        </div>
+
+        {/* Company Values */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {companyValues.map((value, index) => {
+            const IconComponent = value.icon === 'precision' ? PrecisionIcon : 
+                                 value.icon === 'luxury' ? LuxuryIcon : 
+                                 TransparencyIcon;
+            
+            return (
+              <motion.article
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="clean-card p-8 text-center"
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-clean-blue-50 rounded-xl text-clean-blue mb-6">
+                  <IconComponent />
+                </div>
+                <h4 className="text-2xl font-bold text-clean-gray-900 mb-4">
+                  {value.title}
+                </h4>
+                <p className="text-clean-gray-600 leading-relaxed">
+                  {value.description}
+                </p>
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

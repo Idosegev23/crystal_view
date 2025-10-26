@@ -103,8 +103,8 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/logontext.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/logontext.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#0D0D0D" />
-        <meta name="msapplication-TileColor" content="#0D0D0D" />
+        <meta name="theme-color" content="#ffffff" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
         
         {/* Accessibility Meta Tags */}
         <meta name="accessibility-features" content="WCAG-AA" />
@@ -116,76 +116,9 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body className={`${heebo.className} antialiased`}>
-        {/* Glass Distortion SVG Filter */}
-        <svg className="glass-filter-svg">
-          <defs>
-            <filter
-              id="glass-distortion"
-              x="0%"
-              y="0%"
-              width="100%"
-              height="100%"
-              filterUnits="objectBoundingBox"
-            >
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.01 0.01"
-                numOctaves="1"
-                seed="5"
-                result="turbulence"
-              />
-              <feComponentTransfer in="turbulence" result="mapped">
-                <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
-                <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
-                <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
-              </feComponentTransfer>
-              <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
-              <feSpecularLighting
-                in="softMap"
-                surfaceScale="5"
-                specularConstant="1"
-                specularExponent="100"
-                lightingColor="white"
-                result="specLight"
-              >
-                <fePointLight x="-200" y="-200" z="300" />
-              </feSpecularLighting>
-              <feComposite
-                in="specLight"
-                operator="arithmetic"
-                k1="0"
-                k2="1"
-                k3="1"
-                k4="0"
-                result="litImage"
-              />
-              <feDisplacementMap
-                in="SourceGraphic"
-                in2="softMap"
-                scale="150"
-                xChannelSelector="R"
-                yChannelSelector="G"
-              />
-            </filter>
-          </defs>
-        </svg>
-        
-        {/* Skip Links for Accessibility */}
-        <a href="#main-content" className="skip-link">
-          דלג לתוכן הראשי
-        </a>
-        <a href="#navigation" className="skip-link">
-          דלג לתפריט הניווט
-        </a>
-        <a href="#contact" className="skip-link">
-          דלג לטופס יצירת קשר
-        </a>
-
         <AccessibilityProvider>
           <Header />
-          <main id="main-content" role="main" aria-label="תוכן ראשי">
-            {children}
-          </main>
+          {children}
           <Footer />
           <WhatsApp />
           <AccessibilityWidget />
