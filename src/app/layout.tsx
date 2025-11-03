@@ -7,6 +7,9 @@ import Header from '@/components/shared/Header'
 import Footer from '@/components/shared/Footer'
 import WhatsApp from '@/components/shared/WhatsApp'
 import { AccessibilityProvider } from '@/contexts/AccessibilityContext'
+import { ToastProvider } from '@/contexts/ToastContext'
+import ToastContainer from '@/components/ui/Toast'
+import BackToTop from '@/components/shared/BackToTop'
 
 const heebo = Heebo({
   subsets: ['latin', 'hebrew'],
@@ -116,13 +119,17 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body className={`${heebo.className} antialiased`}>
-        <AccessibilityProvider>
-          <Header />
-          {children}
-          <Footer />
-          <WhatsApp />
-          <AccessibilityWidget />
-        </AccessibilityProvider>
+        <ToastProvider>
+          <AccessibilityProvider>
+            <Header />
+            {children}
+            <Footer />
+            <WhatsApp />
+            <AccessibilityWidget />
+            <BackToTop />
+            <ToastContainer />
+          </AccessibilityProvider>
+        </ToastProvider>
       </body>
     </html>
   )

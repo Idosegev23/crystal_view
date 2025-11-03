@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, fadeInLeft, fadeInRight } from '@/lib/animations';
 import { PhoneIcon, EmailIcon, LocationIcon, TimeIcon } from '@/lib/icons';
+import { useToast } from '@/contexts/ToastContext';
 
 export default function Contact() {
+  const { showToast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -13,7 +15,6 @@ export default function Contact() {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [formErrors, setFormErrors] = useState<{[key: string]: string}>({});
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -51,33 +52,50 @@ export default function Contact() {
     e.preventDefault();
     
     if (!validateForm()) {
-      setSubmitStatus('error');
+      showToast('אנא תקן את השגיאות בטופס', 'error');
       return;
     }
     
     setIsSubmitting(true);
     setFormErrors({});
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('success');
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'שגיאה בשליחת ההודעה');
+      }
+
+      // Success!
+      showToast(data.message || 'ההודעה נשלחה בהצלחה! נחזור אליך בהקדם.', 'success');
       setFormData({ name: '', phone: '', email: '', message: '' });
       
-      // Reset status after 5 seconds
-      setTimeout(() => setSubmitStatus('idle'), 5000);
-    }, 1000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      const errorMessage = error instanceof Error ? error.message : 'אירעה שגיאה בשליחת ההודעה. אנא נסה שוב.';
+      showToast(errorMessage, 'error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '972501234567';
+    const phoneNumber = '972533366101';
     const message = `שלום, אני ${formData.name || '[שם]'} ואני מעוניין לשמוע עוד על שירותי Crystal View. ${formData.message || 'אשמח לקבל פרטים נוספים.'}`;
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
   const handleCallClick = () => {
-    window.open('tel:+972501234567', '_self');
+    window.open('tel:+972533366101', '_self');
   };
 
   return (
@@ -273,32 +291,6 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Submit Status */}
-                {submitStatus === 'success' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-green-400 text-center font-medium"
-                    role="status"
-                    aria-live="polite"
-                    aria-label="הודעת הצלחה"
-                  >
-                    ההודעה נשלחה בהצלחה! נחזור אליכם בהקדם.
-                  </motion.div>
-                )}
-
-                {submitStatus === 'error' && Object.keys(formErrors).length > 0 && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-red-400 text-center font-medium"
-                    role="alert"
-                    aria-live="assertive"
-                    aria-label="הודעת שגיאה"
-                  >
-                    אנא תקן את השגיאות בטופס ונסה שוב
-                  </motion.div>
-                )}
               </form>
             </motion.div>
 
@@ -321,7 +313,7 @@ export default function Contact() {
                     whileHover={{ scale: 1.02, y: -2 }}
                     className="glass-card p-4 cursor-pointer w-full text-right"
                     onClick={handleCallClick}
-                    aria-label="התקשר למספר 050-123-4567"
+                    aria-label="התקשר למספר 053-3366101"
                     aria-describedby="phone-contact-desc"
                   >
                     <div className="flex items-center gap-3 sm:gap-4">
@@ -330,7 +322,7 @@ export default function Contact() {
                       </div>
                       <div className="flex-1">
                         <h4 className="text-gray-800 font-bold text-sm sm:text-base">טלפון</h4>
-                        <p className="text-gray-600 text-sm sm:text-base">050-123-4567</p>
+                        <p className="text-gray-600 text-sm sm:text-base">053-3366101</p>
                       </div>
                     </div>
                     <span id="phone-contact-desc" className="sr-only">
@@ -342,8 +334,8 @@ export default function Contact() {
                   <motion.button
                     whileHover={{ scale: 1.02, y: -2 }}
                     className="glass-card p-4 cursor-pointer w-full text-right"
-                    onClick={() => window.open('mailto:info@crystalview.co.il')}
-                    aria-label="שלח אימייל לכתובת info@crystalview.co.il"
+                    onClick={() => window.open('mailto:crystalview202@gmail.com')}
+                    aria-label="שלח אימייל לכתובת crystalview202@gmail.com"
                     aria-describedby="email-contact-desc"
                   >
                     <div className="flex items-center gap-3 sm:gap-4">
@@ -352,7 +344,7 @@ export default function Contact() {
                       </div>
                       <div className="flex-1">
                         <h4 className="text-gray-800 font-bold text-sm sm:text-base">אימייל</h4>
-                        <p className="text-gray-600 text-sm sm:text-base">info@crystalview.co.il</p>
+                        <p className="text-gray-600 text-sm sm:text-base">crystalview202@gmail.com</p>
                       </div>
                     </div>
                     <span id="email-contact-desc" className="sr-only">
@@ -374,7 +366,7 @@ export default function Contact() {
                       <div className="flex-1">
                         <h4 id="address-heading" className="text-gray-800 font-bold text-sm sm:text-base">כתובת</h4>
                         <address className="text-gray-600 text-sm sm:text-base not-italic">
-                          רחוב הזכוכית 123, תל אביב
+                          המחוגה 2, איזור תעשייה צפוני אשקלון
                         </address>
                       </div>
                     </div>
@@ -414,7 +406,7 @@ export default function Contact() {
                 </h3>
                 <div className="glass-card p-2">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.344927853457!2d34.7817676!3d32.0852999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4ca6193b7c1f%3A0x6b5a7cf9a3a7b8c1!2sTel%20Aviv-Yafo%2C%20Israel!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3396.6885823944624!2d34.567892!3d31.6694444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDQwJzEwLjAiTiAzNMKwMzQnMDQuNCJF!5e0!3m2!1sen!2sil!4v1234567890"
                     width="100%"
                     height="250"
                     style={{ border: 0 }}
@@ -422,12 +414,12 @@ export default function Contact() {
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     className="rounded-xl"
-                    title="מפת המיקום של Crystal View - רחוב הזכוכית 123, תל אביב"
-                    aria-label="מפה אינטראקטיבית המראה את מיקום המשרד שלנו ברחוב הזכוכית 123, תל אביב"
+                    title="מפת המיקום של Crystal View - המחוגה 2, איזור תעשייה צפוני אשקלון"
+                    aria-label="מפה אינטראקטיבית המראה את מיקום בית המלאכה שלנו במחוגה 2, איזור תעשייה צפוני אשקלון"
                   />
                 </div>
                 <p className="sr-only">
-                  המשרד שלנו נמצא ברחוב הזכוכית 123, תל אביב. ניתן לראות את המיקום המדויק במפה לעיל.
+                  בית המלאכה שלנו נמצא במחוגה 2, איזור תעשייה צפוני אשקלון. ניתן לראות את המיקום המדויק במפה לעיל.
                 </p>
               </div>
             </motion.div>

@@ -38,6 +38,7 @@ export default function Header() {
     { href: '/', label: 'בית' },
     { href: '/about', label: 'אודות' },
     { href: '/gallery', label: 'גלריה' },
+    { href: '/faq', label: 'שאלות נפוצות' },
     { href: '/testimonials', label: 'המלצות' },
     { href: '/contact', label: 'צור קשר' },
   ];
