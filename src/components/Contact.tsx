@@ -51,15 +51,20 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('1. Form submitted', formData);
+    
     if (!validateForm()) {
+      console.log('2. Validation failed');
       showToast('אנא תקן את השגיאות בטופס', 'error');
       return;
     }
     
+    console.log('3. Validation passed, sending request...');
     setIsSubmitting(true);
     setFormErrors({});
     
     try {
+      console.log('4. Fetching API...');
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -68,21 +73,26 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
+      console.log('5. Response status:', response.status);
       const data = await response.json();
+      console.log('6. Response data:', data);
 
       if (!response.ok) {
+        console.log('7. Response not OK, throwing error');
         throw new Error(data.error || 'שגיאה בשליחת ההודעה');
       }
 
       // Success!
+      console.log('8. Success! Showing toast...');
       showToast(data.message || 'ההודעה נשלחה בהצלחה! נחזור אליך בהקדם.', 'success');
       setFormData({ name: '', phone: '', email: '', message: '' });
       
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('9. Error caught:', error);
       const errorMessage = error instanceof Error ? error.message : 'אירעה שגיאה בשליחת ההודעה. אנא נסה שוב.';
       showToast(errorMessage, 'error');
     } finally {
+      console.log('10. Finally - setting isSubmitting to false');
       setIsSubmitting(false);
     }
   };
