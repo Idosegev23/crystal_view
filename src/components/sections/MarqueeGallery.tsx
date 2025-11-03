@@ -28,24 +28,25 @@ const ProjectCard = ({
         <div className="relative h-full w-full">
           <Image
             src={project.images[0]}
-            alt={`פרויקט ${project.title} - ${project.location}`}
+            alt=""
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="320px"
+            role="presentation"
           />
           
           {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" aria-hidden="true" />
           
           {/* Text overlay */}
-          <div className="absolute inset-0 flex flex-col justify-end p-6">
+          <figcaption className="absolute inset-0 flex flex-col justify-end p-6">
             <h3 className="text-white font-bold text-lg mb-2 line-clamp-2 text-shadow-light">
               {project.title}
             </h3>
             <p className="text-white/90 text-sm font-medium text-shadow-light">
               {project.location}
             </p>
-          </div>
+          </figcaption>
         </div>
       </figure>
     </Link>

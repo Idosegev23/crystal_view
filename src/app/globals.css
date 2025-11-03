@@ -386,4 +386,226 @@
   .scroll-smooth-x::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
   }
+
+  /* ==========================================
+     ACCESSIBILITY MODES
+     ========================================== */
+  
+  /* High Contrast Mode - Black background, white text */
+  body.accessibility-high-contrast {
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  body.accessibility-high-contrast * {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+  }
+
+  body.accessibility-high-contrast a {
+    color: #ffff00 !important;
+    text-decoration: underline !important;
+  }
+
+  body.accessibility-high-contrast button {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #ffffff !important;
+  }
+
+  body.accessibility-high-contrast img,
+  body.accessibility-high-contrast video {
+    opacity: 0.8;
+    border: 2px solid #ffffff !important;
+  }
+
+  /* Inverted Contrast Mode - White background, bold black text */
+  body.accessibility-inverted-contrast {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  body.accessibility-inverted-contrast * {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+  }
+
+  body.accessibility-inverted-contrast a {
+    color: #0000ff !important;
+    text-decoration: underline !important;
+    font-weight: 700 !important;
+  }
+
+  body.accessibility-inverted-contrast button {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 3px solid #000000 !important;
+    font-weight: 700 !important;
+  }
+
+  body.accessibility-inverted-contrast img,
+  body.accessibility-inverted-contrast video {
+    border: 3px solid #000000 !important;
+  }
+
+  /* Dark Mode */
+  body.accessibility-dark-mode {
+    background: #1a1a1a !important;
+    color: #e5e5e5 !important;
+  }
+
+  body.accessibility-dark-mode * {
+    background-color: #1a1a1a !important;
+    color: #e5e5e5 !important;
+  }
+
+  body.accessibility-dark-mode .clean-card,
+  body.accessibility-dark-mode .clean-btn,
+  body.accessibility-dark-mode section {
+    background-color: #2d2d2d !important;
+  }
+
+  body.accessibility-dark-mode a {
+    color: #60a5fa !important;
+  }
+
+  body.accessibility-dark-mode button {
+    background-color: #3b82f6 !important;
+    color: #ffffff !important;
+  }
+
+  body.accessibility-dark-mode h1,
+  body.accessibility-dark-mode h2,
+  body.accessibility-dark-mode h3,
+  body.accessibility-dark-mode h4,
+  body.accessibility-dark-mode h5,
+  body.accessibility-dark-mode h6 {
+    color: #f5f5f5 !important;
+  }
+
+  /* Grayscale Mode */
+  body.accessibility-grayscale {
+    filter: grayscale(100%) !important;
+    -webkit-filter: grayscale(100%) !important;
+  }
+
+  /* Highlight Links */
+  body.accessibility-highlight-links a {
+    background-color: #fef08a !important;
+    color: #000000 !important;
+    text-decoration: underline !important;
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    font-weight: 600 !important;
+  }
+
+  body.accessibility-highlight-links a:hover {
+    background-color: #fde047 !important;
+  }
+
+  /* Highlight Headings */
+  body.accessibility-highlight-headings h1,
+  body.accessibility-highlight-headings h2,
+  body.accessibility-highlight-headings h3,
+  body.accessibility-highlight-headings h4,
+  body.accessibility-highlight-headings h5,
+  body.accessibility-highlight-headings h6 {
+    background-color: #dbeafe !important;
+    color: #1e40af !important;
+    padding: 8px 12px !important;
+    border-left: 4px solid #2563eb !important;
+    border-radius: 4px !important;
+    margin: 12px 0 !important;
+  }
+
+  /* Enhanced Focus */
+  body.accessibility-enhanced-focus *:focus,
+  body.accessibility-enhanced-focus *:focus-visible {
+    outline: 4px solid #fbbf24 !important;
+    outline-offset: 3px !important;
+    border-radius: 4px !important;
+  }
+
+  /* Improved Readability */
+  body.accessibility-improved-readability {
+    line-height: 1.8 !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  body.accessibility-improved-readability p,
+  body.accessibility-improved-readability li,
+  body.accessibility-improved-readability span {
+    line-height: 2 !important;
+    word-spacing: 0.15em !important;
+  }
+
+  body.accessibility-improved-readability h1,
+  body.accessibility-improved-readability h2,
+  body.accessibility-improved-readability h3,
+  body.accessibility-improved-readability h4,
+  body.accessibility-improved-readability h5,
+  body.accessibility-improved-readability h6 {
+    margin-bottom: 1.5em !important;
+    margin-top: 1.5em !important;
+  }
+
+  /* Reduce Animations */
+  body.accessibility-reduce-animations *,
+  body.accessibility-reduce-animations *::before,
+  body.accessibility-reduce-animations *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Stop Autoplay */
+  body.accessibility-stop-autoplay video {
+    animation: none !important;
+  }
+
+  body.accessibility-stop-autoplay .animate-marquee,
+  body.accessibility-stop-autoplay [data-auto-slide] {
+    animation-play-state: paused !important;
+  }
+
+  /* Accessibility Widget Specific */
+  .accessibility-widget-trigger {
+    position: fixed !important;
+  }
+
+  /* Don't apply high contrast to the accessibility panel itself */
+  body.accessibility-high-contrast #accessibility-panel,
+  body.accessibility-high-contrast #accessibility-panel * {
+    background-color: white !important;
+    color: #1e293b !important;
+  }
+
+  body.accessibility-inverted-contrast #accessibility-panel,
+  body.accessibility-inverted-contrast #accessibility-panel * {
+    background-color: white !important;
+    color: #1e293b !important;
+    font-weight: 400 !important;
+  }
+
+  body.accessibility-dark-mode #accessibility-panel {
+    background-color: #1f2937 !important;
+  }
+
+  body.accessibility-dark-mode #accessibility-panel * {
+    background-color: transparent !important;
+    color: #e5e7eb !important;
+  }
+
+  body.accessibility-dark-mode #accessibility-panel button {
+    background-color: #374151 !important;
+  }
+
+  body.accessibility-dark-mode #accessibility-panel h1,
+  body.accessibility-dark-mode #accessibility-panel h2,
+  body.accessibility-dark-mode #accessibility-panel h3 {
+    color: #f9fafb !important;
+  }
 }

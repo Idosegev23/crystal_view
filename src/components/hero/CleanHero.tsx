@@ -7,7 +7,6 @@ import Image from 'next/image';
 export default function CleanHero() {
   return (
     <section
-      role="banner"
       aria-labelledby="hero-heading"
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-white"
     >
@@ -117,63 +116,6 @@ export default function CleanHero() {
             </Link>
           </motion.div>
 
-          {/* Trust Indicators */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
-            className="mt-12 flex flex-wrap justify-center items-center gap-8 text-white/90"
-            role="list"
-            aria-label="נתונים על החברה"
-          >
-            <div className="flex items-center gap-2" role="listitem">
-              <svg 
-                className="w-6 h-6 text-clean-blue-300" 
-                fill="currentColor" 
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path 
-                  fillRule="evenodd" 
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
-                  clipRule="evenodd" 
-                />
-              </svg>
-              <span className="text-lg font-semibold">+20 שנות ניסיון</span>
-            </div>
-
-            <div className="flex items-center gap-2" role="listitem">
-              <svg 
-                className="w-6 h-6 text-clean-blue-300" 
-                fill="currentColor" 
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path 
-                  fillRule="evenodd" 
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
-                  clipRule="evenodd" 
-                />
-              </svg>
-              <span className="text-lg font-semibold">+500 פרויקטים</span>
-            </div>
-
-            <div className="flex items-center gap-2" role="listitem">
-              <svg 
-                className="w-6 h-6 text-clean-blue-300" 
-                fill="currentColor" 
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path 
-                  fillRule="evenodd" 
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
-                  clipRule="evenodd" 
-                />
-              </svg>
-              <span className="text-lg font-semibold">אחריות מלאה</span>
-            </div>
-          </motion.div>
         </div>
       </div>
 
