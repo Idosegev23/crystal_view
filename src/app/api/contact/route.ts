@@ -93,10 +93,18 @@ export async function POST(request: NextRequest) {
     try {
       await transporter.verify();
       console.log('API: Transporter verified successfully');
-    } catch (verifyError) {
-      console.error('API: Transporter verification failed:', verifyError);
+    } catch (verifyError: any) {
+      console.error('API: Transporter verification failed:', {
+        error: verifyError,
+        message: verifyError?.message,
+        code: verifyError?.code,
+        command: verifyError?.command
+      });
       return NextResponse.json(
-        { error: 'שגיאה בהתחברות לשרת המייל' },
+        { 
+          error: 'שגיאה בהתחברות לשרת המייל', 
+          details: verifyError?.message || 'Unknown error'
+        },
         { status: 500 }
       );
     }
@@ -116,22 +124,46 @@ export async function POST(request: NextRequest) {
 
     // Send email
     console.log('API: Sending email...');
-    await transporter.sendMail(mailOptions);
-    console.log('API: Email sent successfully!');
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      console.log('API: Email sent successfully!', {
+        messageId: info.messageId,
+        response: info.response,
+        accepted: info.accepted,
+        rejected: info.rejected
+      });
+      
+      // Success response
+      return NextResponse.json(
+        { 
+          success: true,
+          message: 'ההודעה נשלחה בהצלחה! נחזור אליך בהקדם.',
+          messageId: info.messageId
+        },
+        { status: 200 }
+      );
+    } catch (sendError: any) {
+      console.error('API: Error sending email:', {
+        error: sendError,
+        message: sendError?.message,
+        code: sendError?.code
+      });
+      return NextResponse.json(
+        { 
+          error: 'אירעה שגיאה בשליחת ההודעה. אנא נסה שוב מאוחר יותר.',
+          details: sendError?.message || 'Unknown error'
+        },
+        { status: 500 }
+      );
+    }
 
-    // Success response
+  } catch (error: any) {
+    console.error('API: Unexpected error:', error);
     return NextResponse.json(
       { 
-        success: true,
-        message: 'ההודעה נשלחה בהצלחה! נחזור אליך בהקדם.' 
+        error: 'אירעה שגיאה בלתי צפויה.',
+        details: error?.message || 'Unknown error'
       },
-      { status: 200 }
-    );
-
-  } catch (error) {
-    console.error('API: Error sending email:', error);
-    return NextResponse.json(
-      { error: 'אירעה שגיאה בשליחת ההודעה. אנא נסה שוב מאוחר יותר.' },
       { status: 500 }
     );
   }

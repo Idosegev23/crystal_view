@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { PhoneIcon, EmailIcon, LocationIcon, TimeIcon } from '@/lib/icons';
+import { useToast } from '@/contexts/ToastContext';
 
 export default function ContactPage() {
+  console.log('🔵 ContactPage loaded');
+  const { showToast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -12,7 +15,6 @@ export default function ContactPage() {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -27,20 +29,77 @@ export default function ContactPage() {
     }
   };
 
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'שם הוא שדה חובה';
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'טלפון הוא שדה חובה';
+    } else if (!/^[0-9\-\s\+\(\)]{7,20}$/.test(formData.phone)) {
+      newErrors.phone = 'מספר טלפון לא תקין';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'אימייל הוא שדה חובה';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'כתובת אימייל לא תקינה';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    console.log('🟢🟢🟢 CONTACT PAGE - FORM SUBMITTED 🟢🟢🟢');
+    console.log('Form data:', formData);
+    
+    if (!validateForm()) {
+      console.log('❌ Validation failed');
+      showToast('אנא תקן את השגיאות בטופס', 'error');
+      return;
+    }
+    
+    console.log('✅ Validation passed, sending to API...');
     setIsSubmitting(true);
     setErrors({});
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('success');
+    try {
+      console.log('📡 Fetching /api/contact...');
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log('📨 Response status:', response.status);
+      const data = await response.json();
+      console.log('📦 Response data:', data);
+
+      if (!response.ok) {
+        console.log('❌ Response not OK');
+        throw new Error(data.error || 'שגיאה בשליחת ההודעה');
+      }
+
+      // Success!
+      console.log('✅ SUCCESS! Email sent!');
+      showToast(data.message || 'ההודעה נשלחה בהצלחה! נחזור אליך בהקדם.', 'success');
       setFormData({ name: '', phone: '', email: '', message: '' });
       
-      // Reset status after 5 seconds
-      setTimeout(() => setSubmitStatus('idle'), 5000);
-    }, 1000);
+    } catch (error) {
+      console.error('❌ Error caught:', error);
+      const errorMessage = error instanceof Error ? error.message : 'אירעה שגיאה בשליחת ההודעה. אנא נסה שוב.';
+      showToast(errorMessage, 'error');
+    } finally {
+      console.log('🏁 Finally - setting isSubmitting to false');
+      setIsSubmitting(false);
+    }
   };
 
   const handleWhatsAppClick = () => {
@@ -209,18 +268,6 @@ export default function ContactPage() {
                     </button>
                   </div>
 
-                  {/* Submit Status */}
-                  {submitStatus === 'success' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      role="status"
-                      aria-live="polite"
-                      className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-center font-medium"
-                    >
-                      ההודעה נשלחה בהצלחה! נחזור אליכם בהקדם.
-                    </motion.div>
-                  )}
                 </form>
               </div>
             </motion.div>
@@ -288,7 +335,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-clean-gray-900 font-bold mb-1">שעות פעילות</h3>
                       <p className="text-clean-gray-700">ראשון-חמישי: 8:00-17:00</p>
-                      <p className="text-clean-gray-700">ששי: 8:00-14:00</p>
+                      <p className="text-clean-gray-700">שישי שבת - סגור</p>
                     </div>
                   </div>
                 </div>

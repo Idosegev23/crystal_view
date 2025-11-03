@@ -7,6 +7,7 @@ import { PhoneIcon, EmailIcon, LocationIcon, TimeIcon } from '@/lib/icons';
 import { useToast } from '@/contexts/ToastContext';
 
 export default function Contact() {
+  console.log('🔵 Contact component loaded');
   const { showToast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -51,7 +52,9 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('🟢🟢🟢 1. FORM SUBMITTED START 🟢🟢🟢');
     console.log('1. Form submitted', formData);
+    alert('טופס נשלח! בדוק קונסול עכשיו!');
     
     if (!validateForm()) {
       console.log('2. Validation failed');
