@@ -45,9 +45,6 @@ export default function Testimonials() {
           <h2 id="testimonials-heading" className="heading-lg mb-6">
             לקוחות מספרים
           </h2>
-          <p className="text-body max-w-3xl mx-auto">
-            אנחנו גאים להיות הבחירה של האדריכלים, המעצבים והיזמים המובילים בישראל
-          </p>
         </motion.div>
 
         {/* Testimonials Grid */}

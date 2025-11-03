@@ -4,26 +4,22 @@ import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { fadeInUp } from '@/lib/animations';
-import { services } from '@/lib/services';
-import { WindowIcon, FacadeIcon, RailingIcon, ShowerIcon, PergolaIcon } from '@/lib/icons';
+import { projects } from '@/lib/projects';
+import Link from 'next/link';
 
 export default function Services() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const scrollToContact = () => {
-    const section = document.getElementById('contact');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  
+  // Select featured projects (mix of all categories)
+  const featuredProjects = projects.filter(p => [1, 2, 9, 10, 4, 6].includes(p.id));
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % services.length);
-  }, []);
+    setCurrentIndex((prev) => (prev + 1) % featuredProjects.length);
+  }, [featuredProjects.length]);
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + services.length) % services.length);
-  }, []);
+    setCurrentIndex((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length);
+  }, [featuredProjects.length]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
@@ -52,12 +48,15 @@ export default function Services() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [nextSlide, prevSlide]);
 
-  const currentService = services[currentIndex];
-  const IconComponent = currentService.icon === 'window' ? WindowIcon : 
-                       currentService.icon === 'facade' ? FacadeIcon : 
-                       currentService.icon === 'railing' ? RailingIcon : 
-                       currentService.icon === 'shower' ? ShowerIcon : 
-                       PergolaIcon;
+  const currentProject = featuredProjects[currentIndex];
+  
+  // Helper to get first image from project
+  const getProjectImage = (project: any) => {
+    if (Array.isArray(project.images) && project.images.length > 0) {
+      return project.images[0];
+    }
+    return project.image || '/images/hero.jpg';
+  };
 
   return (
     <section 
@@ -79,14 +78,14 @@ export default function Services() {
             variants={fadeInUp}
             className="heading-lg mb-6"
           >
-            ההתמחויות שלנו
+            הפרויקטים שלנו
           </motion.h2>
           <motion.p
             variants={fadeInUp}
             transition={{ delay: 0.2 }}
             className="text-body max-w-3xl mx-auto"
           >
-            מהחזיתות הגדולות ביותר ועד הפרטים הקטנים – אנחנו מספקים פתרונות בהתאמה אישית לכל פרויקט
+            דוגמאות לפרויקטים שביצענו: פרגולות, סגירות מרפסת ופרויקטי וילות מקיפים
           </motion.p>
         </motion.div>
 
@@ -117,7 +116,7 @@ export default function Services() {
           <div className="overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.article
-                key={currentService.id}
+                key={currentProject.id}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
@@ -128,63 +127,58 @@ export default function Services() {
                   {/* Image Side */}
                   <div className="relative h-80 lg:h-auto min-h-[400px] lg:min-h-[500px]">
                     <Image
-                      src={currentService.image}
-                      alt={`${currentService.title} - שירותי זכוכית ואלומיניום מקצועיים`}
+                      src={getProjectImage(currentProject)}
+                      alt={`${currentProject.title} - פרויקט אלומיניום מקצועי`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       priority
                     />
                     
-                    {/* Icon Badge */}
-                    <div className="absolute top-6 right-6 w-16 h-16 md:w-20 md:h-20 bg-white rounded-2xl shadow-clean-lg flex items-center justify-center text-clean-blue">
-                      <div className="w-8 h-8 md:w-10 md:h-10">
-                        <IconComponent />
-                      </div>
+                    {/* Category Badge */}
+                    <div className="absolute top-6 right-6 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-full shadow-clean-lg">
+                      <span className="text-sm font-semibold text-clean-gray-900">{currentProject.category}</span>
                     </div>
                   </div>
 
                   {/* Content Side */}
                   <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
                     <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-clean-gray-900 mb-4 md:mb-6">
-                      {currentService.title}
+                      {currentProject.title}
                     </h3>
-                    <p className="text-clean-gray-700 text-lg md:text-xl mb-6 md:mb-8 leading-relaxed">
-                      {currentService.description}
+                    
+                    <div className="flex items-center gap-3 text-clean-gray-600 mb-6 text-sm">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                      </svg>
+                      <span>{currentProject.location}</span>
+                      <span>•</span>
+                      <span>{currentProject.year}</span>
+                    </div>
+
+                    <p className="text-clean-gray-700 text-lg md:text-xl mb-8 md:mb-10 leading-relaxed">
+                      {currentProject.description}
                     </p>
 
-                    {/* Features List */}
-                    <ul className="space-y-3 md:space-y-4 mb-8 md:mb-10" role="list" aria-label={`תכונות של ${currentService.title}`}>
-                      {currentService.features.slice(0, 4).map((feature, featureIndex) => (
-                        <li 
-                          key={featureIndex} 
-                          className="flex items-start gap-3 text-base md:text-lg text-clean-gray-600"
+                    {/* CTA Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Link href="/gallery" className="flex-1">
+                        <button
+                          className="clean-btn text-lg px-8 py-4 w-full"
+                          aria-label="צפה בכל הפרויקטים בגלריה"
                         >
-                          <svg 
-                            className="w-6 h-6 text-clean-blue mt-1 flex-shrink-0" 
-                            fill="currentColor" 
-                            viewBox="0 0 20 20"
-                            aria-hidden="true"
-                          >
-                            <path 
-                              fillRule="evenodd" 
-                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
-                              clipRule="evenodd" 
-                            />
-                          </svg>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* CTA Button */}
-                    <button
-                      onClick={scrollToContact}
-                      className="clean-btn text-lg md:text-xl px-10 py-4 md:py-5"
-                      aria-label={`קבל הצעת מחיר לשירות ${currentService.title}`}
-                    >
-                      קבל הצעת מחיר
-                    </button>
+                          צפה בכל הפרויקטים
+                        </button>
+                      </Link>
+                      <Link href="/contact" className="flex-1">
+                        <button
+                          className="clean-btn-secondary clean-btn text-lg px-8 py-4 w-full bg-clean-gray-100 hover:bg-clean-gray-200"
+                          aria-label="צור קשר לפרויקט דומה"
+                        >
+                          צור קשר
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </motion.article>
@@ -192,14 +186,14 @@ export default function Services() {
           </div>
 
           {/* Navigation Dots */}
-          <div className="flex justify-center gap-2 mt-8" role="tablist" aria-label="ניווט בין השירותים">
-            {services.map((_, index) => (
+          <div className="flex justify-center gap-2 mt-8" role="tablist" aria-label="ניווט בין הפרויקטים">
+            {featuredProjects.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
                 role="tab"
                 aria-selected={currentIndex === index}
-                aria-label={`עבור לשירות ${index + 1} - ${services[index].title}`}
+                aria-label={`עבור לפרויקט ${index + 1} - ${featuredProjects[index].title}`}
                 className={`h-3 rounded-full transition-all duration-300 touch-target ${
                   currentIndex === index 
                     ? 'bg-clean-blue w-10' 
@@ -212,7 +206,7 @@ export default function Services() {
           {/* Progress indicator */}
           <div className="text-center mt-4">
             <p className="text-sm text-clean-gray-600">
-              {currentIndex + 1} / {services.length}
+              {currentIndex + 1} / {featuredProjects.length}
             </p>
           </div>
         </div>
@@ -227,10 +221,10 @@ export default function Services() {
         >
           <div className="text-center mb-12">
             <h3 className="heading-md mb-4">
-              למה לבחור ב-Crystal View?
+              ייצור מלא בבית מלאכה מא&apos; – ת&apos;
             </h3>
             <p className="text-body max-w-2xl mx-auto">
-              אנחנו מספקים פתרונות מקיפים מהרעיון ועד למוצר המוגמר
+              ייצור תחת קורת גג אחת - מהחומר הגלם ועד למוצר המושלם
             </p>
           </div>
 
@@ -296,13 +290,14 @@ export default function Services() {
 
           {/* Main CTA */}
           <div className="text-center mt-12">
-            <button
-              onClick={scrollToContact}
-              className="clean-btn text-lg px-12 py-4"
-              aria-label="צור קשר כדי להתחיל לעבוד יחד"
-            >
-              בואו נתחיל לעבוד יחד
-            </button>
+            <Link href="/contact">
+              <button
+                className="clean-btn text-lg px-12 py-4"
+                aria-label="צור קשר כדי להתחיל לעבוד יחד"
+              >
+                בואו נתחיל לעבוד יחד
+              </button>
+            </Link>
           </div>
         </motion.div>
       </div>

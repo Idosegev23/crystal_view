@@ -15,10 +15,10 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="heading-lg mb-6">
-              אודות Crystal View
+              אודות Crystal View אלומיניום
             </h1>
             <p className="text-body max-w-3xl mx-auto">
-              מובילים בתחום הזכוכית והאלומיניום עם מעל 20 שנות ניסיון
+              אנו מאמינים שעבודות אלומיניום הן הרבה יותר ממוצר – הן חלק בלתי נפרד מהעיצוב, הנוחות והאיכות של כל פרויקט
             </p>
           </motion.div>
         </div>

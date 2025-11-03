@@ -395,10 +395,10 @@ export default function Contact() {
                         <h4 id="hours-heading" className="text-gray-800 font-bold text-sm sm:text-base">שעות פעילות</h4>
                         <div aria-label="שעות פעילות של המשרד">
                           <p className="text-gray-600 text-xs sm:text-sm">
-                            <time dateTime="Mo-Fr 08:00-17:00">ראשון-חמישי: 8:00-17:00</time>
+                            <time dateTime="Mo-Th 08:00-17:00">ראשון-חמישי: 8:00-17:00</time>
                           </p>
                           <p className="text-gray-600 text-xs sm:text-sm">
-                            <time dateTime="Fr 08:00-14:00">ששי: 8:00-14:00</time>
+                            <time>ששי שבת - סגור</time>
                           </p>
                         </div>
                       </div>
@@ -410,7 +410,7 @@ export default function Contact() {
               {/* Map */}
               <div className="glass-card-dark p-8">
                 <h3 className="text-xl font-bold text-white mb-4">
-                  המיקום שלנו
+                  מיקום בית המלאכה
                 </h3>
                 <div className="glass-card p-2">
                   <iframe

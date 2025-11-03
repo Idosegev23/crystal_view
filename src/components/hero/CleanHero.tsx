@@ -42,7 +42,7 @@ export default function CleanHero() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="heading-xl text-white mb-6 text-shadow-strong"
           >
-            פתרונות אלומיניום וזכוכית ברמה הגבוהה ביותר
+            Crystal View פתרונות אלומיניום
           </motion.h1>
 
           {/* Subtitle */}
@@ -52,10 +52,7 @@ export default function CleanHero() {
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
             className="text-xl md:text-2xl text-white/95 mb-8 md:mb-12 leading-relaxed text-shadow-light max-w-3xl mx-auto"
           >
-            סגירות מרפסות, פרגולות, חזיתות זכוכית ומערכות אלומיניום מתקדמות
-            <br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>
-            עם מעל 20 שנות ניסיון והקפדה מירבית על כל פרט
+            ליווי, תכנון וביצוע של פרגולות, סגירות מרפסת ופתרונות אלומיניום לוילות
           </motion.p>
 
           {/* CTAs */}

@@ -22,14 +22,14 @@ export default function About() {
             variants={fadeInLeft}
             className="heading-lg mb-6"
           >
-            החזון שלנו ברור – שקיפות מושלמת
+            החזון שלנו — שקיפות, דיוק וסיפור נכון לכל פרויקט
           </motion.h2>
           <motion.p
             variants={fadeInRight}
             transition={{ delay: 0.2 }}
             className="text-body max-w-3xl mx-auto"
           >
-            ב־Crystal View אנחנו מאמינים שכל פרויקט צריך לספר סיפור
+            ב-Crystal View אנחנו מאמינים שכל פרויקט מספר סיפור, ואנחנו דואגים שהוא יסופר נכון — מהתכנון ועד ההתקנה
           </motion.p>
         </motion.div>
 
@@ -86,25 +86,28 @@ export default function About() {
             className="space-y-6"
           >
             <h3 className="heading-md leading-tight">
-              פתרונות זכוכית ואלומיניום ברמה הגבוהה ביותר
+              כבר מעל 20 שנה אנו מתמחים בייצור, התקנה ותיקון של כל סוגי מוצרי האלומיניום
             </h3>
 
             <p className="text-body">
-              עם שילוב ייחודי של טכנולוגיה מתקדמת, חומרים איכותיים וצוות מקצועי מנוסה – 
-              אנחנו יוצרים חללים שמשלבים יוקרה, פונקציונליות ועמידות לשנים.
+              פרגולות, ויטרינות, סגירות מרפסת, ועוד. כל חומר עובר תחת הידיים שלנו בבית המלאכה – משלב הגלם ועד התוצאה המושלמת.
             </p>
 
             <p className="text-body">
-              כל פרויקט מתוכנן ומיוצר בדיוק מקסימלי, תוך הקפדה על הפרטים הקטנים ביותר ושמירה על לוחות זמנים מדויקים.
+              הניסיון הרב שלנו מאפשר לנו להעניק ללקוחות פתרון כולל – משלב התכנון והייצור ועד להתקנה מדויקת וגימור ברמה הגבוהה ביותר. בנוסף, אנו מספקים גם שירותי קבלנות בתחום האלומיניום, כך שתוכלו לרכז אצלנו את כל הצרכים שלכם ולקבל מענה מותאם אישית, אמין ואיכותי.
+            </p>
+
+            <p className="text-body">
+              בין אם מדובר בפרויקט קטן לבית פרטי או בפרויקט רחב היקף – קריסטל ויו אלומיניום היא הכתובת שלכם לכל עבודת אלומיניום, עם יחס אישי, שירות מקצועי ותוצאה שלא מתפשרת על איכות.
             </p>
 
             {/* Expertise Areas */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
               {[
-                "חזיתות זכוכית חכמות",
-                "מערכות אלומיניום יוקרתיות", 
-                "פתרונות בידוד מתקדמים",
-                "עיצוב ארכיטקטוני מותאם"
+                "פתרונות אלומיניום מקצה לקצה לפרויקטי וילות — משלב התכנון ועד ההתקנה",
+                "סגירות מרפסת בהתאמה אישית", 
+                "תכנון והתקנה של פרגולות איכותיות",
+                "ייצור תחת קורת גג אחת"
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -133,35 +136,6 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Company Values */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {companyValues.map((value, index) => {
-            const IconComponent = value.icon === 'precision' ? PrecisionIcon : 
-                                 value.icon === 'luxury' ? LuxuryIcon : 
-                                 TransparencyIcon;
-            
-            return (
-              <motion.article
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="clean-card p-8 text-center"
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-clean-blue-50 rounded-xl text-clean-blue mb-6">
-                  <IconComponent />
-                </div>
-                <h4 className="text-2xl font-bold text-clean-gray-900 mb-4">
-                  {value.title}
-                </h4>
-                <p className="text-clean-gray-600 leading-relaxed">
-                  {value.description}
-                </p>
-              </motion.article>
-            );
-          })}
-        </div>
       </div>
     </section>
   );
