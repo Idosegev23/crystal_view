@@ -4,71 +4,96 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 export default function PageLoader() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isExiting, setIsExiting] = useState(false);
   const [fillProgress, setFillProgress] = useState(0);
 
   useEffect(() => {
-    // Animate fill progress
+    // Check if this is a fresh page load (not navigation)
+    const isFirstLoad = !sessionStorage.getItem('hasLoaded');
+    
+    if (!isFirstLoad) {
+      setIsVisible(false);
+      return;
+    }
+
+    // Mark as loaded for this session
+    sessionStorage.setItem('hasLoaded', 'true');
+
+    // Minimum display time for smooth UX
+    const minDisplayTime = 1500;
+    const startTime = Date.now();
+
+    // Animate fill progress smoothly
     const fillInterval = setInterval(() => {
       setFillProgress(prev => {
         if (prev >= 100) {
           clearInterval(fillInterval);
           return 100;
         }
-        return prev + 2;
+        // Ease-out effect - slower as it approaches 100
+        const increment = Math.max(1, (100 - prev) / 20);
+        return Math.min(100, prev + increment);
       });
-    }, 30);
+    }, 40);
 
-    // Check if page is loaded
-    const handleLoad = () => {
+    // Handle page load
+    const handleComplete = () => {
+      const elapsed = Date.now() - startTime;
+      const remainingTime = Math.max(0, minDisplayTime - elapsed);
+
       setTimeout(() => {
         setFillProgress(100);
-        setTimeout(() => setIsLoading(false), 400);
-      }, 300);
+        setTimeout(() => {
+          setIsExiting(true);
+          setTimeout(() => setIsVisible(false), 600);
+        }, 300);
+      }, remainingTime);
     };
 
     if (document.readyState === 'complete') {
-      handleLoad();
+      handleComplete();
     } else {
-      window.addEventListener('load', handleLoad);
+      window.addEventListener('load', handleComplete);
     }
 
     // Fallback timeout
     const timeout = setTimeout(() => {
-      setFillProgress(100);
-      setTimeout(() => setIsLoading(false), 400);
-    }, 3000);
+      handleComplete();
+    }, 4000);
 
     return () => {
       clearInterval(fillInterval);
-      window.removeEventListener('load', handleLoad);
+      window.removeEventListener('load', handleComplete);
       clearTimeout(timeout);
     };
   }, []);
 
-  if (!isLoading) return null;
+  if (!isVisible) return null;
 
   return (
     <div 
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-glass-light transition-opacity duration-500 ${
-        fillProgress === 100 ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-white transition-all duration-700 ease-out ${
+        isExiting ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
       }`}
     >
-      <div className="relative flex flex-col items-center gap-6">
+      <div className={`relative flex flex-col items-center gap-8 transition-all duration-500 ${
+        isExiting ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+      }`}>
         {/* Logo Container with Fill Effect */}
-        <div className="relative w-32 h-32 md:w-40 md:h-40">
+        <div className="relative w-28 h-28 md:w-36 md:h-36">
           {/* Background Logo (grayscale/outline) */}
           <Image
             src="/logontext.png"
             alt=""
             fill
-            className="object-contain opacity-20 grayscale"
+            className="object-contain opacity-15 grayscale"
             priority
           />
           
           {/* Filling Logo with clip mask */}
           <div 
-            className="absolute inset-0 overflow-hidden transition-all duration-100 ease-out"
+            className="absolute inset-0 overflow-hidden transition-all duration-200 ease-out"
             style={{ 
               clipPath: `inset(${100 - fillProgress}% 0 0 0)` 
             }}
@@ -82,29 +107,26 @@ export default function PageLoader() {
             />
           </div>
           
-          {/* Shimmer effect */}
+          {/* Subtle glow effect */}
           <div 
-            className="absolute inset-0 bg-gradient-to-t from-transparent via-white/30 to-transparent animate-shimmer"
-            style={{
-              transform: `translateY(${100 - fillProgress}%)`,
-            }}
+            className="absolute inset-0 rounded-full blur-2xl bg-glass-blue/20 transition-opacity duration-500"
+            style={{ opacity: fillProgress / 200 }}
           />
         </div>
 
         {/* Progress bar */}
-        <div className="w-48 h-1 bg-glass-mist/30 rounded-full overflow-hidden bento-soft">
+        <div className="w-40 h-0.5 bg-glass-mist/40 rounded-full overflow-hidden">
           <div 
-            className="h-full bg-gradient-to-r from-glass-blue to-glass-blue/60 transition-all duration-100 ease-out rounded-full"
+            className="h-full bg-gradient-to-r from-glass-blue via-glass-accent to-glass-blue transition-all duration-200 ease-out rounded-full"
             style={{ width: `${fillProgress}%` }}
           />
         </div>
 
-        {/* Loading text */}
-        <p className="text-glass-charcoal/60 text-sm tracking-widest font-light">
-          טוען...
+        {/* Brand name */}
+        <p className="text-glass-charcoal/50 text-xs tracking-[0.3em] font-light uppercase">
+          Crystal View
         </p>
       </div>
     </div>
   );
 }
-
