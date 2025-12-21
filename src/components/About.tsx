@@ -19,7 +19,7 @@ export default function About() {
           >
             <div className="relative aspect-[4/3] overflow-hidden shadow-glass-lg" style={{ borderRadius: '0 24px 24px 24px' }}>
               <Image
-                src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&q=80"
+                src="/projects/atmosphere/1.webp"
                 alt="עבודה מקצועית של Crystal View - פרויקט אלומיניום וזכוכית"
                 fill
                 className="object-cover"
