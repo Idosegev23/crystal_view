@@ -65,7 +65,7 @@ export default function Testimonials() {
               {/* Quote */}
               <blockquote className="mb-8">
                 <p className="text-lg text-glass-charcoal leading-relaxed">
-                  "{testimonial.content}"
+                  &ldquo;{testimonial.content}&rdquo;
                 </p>
               </blockquote>
 
