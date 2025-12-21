@@ -10,6 +10,9 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  
+  // Only use transparent/white text on homepage
+  const isHomePage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +40,7 @@ export default function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
-        isScrolled
+        isScrolled || !isHomePage
           ? 'bg-white/90 backdrop-blur-lg shadow-glass border-b border-glass-mist/50'
           : 'bg-transparent'
       }`}
@@ -59,7 +62,7 @@ export default function Header() {
                     width={180}
                     height={50}
                     className={`h-11 lg:h-12 w-auto transition-all duration-300 ${
-                      isScrolled ? '' : 'brightness-0 invert'
+                      isScrolled || !isHomePage ? '' : 'brightness-0 invert'
                     }`}
                     priority
                   />
@@ -72,7 +75,7 @@ export default function Header() {
                     width={40}
                     height={40}
                     className={`h-10 w-10 transition-all duration-300 ${
-                      isScrolled ? '' : 'brightness-0 invert'
+                      isScrolled || !isHomePage ? '' : 'brightness-0 invert'
                     }`}
                     priority
                   />
@@ -90,7 +93,7 @@ export default function Header() {
                 <Link key={item.href} href={item.href}>
                   <span
                     className={`text-sm font-medium transition-all duration-300 relative group ${
-                      isScrolled ? 'text-glass-charcoal' : 'text-white'
+                      isScrolled || !isHomePage ? 'text-glass-charcoal' : 'text-white'
                     } ${pathname === item.href ? 'text-glass-blue' : 'hover:text-glass-blue'}`}
                     aria-current={pathname === item.href ? 'page' : undefined}
                   >
@@ -109,7 +112,7 @@ export default function Header() {
             <Link href="/contact" className="hidden lg:block">
               <button
                 className={`glass-btn bento-1 text-sm px-6 py-2.5 ${
-                  !isScrolled && 'bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white hover:text-glass-charcoal'
+                  !isScrolled && isHomePage && 'bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white hover:text-glass-charcoal'
                 }`}
               >
                 הצעת מחיר
