@@ -1,29 +1,23 @@
 import type { Metadata } from 'next'
-import { Heebo } from 'next/font/google'
 import './globals.css'
 import StructuredData from '@/components/StructuredData'
 import AccessibilityWidget from '@/components/shared/AccessibilityWidget'
 import Header from '@/components/shared/Header'
 import Footer from '@/components/shared/Footer'
 import WhatsApp from '@/components/shared/WhatsApp'
+import PageLoader from '@/components/shared/PageLoader'
 import { AccessibilityProvider } from '@/contexts/AccessibilityContext'
 import { ToastProvider } from '@/contexts/ToastContext'
 import ToastContainer from '@/components/ui/Toast'
 import BackToTop from '@/components/shared/BackToTop'
 
-const heebo = Heebo({
-  subsets: ['latin', 'hebrew'],
-  variable: '--font-heebo',
-  display: 'swap',
-})
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://crystalview.co.il'),
   title: {
-    default: 'Crystal View פתרונות אלומיניום | פרגולות, סגירות מרפסת ופרויקטי וילות',
-    template: '%s | Crystal View פתרונות אלומיניום'
+    default: 'Crystal View | פתרונות אלומיניום וזכוכית',
+    template: '%s | Crystal View'
   },
-  description: 'Crystal View - פתרונות אלומיניום מקיפים לוילות. מתמחים בתכנון והתקנת פרגולות איכותיות, סגירות מרפסת ופרויקטי אלומיניום מא׳ לת׳. ייצור בבית מלאכה עם מעל 20 שנות ניסיון.',
+  description: 'Crystal View - פתרונות אלומיניום מקיפים לוילות. מתמחים בתכנון והתקנת פרגולות איכותיות, סגירות מרפסת ופרויקטי אלומיניום. ייצור בבית מלאכה עם מעל 20 שנות ניסיון.',
   keywords: [
     'פרויקטי וילות',
     'סגירות מרפסת',
@@ -61,20 +55,20 @@ export const metadata: Metadata = {
     locale: 'he_IL',
     url: 'https://crystalview.co.il',
     siteName: 'Crystal View',
-    title: 'Crystal View פתרונות אלומיניום | פרגולות וסגירות מרפסת',
-    description: 'פתרונות אלומיניום מקיפים לוילות. פרגולות איכותיות, סגירות מרפסת ופרויקטי אלומיניום עם ייצור מלא בבית מלאכה. מעל 20 שנות ניסיון.',
+    title: 'Crystal View | פתרונות אלומיניום וזכוכית',
+    description: 'פתרונות אלומיניום מקיפים לוילות. פרגולות איכותיות, סגירות מרפסת ופרויקטי אלומיניום עם ייצור מלא בבית מלאכה.',
     images: [
       {
         url: '/logowtext.png',
         width: 1200,
         height: 630,
-        alt: 'Crystal View - פתרונות אלומיניום לוילות',
+        alt: 'Crystal View - פתרונות אלומיניום',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Crystal View פתרונות אלומיניום | פרגולות וסגירות מרפסת',
+    title: 'Crystal View | פתרונות אלומיניום וזכוכית',
     description: 'פתרונות אלומיניום מקיפים לוילות. פרגולות איכותיות וסגירות מרפסת עם ייצור מלא בבית מלאכה.',
     images: ['/logowtext.png'],
   },
@@ -82,7 +76,7 @@ export const metadata: Metadata = {
     canonical: 'https://crystalview.co.il',
   },
   verification: {
-    google: 'google-site-verification-code', // יש להחליף בקוד האמיתי
+    google: 'google-site-verification-code',
   },
 }
 
@@ -99,15 +93,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="he" dir="rtl" className={heebo.variable}>
+    <html lang="he" dir="rtl">
       <head>
         <link rel="icon" href="/logontext.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/logontext.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/logontext.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/logontext.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#ffffff" />
-        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="theme-color" content="#fafafa" />
+        <meta name="msapplication-TileColor" content="#fafafa" />
         
         {/* Accessibility Meta Tags */}
         <meta name="accessibility-features" content="WCAG-AA" />
@@ -118,9 +112,10 @@ export default function RootLayout({
         
         <StructuredData />
       </head>
-      <body className={`${heebo.className} antialiased`}>
+      <body className="antialiased">
         <ToastProvider>
           <AccessibilityProvider>
+            <PageLoader />
             <Header />
             {children}
             <Footer />

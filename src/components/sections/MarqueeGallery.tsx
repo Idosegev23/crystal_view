@@ -1,6 +1,5 @@
 'use client';
 
-/* eslint-disable @next/next/no-img-element */
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/ui/marquee";
 import { projects } from "@/lib/projects";
@@ -11,18 +10,26 @@ import { motion } from "framer-motion";
 const firstRow = projects.slice(0, Math.ceil(projects.length / 2));
 const secondRow = projects.slice(Math.ceil(projects.length / 2));
 
+const getBentoClass = (index: number) => {
+  const classes = ['bento-1', 'bento-2', 'bento-3', 'bento-4', 'bento-mixed'];
+  return classes[index % classes.length];
+};
+
 const ProjectCard = ({
   project,
+  index,
 }: {
   project: typeof projects[0];
+  index: number;
 }) => {
   return (
-    <Link href="/gallery" className="group">
+    <Link href="/gallery" className="group block">
       <figure
         className={cn(
-          "relative h-64 w-80 cursor-pointer overflow-hidden rounded-xl",
-          "clean-card shadow-clean hover:shadow-clean-md",
-          "transition-all duration-300"
+          "relative h-72 w-80 cursor-pointer overflow-hidden",
+          "glass-card",
+          getBentoClass(index),
+          "transition-all duration-500"
         )}
       >
         <div className="relative h-full w-full">
@@ -30,20 +37,23 @@ const ProjectCard = ({
             src={project.images[0]}
             alt=""
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
             sizes="320px"
             role="presentation"
           />
           
-          {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" aria-hidden="true" />
+          {/* Glass overlay on hover */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-t from-glass-dark/80 via-glass-charcoal/20 to-transparent" 
+            aria-hidden="true" 
+          />
           
-          {/* Text overlay */}
-          <figcaption className="absolute inset-0 flex flex-col justify-end p-6">
-            <h3 className="text-white font-bold text-lg mb-2 line-clamp-2 text-shadow-light">
+          {/* Text overlay - bottom */}
+          <figcaption className="absolute bottom-0 left-0 right-0 p-6">
+            <h3 className="text-white font-semibold text-lg mb-1">
               {project.title}
             </h3>
-            <p className="text-white/90 text-sm font-medium text-shadow-light">
+            <p className="text-white/80 text-sm">
               {project.location}
             </p>
           </figcaption>
@@ -56,7 +66,7 @@ const ProjectCard = ({
 export default function MarqueeGallery() {
   return (
     <section 
-      className="clean-section bg-white" 
+      className="glass-section glass-gradient-bg" 
       aria-labelledby="gallery-heading" 
       role="region"
     >
@@ -69,34 +79,30 @@ export default function MarqueeGallery() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2
-            id="gallery-heading"
-            className="heading-lg mb-6"
-          >
+          <p className="glass-subheading mb-4">גלריה</p>
+          <h2 id="gallery-heading" className="glass-heading-lg mb-6">
             פרויקטים נבחרים
           </h2>
-          <p className="text-body max-w-3xl mx-auto">
-            כל פרויקט הוא הזדמנות להראות מהי שלמות
-          </p>
+          <div className="glass-divider mx-auto" />
         </motion.div>
       </div>
 
       {/* Marquee Gallery */}
-      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden gap-4">
-        <Marquee pauseOnHover className="[--duration:25s]">
-          {firstRow.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden gap-6">
+        <Marquee pauseOnHover className="[--duration:30s]">
+          {firstRow.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:25s]">
-          {secondRow.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        <Marquee reverse pauseOnHover className="[--duration:30s]">
+          {secondRow.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index + firstRow.length} />
           ))}
         </Marquee>
         
         {/* Fade edges */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white" aria-hidden="true" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-glass-ice" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-glass-ice" aria-hidden="true" />
       </div>
 
       {/* CTA Button */}
@@ -105,24 +111,10 @@ export default function MarqueeGallery() {
           <Link href="/gallery">
             <motion.button
               whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="clean-btn text-lg px-12 py-4"
-              aria-label="צפה בכל הפרויקטים בגלריה המלאה"
+              className="glass-btn"
+              style={{ borderRadius: '0 16px 16px 16px' }}
+              aria-label="צפה בכל הפרויקטים"
             >
-              <svg 
-                className="w-5 h-5" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" 
-                />
-              </svg>
               צפו בכל הפרויקטים
             </motion.button>
           </Link>
