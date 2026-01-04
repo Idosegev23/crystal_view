@@ -19,12 +19,12 @@ export const projects: Project[] = [
       "/projects/balcony-minimal/1.webp",
       "/projects/balcony-minimal/2.webp",
       "/projects/balcony-minimal/3.webp",
-      "/projects/balcony-minimal/4.webp",
+      // "/projects/balcony-minimal/4.webp", // duplicate of atmosphere/2
       "/projects/balcony-minimal/5.webp",
       "/projects/balcony-minimal/6.webp",
       "/projects/balcony-minimal/7.webp",
       "/projects/balcony-minimal/8.webp",
-      "/projects/balcony-minimal/9.webp",
+      // "/projects/balcony-minimal/9.webp", // duplicate of atmosphere/1
       "/projects/balcony-minimal/10.webp",
       "/projects/balcony-minimal/11.webp",
       "/projects/balcony-minimal/12.webp",
@@ -123,7 +123,7 @@ export const projects: Project[] = [
       "/projects/pergola-modern-black/12.webp",
       "/projects/pergola-modern-black/13.webp",
       "/projects/pergola-modern-black/14.webp",
-      "/projects/pergola-modern-black/15.webp",
+      // "/projects/pergola-modern-black/15.webp", // duplicate of atmosphere/3
       "/projects/pergola-modern-black/16.webp",
       "/projects/pergola-modern-black/17.webp",
       "/projects/pergola-modern-black/18.webp",
@@ -158,7 +158,7 @@ export const projects: Project[] = [
       "/projects/pergola-custom/12.webp",
       "/projects/pergola-custom/13.webp",
       "/projects/pergola-custom/14.webp",
-      "/projects/pergola-custom/15.webp",
+      // "/projects/pergola-custom/15.webp", // duplicate of atmosphere/4
       "/projects/pergola-custom/16.webp",
       "/projects/pergola-custom/17.webp"
     ],

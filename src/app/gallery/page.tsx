@@ -6,16 +6,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { projects, categories } from '@/lib/projects';
 
-const getBentoStyle = (index: number) => {
-  const styles = [
-    { borderRadius: '0 16px 16px 16px' },
-    { borderRadius: '16px 0 16px 16px' },
-    { borderRadius: '16px 16px 0 16px' },
-    { borderRadius: '16px 16px 16px 0' },
-    { borderRadius: '4px 16px 16px 16px' },
-    { borderRadius: '16px 4px 16px 16px' },
-  ];
-  return styles[index % styles.length];
+const getBentoClass = (index: number) => {
+  const classes = ['bento-1', 'bento-2', 'bento-3', 'bento-4', 'bento-mixed', 'bento-soft'];
+  return classes[index % classes.length];
 };
 
 // Create a flat list of all images with their project info
@@ -112,8 +105,7 @@ export default function GalleryPage() {
                   onClick={() => setSelectedTag(tag)}
                   role="tab"
                   aria-selected={selectedTag === tag}
-                  style={getBentoStyle(index)}
-                  className={`px-4 py-2 text-xs md:text-sm font-medium transition-all duration-300 touch-target ${
+                  className={`px-4 py-2 text-xs md:text-sm font-medium transition-all duration-300 touch-target ${getBentoClass(index)} ${
                     selectedTag === tag
                       ? 'bg-glass-blue text-white shadow-glass'
                       : 'glass-panel text-glass-steel hover:text-glass-charcoal hover:shadow-glass'
@@ -139,8 +131,7 @@ export default function GalleryPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3, delay: Math.min(index * 0.01, 0.5) }}
-                  style={getBentoStyle(index)}
-                  className="aspect-square cursor-pointer overflow-hidden group relative bg-white/80 backdrop-blur-sm border border-white/40 shadow-glass-sm hover:shadow-glass transition-all duration-300"
+                  className={`aspect-square cursor-pointer overflow-hidden group relative bg-white/80 backdrop-blur-sm border border-white/40 shadow-glass-sm hover:shadow-glass transition-all duration-300 ${getBentoClass(index)}`}
                   onClick={() => openLightbox(galleryImage)}
                   role="button"
                   tabIndex={0}
@@ -271,12 +262,11 @@ export default function GalleryPage() {
                         <button
                           key={index}
                           onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
-                          className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 overflow-hidden transition-all duration-300 ${
+                          className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 overflow-hidden transition-all duration-300 ${getBentoClass(index)} ${
                             currentImageIndex === index 
                               ? 'ring-2 ring-glass-blue scale-105' 
                               : 'opacity-60 hover:opacity-100'
                           }`}
-                          style={getBentoStyle(index)}
                           aria-label={`תמונה ${index + 1}`}
                         >
                           <Image
