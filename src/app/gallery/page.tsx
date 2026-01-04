@@ -36,6 +36,7 @@ const getProjectImage = (project: typeof projects[0]) => {
 export default function GalleryPage() {
   const [selectedTag, setSelectedTag] = useState<string>('כל הפרויקטים');
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const tags = useMemo(() => categories, []);
   
@@ -46,12 +47,30 @@ export default function GalleryPage() {
 
   const openLightbox = (project: typeof projects[0]) => {
     setSelectedProject(project);
+    setCurrentImageIndex(0);
     document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
     setSelectedProject(null);
+    setCurrentImageIndex(0);
     document.body.style.overflow = 'unset';
+  };
+
+  const nextImage = () => {
+    if (selectedProject) {
+      setCurrentImageIndex((prev) => 
+        (prev + 1) % selectedProject.images.length
+      );
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedProject) {
+      setCurrentImageIndex((prev) => 
+        (prev - 1 + selectedProject.images.length) % selectedProject.images.length
+      );
+    }
   };
 
   return (
@@ -141,7 +160,6 @@ export default function GalleryPage() {
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                     <h3 className="text-white font-semibold text-xs md:text-sm lg:text-base line-clamp-1">{project.title}</h3>
-                    <p className="text-white/70 text-xs hidden md:block">{project.location}</p>
                   </div>
                   
                   {/* Category Badge */}
@@ -164,58 +182,150 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
+      {/* Project Detail Modal */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-glass-dark/90 backdrop-blur-sm flex items-center justify-center p-4"
-            onClick={closeLightbox}
+            className="fixed inset-0 z-50 bg-glass-dark/95 backdrop-blur-md overflow-y-auto"
             role="dialog"
             aria-modal="true"
           >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              style={{ borderRadius: '0 24px 24px 24px' }}
-              className="max-w-4xl w-full max-h-[90vh] overflow-y-auto glass-card"
-              onClick={(e) => e.stopPropagation()}
+            {/* Close Button - Fixed */}
+            <button
+              onClick={closeLightbox}
+              style={{ borderRadius: '0 12px 12px 12px' }}
+              className="fixed top-4 left-4 z-[60] w-12 h-12 glass-panel flex items-center justify-center text-glass-charcoal hover:bg-glass-blue hover:text-white transition-all touch-target"
+              aria-label="סגור"
             >
-              <button
-                onClick={closeLightbox}
-                style={{ borderRadius: '0 12px 12px 12px' }}
-                className="absolute top-4 left-4 z-10 w-10 h-10 glass-panel flex items-center justify-center text-glass-charcoal hover:bg-glass-blue hover:text-white transition-all touch-target"
-                aria-label="סגור"
+              <span className="text-2xl">&times;</span>
+            </button>
+
+            <div className="min-h-screen py-8 px-4">
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                transition={{ duration: 0.3 }}
+                style={{ borderRadius: '0 24px 24px 24px' }}
+                className="max-w-6xl mx-auto glass-card overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
               >
-                <span className="text-xl">&times;</span>
-              </button>
+                {/* Main Image with Navigation */}
+                <div className="relative aspect-[16/10] md:aspect-video bg-glass-dark">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentImageIndex}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={selectedProject.images[currentImageIndex] || getProjectImage(selectedProject)}
+                        alt={`${selectedProject.title} - תמונה ${currentImageIndex + 1}`}
+                        fill
+                        className="object-cover"
+                        style={{ borderRadius: '0 24px 0 0' }}
+                        sizes="90vw"
+                        priority
+                      />
+                    </motion.div>
+                  </AnimatePresence>
 
-              <div className="relative aspect-video" style={{ borderRadius: '0 24px 0 0' }}>
-                <Image
-                  src={getProjectImage(selectedProject)}
-                  alt={selectedProject.title}
-                  fill
-                  className="object-cover"
-                  style={{ borderRadius: '0 24px 0 0' }}
-                  sizes="80vw"
-                />
-              </div>
+                  {/* Image Counter */}
+                  <div 
+                    className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-glass-dark/70 backdrop-blur-sm text-white text-sm font-medium"
+                    style={{ borderRadius: '20px' }}
+                  >
+                    {currentImageIndex + 1} / {selectedProject.images.length}
+                  </div>
 
-              <div className="p-6 md:p-8">
-                <p className="glass-subheading mb-2">{selectedProject.category}</p>
-                <h2 className="glass-heading-sm md:glass-heading-md mb-2">{selectedProject.title}</h2>
-                <p className="text-glass-steel text-sm mb-4">{selectedProject.location} — {selectedProject.year}</p>
-                <p className="glass-body text-sm md:text-base mb-6">{selectedProject.description}</p>
-                <Link href="/contact">
-                  <button className="glass-btn text-sm" style={{ borderRadius: '0 16px 16px 16px' }}>
-                    מעוניינים בפרויקט דומה?
-                  </button>
-                </Link>
-              </div>
-            </motion.div>
+                  {/* Navigation Arrows */}
+                  {selectedProject.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={prevImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 glass-panel bento-1 flex items-center justify-center text-glass-charcoal hover:bg-glass-blue hover:text-white transition-all"
+                        aria-label="תמונה קודמת"
+                      >
+                        <span className="text-xl">&rarr;</span>
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 glass-panel bento-2 flex items-center justify-center text-glass-charcoal hover:bg-glass-blue hover:text-white transition-all"
+                        aria-label="תמונה הבאה"
+                      >
+                        <span className="text-xl">&larr;</span>
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {/* Thumbnail Gallery */}
+                {selectedProject.images.length > 1 && (
+                  <div className="p-4 bg-glass-frost border-t border-glass-mist">
+                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+                      {selectedProject.images.map((image, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`relative flex-shrink-0 w-20 h-20 md:w-24 md:h-24 overflow-hidden transition-all duration-300 ${
+                            currentImageIndex === index 
+                              ? 'ring-2 ring-glass-blue scale-105' 
+                              : 'opacity-60 hover:opacity-100'
+                          }`}
+                          style={getBentoStyle(index)}
+                          aria-label={`תמונה ${index + 1}`}
+                        >
+                          <Image
+                            src={image}
+                            alt={`${selectedProject.title} - תמונה ${index + 1}`}
+                            fill
+                            className="object-cover"
+                            sizes="100px"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Project Info */}
+                <div className="p-6 md:p-10">
+                  <div className="flex flex-wrap items-center gap-3 mb-4">
+                    <span 
+                      className="px-3 py-1 bg-glass-blue/10 text-glass-blue text-sm font-medium"
+                      style={{ borderRadius: '0 8px 8px 8px' }}
+                    >
+                      {selectedProject.category}
+                    </span>
+                    <span className="text-glass-steel text-sm">{selectedProject.year}</span>
+                  </div>
+                  
+                  <h2 className="glass-heading-md mb-4">{selectedProject.title}</h2>
+                  <p className="glass-body mb-8 max-w-3xl">{selectedProject.description}</p>
+                  
+                  <div className="flex flex-wrap gap-4">
+                    <Link href="/contact">
+                      <button className="glass-btn" style={{ borderRadius: '0 16px 16px 16px' }}>
+                        מעוניינים בפרויקט דומה?
+                      </button>
+                    </Link>
+                    <button 
+                      onClick={closeLightbox}
+                      className="glass-btn-outline" 
+                      style={{ borderRadius: '16px 0 16px 16px' }}
+                    >
+                      חזרה לגלריה
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

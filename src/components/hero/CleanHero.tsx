@@ -65,7 +65,7 @@ export default function CleanHero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="glass-body-lg text-white/90 mb-12 max-w-2xl mx-auto"
           >
-            ליווי, תכנון וביצוע של פרגולות, סגירות מרפסת ופתרונות אלומיניום לוילות
+            פרגולות וסגירות מרפסת מאלומיניום שעושות את הבית שלם יותר
           </motion.p>
 
           {/* CTAs */}
