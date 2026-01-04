@@ -6,20 +6,27 @@ export interface AccessibilitySettings {
   // Text adjustments
   fontSize: number; // 100%, 125%, 150%, 175%
   fontFamily: 'default' | 'readable'; // Switch to readable font
+  textSpacing: boolean; // Extra letter/word spacing
 
   // Contrast & colors
   highContrast: boolean; // Black bg, white text
   invertedContrast: boolean; // White bg, black text bold
   grayscaleMode: boolean; // Grayscale filter
   darkMode: boolean; // Dark theme mode
+  sepiaMode: boolean; // Sepia filter for comfortable reading
+  lowSaturation: boolean; // Reduced color saturation
   highlightLinks: boolean; // Underline + color links
   highlightHeadings: boolean; // Border/background highlight for headings
 
   // Navigation improvements
   enhancedFocus: boolean; // Visible focus ring
+  largeCursor: boolean; // Large cursor for visibility
+  readingGuide: boolean; // Horizontal reading guide bar
 
   // Content accessibility
   improvedReadability: boolean; // Better line spacing, margins
+  hideImages: boolean; // Hide/dim images for distraction-free reading
+  focusMode: boolean; // Dim everything except main content
 
   // Control behavior
   reduceAnimations: boolean; // Toggle animations/parallax off
@@ -32,14 +39,21 @@ export interface AccessibilitySettings {
 export const DEFAULT_ACCESSIBILITY_SETTINGS: AccessibilitySettings = {
   fontSize: 100,
   fontFamily: 'default',
+  textSpacing: false,
   highContrast: false,
   invertedContrast: false,
   grayscaleMode: false,
   darkMode: false,
+  sepiaMode: false,
+  lowSaturation: false,
   highlightLinks: false,
   highlightHeadings: false,
   enhancedFocus: true,
+  largeCursor: false,
+  readingGuide: false,
   improvedReadability: false,
+  hideImages: false,
+  focusMode: false,
   reduceAnimations: false,
   stopAutoplay: false,
   isOpen: false,
@@ -124,66 +138,31 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
     // Font size
     root.style.fontSize = `${settings.fontSize}%`;
 
-    // Font family
-    if (settings.fontFamily === 'readable') {
-      body.style.fontFamily = 'Arial, "Open Sans", sans-serif';
-    } else {
-      body.style.fontFamily = '';
-    }
+    // Apply all accessibility classes (including font family)
+    const classSettings = {
+      'accessibility-readable-font': settings.fontFamily === 'readable',
+      'accessibility-high-contrast': settings.highContrast,
+      'accessibility-inverted-contrast': settings.invertedContrast,
+      'accessibility-grayscale': settings.grayscaleMode,
+      'accessibility-dark-mode': settings.darkMode,
+      'accessibility-sepia': settings.sepiaMode,
+      'accessibility-low-saturation': settings.lowSaturation,
+      'accessibility-highlight-links': settings.highlightLinks,
+      'accessibility-highlight-headings': settings.highlightHeadings,
+      'accessibility-enhanced-focus': settings.enhancedFocus,
+      'accessibility-large-cursor': settings.largeCursor,
+      'accessibility-reading-guide': settings.readingGuide,
+      'accessibility-improved-readability': settings.improvedReadability,
+      'accessibility-text-spacing': settings.textSpacing,
+      'accessibility-hide-images': settings.hideImages,
+      'accessibility-focus-mode': settings.focusMode,
+      'accessibility-reduce-animations': settings.reduceAnimations,
+      'accessibility-stop-autoplay': settings.stopAutoplay,
+    };
 
-    // High contrast mode (black bg, white text)
-    body.classList.toggle('accessibility-high-contrast', settings.highContrast);
-
-    // Inverted contrast mode (white bg, black text)
-    body.classList.toggle('accessibility-inverted-contrast', settings.invertedContrast);
-
-    // Grayscale mode
-    body.classList.toggle('accessibility-grayscale', settings.grayscaleMode);
-
-    // Dark mode
-    body.classList.toggle('accessibility-dark-mode', settings.darkMode);
-
-    // Highlight links
-    body.classList.toggle('accessibility-highlight-links', settings.highlightLinks);
-
-    // Highlight headings
-    body.classList.toggle('accessibility-highlight-headings', settings.highlightHeadings);
-
-    // Enhanced focus
-    body.classList.toggle('accessibility-enhanced-focus', settings.enhancedFocus);
-
-    // Improved readability
-    body.classList.toggle('accessibility-improved-readability', settings.improvedReadability);
-
-    // Reduced animations
-    body.classList.toggle('accessibility-reduce-animations', settings.reduceAnimations);
-
-    // Stop autoplay
-    body.classList.toggle('accessibility-stop-autoplay', settings.stopAutoplay);
-    // Debug visibility + deterministic attributes
-    try {
-      body.setAttribute('data-hc', settings.highContrast ? '1' : '0');
-      body.setAttribute('data-inv', settings.invertedContrast ? '1' : '0');
-      body.setAttribute('data-dark', settings.darkMode ? '1' : '0');
-      body.setAttribute('data-gray', settings.grayscaleMode ? '1' : '0');
-      body.setAttribute('data-hl', settings.highlightLinks ? '1' : '0');
-      body.setAttribute('data-ir', settings.improvedReadability ? '1' : '0');
-      body.setAttribute('data-hh', settings.highlightHeadings ? '1' : '0');
-      // Helpful console signal during dev
-      // eslint-disable-next-line no-console
-      console.log('[Accessibility] Applied:', {
-        highContrast: settings.highContrast,
-        invertedContrast: settings.invertedContrast,
-        darkMode: settings.darkMode,
-        grayscaleMode: settings.grayscaleMode,
-        highlightLinks: settings.highlightLinks,
-        highlightHeadings: settings.highlightHeadings,
-        improvedReadability: settings.improvedReadability,
-        reduceAnimations: settings.reduceAnimations,
-        stopAutoplay: settings.stopAutoplay,
-        bodyClassList: Array.from(body.classList.values()),
-      });
-    } catch {}
+    Object.entries(classSettings).forEach(([className, enabled]) => {
+      body.classList.toggle(className, enabled);
+    });
     if (settings.stopAutoplay) {
       // Pause all videos and stop autoplay
       const videos = document.querySelectorAll('video');

@@ -388,10 +388,11 @@
   .animate-shimmer {
     animation: shimmer 1.5s ease-in-out infinite;
   }
+}
 
-  /* ==========================================
-     ACCESSIBILITY MODES
-     ========================================== */
+/* ==========================================
+   ACCESSIBILITY MODES - Outside @layer for higher specificity
+   ========================================== */
   
   body.accessibility-high-contrast {
     background: #000000 !important;
@@ -461,4 +462,170 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* Improved Readability - שיפור קריאות */
+  body.accessibility-improved-readability {
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.2em !important;
+  }
+
+  body.accessibility-improved-readability p,
+  body.accessibility-improved-readability li,
+  body.accessibility-improved-readability span,
+  body.accessibility-improved-readability div {
+    line-height: 2 !important;
+    margin-bottom: 1em !important;
+  }
+
+  body.accessibility-improved-readability h1,
+  body.accessibility-improved-readability h2,
+  body.accessibility-improved-readability h3,
+  body.accessibility-improved-readability h4,
+  body.accessibility-improved-readability h5,
+  body.accessibility-improved-readability h6 {
+    line-height: 1.5 !important;
+    margin-bottom: 0.5em !important;
+  }
+
+  /* Highlight Headings - הדגשת כותרות */
+  body.accessibility-highlight-headings h1,
+  body.accessibility-highlight-headings h2,
+  body.accessibility-highlight-headings h3,
+  body.accessibility-highlight-headings h4,
+  body.accessibility-highlight-headings h5,
+  body.accessibility-highlight-headings h6 {
+    background-color: #dbeafe !important;
+    border-right: 4px solid #3b82f6 !important;
+    padding: 8px 16px !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Large Cursor - סמן גדול */
+  body.accessibility-large-cursor,
+  body.accessibility-large-cursor * {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath fill='%23000' stroke='%23fff' stroke-width='2' d='M4 4 L4 36 L14 26 L22 40 L28 38 L20 24 L34 24 Z'/%3E%3C/svg%3E") 4 4, auto !important;
+  }
+
+  body.accessibility-large-cursor a,
+  body.accessibility-large-cursor button,
+  body.accessibility-large-cursor [role="button"],
+  body.accessibility-large-cursor input[type="submit"],
+  body.accessibility-large-cursor input[type="button"] {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath fill='%23000' stroke='%23fff' stroke-width='2' d='M24 4 L24 44 M4 24 L44 24' /%3E%3Ccircle cx='24' cy='24' r='18' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") 24 24, pointer !important;
+  }
+
+  /* Reading Guide - סרגל קריאה */
+  body.accessibility-reading-guide::after {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 0, 0.15) 0%,
+      rgba(255, 255, 0, 0.3) 50%,
+      rgba(255, 255, 0, 0.15) 100%
+    );
+    pointer-events: none;
+    z-index: 9998;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 2px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  }
+
+  /* Text Align Center - יישור למרכז */
+  body.accessibility-text-center * {
+    text-align: center !important;
+  }
+
+  /* Underline Links - קו תחתון לקישורים */
+  body.accessibility-underline-links a {
+    text-decoration: underline !important;
+    text-underline-offset: 4px !important;
+  }
+
+  /* Stop Autoplay - עצירת הפעלה אוטומטית */
+  body.accessibility-stop-autoplay video,
+  body.accessibility-stop-autoplay .hero-video,
+  body.accessibility-stop-autoplay [data-autoplay] {
+    animation-play-state: paused !important;
+  }
+
+  body.accessibility-stop-autoplay .marquee,
+  body.accessibility-stop-autoplay [class*="animate-marquee"] {
+    animation-play-state: paused !important;
+  }
+
+  /* Hide Images - הסתרת תמונות */
+  body.accessibility-hide-images img:not(.accessibility-widget-trigger img),
+  body.accessibility-hide-images picture,
+  body.accessibility-hide-images svg:not(.accessibility-widget-trigger svg),
+  body.accessibility-hide-images video,
+  body.accessibility-hide-images [style*="background-image"] {
+    opacity: 0.1 !important;
+    filter: grayscale(100%) !important;
+  }
+
+  /* Monochrome - מונוכרום (שחור-לבן מוחלט) */
+  body.accessibility-monochrome {
+    filter: grayscale(100%) contrast(120%) !important;
+  }
+
+  /* Sepia - גוון חום לנוחות קריאה */
+  body.accessibility-sepia {
+    filter: sepia(40%) !important;
+  }
+
+  /* Low Saturation - הפחתת רוויה */
+  body.accessibility-low-saturation {
+    filter: saturate(50%) !important;
+  }
+
+  /* Readable Font - גופן קריא */
+  body.accessibility-readable-font,
+  body.accessibility-readable-font *,
+  body.accessibility-readable-font h1,
+  body.accessibility-readable-font h2,
+  body.accessibility-readable-font h3,
+  body.accessibility-readable-font h4,
+  body.accessibility-readable-font h5,
+  body.accessibility-readable-font h6,
+  body.accessibility-readable-font p,
+  body.accessibility-readable-font span,
+  body.accessibility-readable-font a,
+  body.accessibility-readable-font li,
+  body.accessibility-readable-font button,
+  body.accessibility-readable-font input,
+  body.accessibility-readable-font label,
+  body.accessibility-readable-font .font-sans {
+    font-family: Arial, "Open Sans", Helvetica, sans-serif !important;
+  }
+
+  /* Text Spacing - ריווח טקסט */
+  body.accessibility-text-spacing {
+    letter-spacing: 0.12em !important;
+    word-spacing: 0.32em !important;
+  }
+
+  body.accessibility-text-spacing p,
+  body.accessibility-text-spacing li,
+  body.accessibility-text-spacing span,
+  body.accessibility-text-spacing h1,
+  body.accessibility-text-spacing h2,
+  body.accessibility-text-spacing h3,
+  body.accessibility-text-spacing h4,
+  body.accessibility-text-spacing h5,
+  body.accessibility-text-spacing h6 {
+    line-height: 2.5 !important;
+  }
+
+  /* Focus Mode - מצב ריכוז */
+  body.accessibility-focus-mode > *:not(main):not(.accessibility-widget-trigger):not(#accessibility-panel):not([role="dialog"]) {
+    opacity: 0.3 !important;
+  }
+
+body.accessibility-focus-mode main {
+  opacity: 1 !important;
 }

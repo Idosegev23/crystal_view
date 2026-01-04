@@ -7,6 +7,7 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <footer 
+      id="footer"
       className="bg-gradient-to-b from-glass-charcoal to-glass-dark text-white"
       role="contentinfo"
       aria-label="מידע על החברה וקישורים"

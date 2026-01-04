@@ -115,6 +115,31 @@ export default function RootLayout({
       <body className="antialiased">
         <ToastProvider>
           <AccessibilityProvider>
+            {/* Skip Links for Keyboard Navigation - WCAG 2.4.1 */}
+            <a 
+              href="#main-content" 
+              className="skip-link"
+              aria-label="דלג לתוכן הראשי"
+            >
+              דלג לתוכן הראשי
+            </a>
+            <a 
+              href="#navigation" 
+              className="skip-link"
+              style={{ left: '50%', transform: 'translateX(calc(-50% + 200px))' }}
+              aria-label="דלג לניווט"
+            >
+              דלג לניווט
+            </a>
+            <a 
+              href="#footer" 
+              className="skip-link"
+              style={{ left: '50%', transform: 'translateX(calc(-50% - 200px))' }}
+              aria-label="דלג לתחתית העמוד"
+            >
+              דלג לתחתית
+            </a>
+            
             <PageLoader />
             <Header />
             {children}
