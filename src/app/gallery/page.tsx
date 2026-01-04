@@ -75,17 +75,30 @@ export default function GalleryPage() {
   return (
     <main id="main-content" role="main" className="min-h-screen bg-glass-white" dir="rtl">
       {/* Hero Section */}
-      <section className="pt-36 pb-12 glass-gradient-bg">
-        <div className="container-max text-center">
+      <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/projects/atmosphere/5.webp"
+            alt="גלריית הפרויקטים"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-glass-dark/60 via-glass-charcoal/50 to-glass-dark/70" />
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 container-max text-center py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <p className="glass-subheading mb-4">עבודות</p>
-            <h1 className="glass-heading-lg mb-6">גלריית הפרויקטים</h1>
+            <p className="glass-subheading text-glass-accent mb-4">עבודות</p>
+            <h1 className="glass-heading-lg text-white mb-6">גלריית הפרויקטים</h1>
             <div className="glass-divider mx-auto" />
-            <p className="glass-body mt-6">{allImages.length} תמונות</p>
+            <p className="glass-body text-white/80 mt-6">{allImages.length} תמונות</p>
           </motion.div>
         </div>
       </section>
