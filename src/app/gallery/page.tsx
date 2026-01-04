@@ -32,16 +32,21 @@ export default function GalleryPage() {
 
   const tags = useMemo(() => categories, []);
   
-  // Create flat list of all images
+  // Create flat list of all images (with deduplication)
   const allImages = useMemo(() => {
     const images: GalleryImage[] = [];
+    const seenSrcs = new Set<string>();
     const filteredProjects = selectedTag === 'כל הפרויקטים' 
       ? projects 
       : projects.filter((p) => p.category === selectedTag);
     
     filteredProjects.forEach(project => {
       project.images.forEach((src, imageIndex) => {
-        images.push({ src, project, imageIndex });
+        // Skip duplicates
+        if (!seenSrcs.has(src)) {
+          seenSrcs.add(src);
+          images.push({ src, project, imageIndex });
+        }
       });
     });
     return images;
@@ -135,7 +140,7 @@ export default function GalleryPage() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3, delay: Math.min(index * 0.01, 0.5) }}
                   style={getBentoStyle(index)}
-                  className="aspect-square glass-card cursor-pointer overflow-hidden group relative"
+                  className="aspect-square cursor-pointer overflow-hidden group relative bg-white/80 backdrop-blur-sm border border-white/40 shadow-glass-sm hover:shadow-glass transition-all duration-300"
                   onClick={() => openLightbox(galleryImage)}
                   role="button"
                   tabIndex={0}
