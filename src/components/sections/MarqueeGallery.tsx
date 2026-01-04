@@ -54,7 +54,7 @@ const ProjectCard = ({
               {project.title}
             </h3>
             <p className="text-white/80 text-sm">
-              {project.location}
+              {project.category}
             </p>
           </figcaption>
         </div>
