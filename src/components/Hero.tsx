@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState, type ComponentType } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 type CompareImageProps = {
@@ -85,23 +86,26 @@ export default function Hero() {
             />
           ) : (
             <div className="absolute inset-0">
-              <img
+              <Image
                 src="/close.png"
                 alt="מרפסת סגורה עם זכוכית – חלל מוגן ואיכותי"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                priority
               />
               <div
                 className="absolute inset-y-0 left-0 overflow-hidden"
                 style={{ width: `${Math.round(normalized * 100)}%` }}
                 aria-hidden="true"
               >
-                <img
+                <Image
                   src="/open.png"
                   alt="מרפסת פתוחה – נוף חיצוני טבעי"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               </div>
-      </div>
+            </div>
           )}
 
           {/* Keyboard slider control (focus to reveal) */}

@@ -13,7 +13,7 @@ export const projects: Project[] = [
   {
     id: 1,
     title: "מרפסת שמש מינימליסטית",
-    category: "סגירות מרפסת",
+    category: "מרפסת מינימליסטית",
     description: "מרפסת שמש בקו נקי ומינימליסטי, שילוב מושלם של אלומיניום וזכוכית ליצירת מרחב מואר ומזמין.",
     images: [
       "/projects/balcony-minimal/1.webp",
@@ -41,7 +41,7 @@ export const projects: Project[] = [
   {
     id: 2,
     title: "סגירה משולבת אלומיניום וזכוכית",
-    category: "סגירות מרפסת",
+    category: "אלומיניום וזכוכית",
     description: "סגירת מרפסת משולבת אלומיניום וזכוכית באיכות גבוהה, מאפשרת שימוש בכל עונות השנה.",
     images: [
       "/projects/aluminum-glass/1.webp",
@@ -69,7 +69,7 @@ export const projects: Project[] = [
   {
     id: 3,
     title: "סגירת מרפסת לכל עונות השנה",
-    category: "סגירות מרפסת",
+    category: "מרפסת לכל העונות",
     description: "סגירת מרפסת מעוצבת לשימוש בכל עונות השנה, בידוד תרמי מעולה ועיצוב אלגנטי.",
     images: [
       "/projects/balcony-seasons/1.webp",
@@ -90,7 +90,7 @@ export const projects: Project[] = [
   {
     id: 4,
     title: "פרגולה עם איוורור ותאורה",
-    category: "פרגולות",
+    category: "פרגולה עם איוורור",
     description: "פרגולה משולבת סגירה עם מערכת איוורור חכמה ותאורת LED מובנית.",
     images: [
       "/projects/pergola-ventilation/1.webp",
@@ -106,7 +106,7 @@ export const projects: Project[] = [
   {
     id: 5,
     title: "פרגולה שחורה מודרנית",
-    category: "פרגולות",
+    category: "פרגולה מודרנית",
     description: "פרגולת אלומיניום שחורה בסגנון מודרני ומינימליסטי, עיצוב נקי וקווים חדים.",
     images: [
       "/projects/pergola-modern-black/1.webp",
@@ -141,7 +141,7 @@ export const projects: Project[] = [
   {
     id: 6,
     title: "פרגולה בעיצוב אישי",
-    category: "פרגולות",
+    category: "פרגולה בעיצוב אישי",
     description: "פרגולת אלומיניום מותאמת אישית לפי דרישות הלקוח, שילוב צבעים וחומרים ייחודי.",
     images: [
       "/projects/pergola-custom/1.webp",
@@ -170,7 +170,7 @@ export const projects: Project[] = [
   {
     id: 7,
     title: "עיצוב כפרי מודרני",
-    category: "פרויקטי וילות",
+    category: "עיצוב כפרי מודרני",
     description: "פרויקט וילה בקו עיצוב כפרי מודרני, שילוב אלומיניום עם אלמנטים טבעיים.",
     images: [
       "/projects/rustic-modern/1.webp",
@@ -192,7 +192,7 @@ export const projects: Project[] = [
   {
     id: 8,
     title: "אווירה ייחודית",
-    category: "פרויקטי וילות",
+    category: "אווירה ייחודית",
     description: "פרויקט מקיף המשלב עיצוב פנים וחוץ ליצירת אווירה ייחודית ומזמינה.",
     images: [
       "/projects/atmosphere/1.webp",
@@ -210,7 +210,12 @@ export const projects: Project[] = [
 
 export const categories = [
   "כל הפרויקטים",
-  "פרגולות",
-  "סגירות מרפסת",
-  "פרויקטי וילות"
+  "מרפסת מינימליסטית",
+  "אלומיניום וזכוכית",
+  "מרפסת לכל העונות",
+  "פרגולה עם איוורור",
+  "פרגולה מודרנית",
+  "פרגולה בעיצוב אישי",
+  "עיצוב כפרי מודרני",
+  "אווירה ייחודית"
 ];

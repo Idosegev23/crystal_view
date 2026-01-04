@@ -8,13 +8,13 @@ import { projects, categories } from '@/lib/projects';
 
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState("כל הפרויקטים");
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
   const filteredProjects = selectedCategory === "כל הפרויקטים" 
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
 
-  const openLightbox = (project: any) => {
+  const openLightbox = (project: typeof projects[0]) => {
     setSelectedProject(project);
     document.body.style.overflow = 'hidden';
   };
@@ -110,14 +110,14 @@ export default function Portfolio() {
                   whileHover={{ y: -10 }}
                   className="group cursor-pointer w-full text-right"
                   onClick={() => openLightbox(project)}
-                  aria-label={`פתח תצוגה מורחבת של פרויקט ${project.title} - ${project.category} ב${project.location}`}
+                  aria-label={`פתח תצוגה מורחבת של פרויקט ${project.title} - ${project.category}`}
                   aria-describedby={`project-summary-${project.id}`}
                 >
                   <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-crystal-dark">
                     <div className="aspect-w-16 aspect-h-12 relative">
                       <Image
                         src={project.images[0]}
-                        alt={`${project.title} - ${project.category} ב${project.location} שנת ${project.year} | פרויקט זכוכית ואלומיניום Crystal View`}
+                        alt={`${project.title} - ${project.category} שנת ${project.year} | פרויקט זכוכית ואלומיניום Crystal View`}
                         width={400}
                         height={300}
                         className="object-cover w-full h-64 group-hover:scale-110 transition-transform duration-700"
@@ -127,7 +127,7 @@ export default function Portfolio() {
                       
                       <p id={`project-desc-${project.id}`} className="sr-only">
                         פרויקט {project.title} בקטגוריה {project.category}, 
-                        מיקום: {project.location}, שנת ביצוע: {project.year}.
+                        שנת ביצוע: {project.year}.
                         {project.description}
                       </p>
                       
@@ -137,9 +137,6 @@ export default function Portfolio() {
                           <h3 className="text-xl font-bold text-crystal-white mb-2">
                             {project.title}
                           </h3>
-                          <p className="text-crystal-blue font-medium mb-2">
-                            {project.location}
-                          </p>
                           <p className="text-crystal-silver text-sm line-clamp-2">
                             {project.description}
                           </p>
@@ -167,7 +164,7 @@ export default function Portfolio() {
                         {project.title}
                       </h3>
                       <p className="text-crystal-blue font-medium mb-2">
-                        {project.location}
+                        {project.category}
                       </p>
                       <p className="text-crystal-silver text-sm line-clamp-2">
                         {project.description}
@@ -225,7 +222,7 @@ export default function Portfolio() {
                   <div key={index} className="relative aspect-w-16 aspect-h-12">
                     <Image
                       src={image}
-                      alt={`${selectedProject.title} - ${selectedProject.category} ב${selectedProject.location} תמונה ${index + 1} | Crystal View זכוכית ואלומיניום`}
+                      alt={`${selectedProject.title} - ${selectedProject.category} תמונה ${index + 1} | Crystal View זכוכית ואלומיניום`}
                       width={400}
                       height={300}
                       className="object-cover w-full h-64 rounded-lg"
@@ -240,14 +237,10 @@ export default function Portfolio() {
                   {selectedProject.title}
                 </h3>
                 <p id="lightbox-description" className="sr-only">
-                  תצוגה מורחבת של פרויקט {selectedProject.title} - {selectedProject.category} ב{selectedProject.location}
+                  תצוגה מורחבת של פרויקט {selectedProject.title} - {selectedProject.category}
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <h4 className="text-crystal-blue font-bold mb-2">מיקום</h4>
-                    <p className="text-crystal-silver">{selectedProject.location}</p>
-                  </div>
                   <div>
                     <h4 className="text-crystal-blue font-bold mb-2">קטגוריה</h4>
                     <p className="text-crystal-silver">{selectedProject.category}</p>
