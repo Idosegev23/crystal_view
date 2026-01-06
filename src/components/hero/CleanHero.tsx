@@ -37,16 +37,6 @@ export default function CleanHero() {
       <div className="relative z-10 container-max w-full py-20">
         <div className="max-w-4xl mx-auto text-center">
           
-          {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="glass-subheading text-glass-accent mb-6"
-          >
-            פתרונות אלומיניום וזכוכית
-          </motion.p>
-
           {/* Main Heading */}
           <motion.h1
             id="hero-heading"
@@ -65,7 +55,7 @@ export default function CleanHero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="glass-body-lg text-white/90 mb-12 max-w-2xl mx-auto"
           >
-            פרגולות וסגירות מרפסת מאלומיניום שעושות את הבית שלם יותר
+            כל פתרונות האלומיניום במקום אחד
           </motion.p>
 
           {/* CTAs */}
