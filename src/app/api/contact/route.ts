@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { generateContactEmailHTML, generateContactEmailText } from '@/lib/email-templates';
 
+// Webhook URL for Make.com
+const WEBHOOK_URL = 'https://hook.eu2.make.com/hn8e72n6utmqwvv67i789e67olok91q1';
+
 // Validation helpers
 function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -56,6 +59,26 @@ export async function POST(request: NextRequest) {
       email: sanitizeInput(email),
       message: message ? sanitizeInput(message) : '',
     };
+
+    // Send to Webhook (Make.com)
+    try {
+      console.log('API: Sending to webhook...');
+      const webhookResponse = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...sanitizedData,
+          source: 'Crystal View Website',
+          timestamp: new Date().toISOString(),
+        }),
+      });
+      console.log('API: Webhook response status:', webhookResponse.status);
+    } catch (webhookError) {
+      console.error('API: Webhook error (non-blocking):', webhookError);
+      // Continue with email sending even if webhook fails
+    }
 
     // Check environment variables
     const gmailUser = process.env.GMAIL_USER;
