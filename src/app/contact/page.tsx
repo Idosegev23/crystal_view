@@ -31,9 +31,7 @@ export default function ContactPage() {
     } else if (!/^[0-9\-\s\+\(\)]{7,20}$/.test(formData.phone)) {
       newErrors.phone = 'מספר טלפון לא תקין';
     }
-    if (!formData.email.trim()) {
-      newErrors.email = 'אימייל הוא שדה חובה';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'כתובת אימייל לא תקינה';
     }
     setErrors(newErrors);
@@ -149,13 +147,12 @@ export default function ContactPage() {
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-semibold text-glass-charcoal mb-2">
-                      אימייל <span className="text-glass-blue">*</span>
+                      אימייל
                     </label>
                     <input
                       type="email"
                       id="email"
                       name="email"
-                      required
                       value={formData.email}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-glass-ice/50 border border-glass-mist text-glass-charcoal placeholder-glass-steel/50 focus:ring-2 focus:ring-glass-blue focus:border-glass-blue focus:outline-none transition-all"

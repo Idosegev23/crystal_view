@@ -39,9 +39,7 @@ export default function Contact() {
       errors.phone = 'מספר טלפון לא תקין';
     }
     
-    if (!formData.email.trim()) {
-      errors.email = 'כתובת אימייל היא שדה חובה';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       errors.email = 'כתובת אימייל לא תקינה';
     }
     
@@ -218,14 +216,12 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="email" id="email-label" className="block text-blue-200 font-medium mb-2">
-                    אימייל *<span className="sr-only">(שדה חובה)</span>
+                    אימייל<span className="sr-only">(שדה אופציונלי)</span>
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    required
-                    aria-required="true"
                     aria-labelledby="email-label"
                     aria-describedby={formErrors.email ? "email-error" : "email-help"}
                     aria-invalid={!!formErrors.email}

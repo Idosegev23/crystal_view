@@ -27,16 +27,16 @@ export async function POST(request: NextRequest) {
     const { name, phone, email, message } = body;
 
     // Validation
-    if (!name || !phone || !email) {
+    if (!name || !phone) {
       console.log('API: Validation failed - missing required fields');
       return NextResponse.json(
-        { error: 'שם, טלפון ואימייל הם שדות חובה' },
+        { error: 'שם וטלפון הם שדות חובה' },
         { status: 400 }
       );
     }
     console.log('API: Initial validation passed');
 
-    if (!isValidEmail(email)) {
+    if (email && !isValidEmail(email)) {
       return NextResponse.json(
         { error: 'כתובת אימייל לא תקינה' },
         { status: 400 }

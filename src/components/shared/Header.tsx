@@ -48,7 +48,7 @@ export default function Header() {
     >
       <div className="section-padding">
         <div className="container-max">
-          <div className="flex items-center justify-between h-18 lg:h-20 flex-row-reverse lg:flex-row">
+          <div className="flex items-center justify-between h-18 lg:h-20">
             {/* Mobile Menu Button */}
             <button
               className="lg:hidden relative w-11 h-11 flex flex-col justify-center items-center touch-target bg-glass-charcoal text-white bento-1"
