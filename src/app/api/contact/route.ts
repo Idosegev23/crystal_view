@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
-import { generateContactEmailHTML, generateContactEmailText } from '@/lib/email-templates';
 
 // Webhook URL for Make.com
 const WEBHOOK_URL = 'https://hook.eu2.make.com/hn8e72n6utmqwvv67i789e67olok91q1';
@@ -61,124 +59,38 @@ export async function POST(request: NextRequest) {
     };
 
     // Send to Webhook (Make.com)
-    try {
-      console.log('API: Sending to webhook...');
-      const webhookResponse = await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...sanitizedData,
-          source: 'Crystal View Website',
-          timestamp: new Date().toISOString(),
-        }),
-      });
-      console.log('API: Webhook response status:', webhookResponse.status);
-    } catch (webhookError) {
-      console.error('API: Webhook error (non-blocking):', webhookError);
-      // Continue with email sending even if webhook fails
-    }
-
-    // Check environment variables
-    const gmailUser = process.env.GMAIL_USER;
-    const gmailPassword = process.env.GMAIL_APP_PASSWORD;
-    const contactEmailTo = process.env.CONTACT_EMAIL_TO;
-
-    console.log('API: Checking env vars...', {
-      hasGmailUser: !!gmailUser,
-      hasGmailPassword: !!gmailPassword,
-      hasContactEmailTo: !!contactEmailTo,
-      gmailUser: gmailUser // Show actual value for debugging
+    console.log('API: Sending to webhook...');
+    const webhookResponse = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...sanitizedData,
+        source: 'Crystal View Website',
+        timestamp: new Date().toISOString(),
+      }),
     });
 
-    if (!gmailUser || !gmailPassword || !contactEmailTo) {
-      console.error('API: Missing email configuration!');
+    console.log('API: Webhook response status:', webhookResponse.status);
+
+    if (!webhookResponse.ok) {
+      console.error('API: Webhook failed with status:', webhookResponse.status);
       return NextResponse.json(
-        { error: 'תצורת השרת אינה מוגדרת כראוי' },
+        { error: 'אירעה שגיאה בשליחת ההודעה. אנא נסה שוב.' },
         { status: 500 }
       );
     }
-    console.log('API: Env vars OK');
 
-    // Create transporter
-    console.log('API: Creating transporter...');
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: gmailUser,
-        pass: gmailPassword,
+    // Success response
+    console.log('API: Success! Message sent via webhook');
+    return NextResponse.json(
+      { 
+        success: true,
+        message: 'ההודעה נשלחה בהצלחה! נחזור אליך בהקדם.',
       },
-    });
-
-    // Verify transporter
-    console.log('API: Verifying transporter...');
-    try {
-      await transporter.verify();
-      console.log('API: Transporter verified successfully');
-    } catch (verifyError: any) {
-      console.error('API: Transporter verification failed:', {
-        error: verifyError,
-        message: verifyError?.message,
-        code: verifyError?.code,
-        command: verifyError?.command
-      });
-      return NextResponse.json(
-        { 
-          error: 'שגיאה בהתחברות לשרת המייל', 
-          details: verifyError?.message || 'Unknown error'
-        },
-        { status: 500 }
-      );
-    }
-
-    // Email options
-    const mailOptions = {
-      from: {
-        name: 'Crystal View Website',
-        address: gmailUser,
-      },
-      to: contactEmailTo,
-      replyTo: sanitizedData.email,
-      subject: `הודעה חדשה מ-${sanitizedData.name} | Crystal View`,
-      text: generateContactEmailText(sanitizedData),
-      html: generateContactEmailHTML(sanitizedData),
-    };
-
-    // Send email
-    console.log('API: Sending email...');
-    try {
-      const info = await transporter.sendMail(mailOptions);
-      console.log('API: Email sent successfully!', {
-        messageId: info.messageId,
-        response: info.response,
-        accepted: info.accepted,
-        rejected: info.rejected
-      });
-      
-      // Success response
-      return NextResponse.json(
-        { 
-          success: true,
-          message: 'ההודעה נשלחה בהצלחה! נחזור אליך בהקדם.',
-          messageId: info.messageId
-        },
-        { status: 200 }
-      );
-    } catch (sendError: any) {
-      console.error('API: Error sending email:', {
-        error: sendError,
-        message: sendError?.message,
-        code: sendError?.code
-      });
-      return NextResponse.json(
-        { 
-          error: 'אירעה שגיאה בשליחת ההודעה. אנא נסה שוב מאוחר יותר.',
-          details: sendError?.message || 'Unknown error'
-        },
-        { status: 500 }
-      );
-    }
+      { status: 200 }
+    );
 
   } catch (error: any) {
     console.error('API: Unexpected error:', error);
@@ -199,4 +111,3 @@ export async function GET() {
     { status: 405 }
   );
 }
-
